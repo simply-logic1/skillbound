@@ -24,6 +24,7 @@
     "@angular/router": "~7.1.0",
     "@angular/service-worker": "~7.1.0",
     "angular-material": "^1.1.13",
+    "bootstrap": "^4.0.0-beta",
     "core-js": "^2.5.4",
     "lato-font": "^3.0.0",
     "ng-form-group": "^1.4.2",
