@@ -1,52 +1,30 @@
-<!-- <mat-horizontal-stepper labelPosition="bottom" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-        <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Fill out your name</ng-template>
-            <div class="row">
-                <div class="col-lg-6 col-12">
-                        <mat-form-field>
-                                <input matInput placeholder="Name" formControlName="firstCtrl" required>
-                            </mat-form-field>
-                </div>
-                    
-                <div class="col-lg-6 col-12">
-                        <mat-form-field>
-                                <input matInput placeholder="Name" formControlName="firstCtrl" required>
-                            </mat-form-field>
-                </div>
-                                   
-            </div>
-       
-            <div>
-                <button mat-button matStepperNext>Next</button>
-            </div>
-        </form>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup" optional>
-        <form [formGroup]="secondFormGroup">
-            <ng-template matStepLabel>Fill out your address</ng-template>
-            <mat-form-field>
-                <input matInput placeholder="Address" formControlName="secondCtrl" required>
-            </mat-form-field>
-            <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
-            </div>
-        </form>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        You are now done.
-        <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
-        </div>
-    </mat-step>
-</mat-horizontal-stepper>
-
- -->
- <div class="row">
- <div class="col-lg-6">
-     shbjhsxc
- </div>
- </div>
+<div class="row">
+    <div class="col-lg-12 col-12 mt-5">
+        <h3 class="text-center">Registration Form</h3>
+    </div>
+</div>
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+<div class="row">
+    <div class="col-lg-12 col-12">
+        <input type="text" class="form-control name mx-auto mt-5" placeholder="User Name" name="username" id="username" [(ngModel)]="username" required>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-12">
+        <input type="email" class="form-control email mx-auto mt-5" placeholder="Email Address">
+    </div>
+</div> 
+<div class="row">
+    <div class="col-lg-12 col-12">
+        <input type="Password" class="form-control pwd mx-auto mt-5" placeholder="Password">
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-12">
+        <input type="password" class="form-control cfmpwd mx-auto mt-5" placeholder="Confirm Password">
+    </div>
+</div>
+<div class="row">
+        <button type="submit" [disabled]="form.invalid" class="btn btn-primary mx-auto mt-5">Register</button>
+</div>
+</form>
