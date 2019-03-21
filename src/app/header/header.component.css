@@ -1,8 +1,16 @@
-.logo-container{
-    width: 100%;
-    margin-right: 40px;
-    }
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+    
+}
+.img{
+  height: 50px;
+}
 
-.nav{
-    background-color: #000;
+.nav-link{
+    font-size: 15px;
+}
+@media screen and (max-width:480px){
+    .nav-link{
+        text-align: center;
+    }
 }
