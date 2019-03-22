@@ -7,3 +7,8 @@
 .head{
     margin-top: 20vh;
 }
+@media (min-width: 300px) and (max-width: 767px){
+    .head{
+        margin-top:15vh;
+    }
+}

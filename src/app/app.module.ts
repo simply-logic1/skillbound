@@ -51,6 +51,7 @@ import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 import { ForgotComponent } from './client/forgot/forgot.component';
 import { SkillshaveComponent } from './client/skillshave/skillshave.component';
 import { RegisterComponent } from './client/register/register.component';
+import { HeaderComponent} from './header/header.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { RegisterComponent } from './client/register/register.component';
     AdminloginComponent,
     ForgotComponent,
     SkillshaveComponent,
+    HeaderComponent,
 
   ],
   imports: [
