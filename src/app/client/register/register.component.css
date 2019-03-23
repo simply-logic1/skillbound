@@ -1,0 +1,14 @@
+.box{
+  /* background-image: url('../../../assets/image/icons/bg.png'); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  height:100%;
+}
+.head{
+  margin-top: 20vh;
+}
+@media (min-width: 300px) and (max-width: 767px){
+  .head{
+      margin-top:15vh;
+  }
+}
