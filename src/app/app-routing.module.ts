@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './client/register/register.component';
 import {LoginComponent} from './client/login/login.component';
-import{AppComponent} from './app.component'
+import { ForgotComponent } from './client/forgot/forgot.component';
+import { SkillshaveComponent } from './client/skillshave/skillshave.component';
+import { HeaderComponent } from './client/header/header.component';
+import { DasboardComponent } from './client/dasboard/dasboard.component';
+
 const routes: Routes = [
 {path:'',component:LoginComponent},
-{path: 'register', component: RegisterComponent}
+{path: 'register', component: RegisterComponent},
+{path:'forgot',component:ForgotComponent},
+{path:'skillshave',component:SkillshaveComponent},
+{path:'header',component:HeaderComponent},
+{path:'dashboard',component:DasboardComponent}
 ];
 
 @NgModule({
@@ -18,4 +24,6 @@ const routes: Routes = [
   declarations: []
   
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { 
+
+}

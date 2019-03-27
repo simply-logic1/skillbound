@@ -5,15 +5,17 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import { Observable,of } from 'rxjs';
 import { switchMap} from 'rxjs/operators';
 import { User } from './user';
-import { auth} from 'firebase/app'
 import { first, map, mergeMap, flatMap, take } from 'rxjs/operators';
 import {AngularFirestore,  AngularFirestoreDocument} from '@angular/fire/firestore';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   uid$;
   user;
+  property:any;
+  usersdocument:any;
   authstate=null;
   error: any = null;
   data: Observable<any[]>;
@@ -39,18 +41,29 @@ export class AuthService {
         }
       
     });
-    this.users$=this.afAuth.authState.pipe(
-      switchMap(
-      user =>{
-        if(user){
+    // this.users$=this.afAuth.authState.pipe(
+    //   switchMap(
+    //   user =>{
+    //     if(user){
+    //       return this.afs.doc<User>(`users/${user.uid}`).valueChanges()
+    //     }
+    //     else{
+    //       return of(null) 
+    //     }
+    //   }
+    //   )
+    // )
+    //facebook
+    this.user = this.afAuth.authState
+      .pipe(switchMap(user => {
+        if (user) {
           return this.afs.doc<User>(`users/${user.uid}`).valueChanges()
+        } else {
+          return of(null)
         }
-        else{
-          return of(null) 
-        }
-      }
-      )
+      })
     )
+
    }
    get currentUserId(): string {
     return (this.authstate !== null) ? this.authstate.uid : 'no'
@@ -80,7 +93,7 @@ login(email: string, pass: string) {
       this.authstate = user
       // this.getinfo()
       
-      this.router.navigate([''])
+      this.router.navigate(['/dashboard'])
      
     }
   ).catch(error => {
@@ -97,6 +110,111 @@ getuserdata():any {
   // this.afs.doc<User>(`users/${uid}`);
 }
 //Facebook login starts
+onfblogin(){
+  const provider = new firebase.auth.FacebookAuthProvider()
+  
+  return this.oAuthLogin(provider);
+}
+
+private oAuthLogin(provider) {
+  return this.afAuth.auth.signInWithPopup(provider)
+    .then((credential) => {
+      this.updateUserData(credential.user)
+      this.router.navigate(['/dashboard']);
+    })
+}
 
 
+private updateUserData(user) {
+  // Sets user data to firestore on login
+
+  const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+
+  const data: User = {
+    uid: user.uid,
+    email: user.email,
+    displayName: user.displayName,
+    photoURL: user.photoURL,
+    roles: {
+      user: true
+  }
+    
+  }
+
+  return userRef.set(data)
+
+}
+
+
+signOut() {
+  this.afAuth.auth.signOut().then(() => {
+      this.router.navigate(['']);
+  });
+}
+//register
+registerclient(userd){
+  return this.afAuth.auth.createUserWithEmailAndPassword(userd.email, userd.password)
+  .then(
+    (user)=>{
+      this.authstate = user 
+      this.getinfo(userd)
+      this.userdata(userd, this.afAuth.auth.currentUser.uid ).then(()=>{console.log("updated")
+      this.afAuth.auth.sendPasswordResetEmail(this.afAuth.auth.currentUser.email).then(() => this.router.navigate(['/thanks'])).catch((e) => {
+          console.log(e.message);
+          return e
+        })}).catch((e)=>console.log("not updated"))
+        
+    }
+  ).catch(error => {
+    
+    throw error
+  })
+}
+private userdata(user, uid) {
+
+  const userRef$: AngularFirestoreDocument<any> = this.afs.doc<User>(`users/${uid}`);
+  const userdata: User = {
+      uid: uid,
+      displayName: user.name,
+      email: user.email,
+    
+      // url:user.url,
+      roles: {
+          user: true
+      }
+  }
+
+  return userRef$.set(userdata, { merge: true })
+}
+getinfo(userd) {
+    return this.afAuth.auth.onAuthStateChanged(function (user) {
+      if (user) {
+        user.updateProfile({
+          displayName : userd.name,
+          photoURL: "https://firebasestorage.googleapis.com/v0/b/agent-sync-sonderworks.appspot.com/o/userprofile%2Fuser.jpg?alt=media&token=d3b47a22-a861-4c7a-9104-bef874ea39bf"
+        })
+        var displayName = user.displayName;
+        var email = user.email;
+        var emailVerified = user.emailVerified;
+        var photoURL = user.photoURL;
+        var isAnonymous = user.isAnonymous;
+
+        var providerData = user.providerData;
+        
+        var uids = user.uid;
+        
+        console.log(uids)
+       
+        
+      }
+    })
+  }
+  //forgot
+  forgotemail(email)
+  {
+    return this.afAuth.auth.sendPasswordResetEmail(email).then(() => this.router.navigate(['/'])).catch(error => {
+
+      throw error
+    })
+  }
 }

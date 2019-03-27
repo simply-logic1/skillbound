@@ -1,0 +1,16 @@
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+    
+}
+.img{
+  height: 50px;
+}
+
+.nav-link{
+    font-size: 15px;
+}
+@media screen and (max-width:480px){
+    .nav-link{
+        text-align: center;
+    }
+}

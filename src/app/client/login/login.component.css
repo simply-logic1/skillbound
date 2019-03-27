@@ -1,19 +1,4 @@
-/* .user_card{
-     background-image: url('/assets/image/background/1.jpeg');
-    height: auto;
-   
-}
-.brand_logo_container {
-    
-    height: 124px;
-   
-    
-    text-align: center;
-}
-.example-container{
-    height: auto;
-    padding:37px;
-} */
+
 .section{
     padding: 0;
     position: relative;
@@ -48,21 +33,6 @@
     color: white;
   }
   
-
-.mat-focused .mat-form-field-label {
-    /*change color of label*/
-    color:#fff !important;
-}
-
-.mat-form-field-underline {
- /*change color of underline*/
-  background-color:#fff !important;
-} 
-
-.mat-form-field-ripple {
- /*change color of underline when focused*/
- background-color:#fff !important;;
-}
  .brand-logo container{
      position: absolute;
     height: 170px;
@@ -74,9 +44,7 @@
     text-align: center;
 }   
 
-/* .remember{
-    margin-right:10vw !important;
-} */
+
 @media screen and (max-width: 820px) and (min-width: 310px){
     .image-container{
         display: none !important;
@@ -85,8 +53,9 @@
         width: 100% !important;
       
     }
-    /* .remember{
-        margin-right: 25vw !important;
-    } */
+    .content{
+        display: none;
+    }
+    
 
 }

@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule,FormControl, Validators } from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {  MatAutocompleteModule,
+import {
+  MatAutocompleteModule,
   MatBadgeModule,
   MatBottomSheetModule,
   MatButtonModule,
@@ -47,6 +48,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './client/login/login.component';
 import { RegisterComponent } from './client/register/register.component';
+import { ForgotComponent } from './client/forgot/forgot.component';
+import { SkillshaveComponent} from './client/skillshave/skillshave.component';
+
 import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 import { AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
@@ -59,12 +63,19 @@ import { Observable } from 'rxjs';
 
 import { AuthService } from './service/auth.service';
 import { ClientService } from './service/client.service';
+import { HeaderComponent } from './client/header/header.component';
+import { DasboardComponent } from './client/dasboard/dasboard.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    AdminloginComponent
+    AdminloginComponent,
+    ForgotComponent,
+    SkillshaveComponent,
+    HeaderComponent,
+    DasboardComponent
+  
   ],
   imports: [
     BrowserModule,

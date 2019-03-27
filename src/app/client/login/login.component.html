@@ -12,7 +12,8 @@
               <img src="/assets/image/icons/logo.png" class="rounded my-2">     
            </div>
       <div class="example-container text-center">
-          <mat-form-field  style="width:205px !important;color:white;">
+          <form class="offset-lg-2 col-lg-8 col-md-12 col-xs-12 col-sm-12" #loginform="ngForm" (ngSubmit)="login(email.value, password.value)">
+          <mat-form-field  style="width:205px !important;">
             <input matInput placeholder="Enter your email" [formControl]="email" required>
               <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
           </mat-form-field><br>
@@ -23,16 +24,17 @@
                  
             </mat-form-field><br>
             
-      <!-- <mat-checkbox class="remember">Check me!</mat-checkbox><br> -->
+      
 
             <button type="submit" class="btn btn-primary btn-md mx-auto py-2 px-4" 
         >SIGN IN</button><br>
-        <a href="">Forgot Password</a><br>
+        <a href=""routerLink="/forgot">Forgot Password</a><br>
         <h5>OR</h5>
-        <a href="#" class="fb btn">
+        <a href="#" class="fb btn" (click)="fblogin()">
             <i class="fa fa-facebook fa-fw"></i> Login with Facebook
            </a>
-          <p>Not a member? <a href="">Register</a></p>
+          <p>Not a member? <a href=""routerLink="/register">Register</a></p>
+          </form>
   </div>
       </div>                  
   </div>

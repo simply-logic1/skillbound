@@ -17,4 +17,8 @@ export class ClientService {
       throw error
     })   
   }
+  //register
+  register(registerForm){
+    return this.auth.registerclient(registerForm)
+  }
 }
