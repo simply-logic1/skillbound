@@ -16,5 +16,10 @@ email: new FormControl('', [
 
   ngOnInit() {
   }
-
+  onSubmit() {
+    if (this.form.valid) {
+      console.log("Form Submitted!");
+      this.form.reset();
+    }
+  }
 }

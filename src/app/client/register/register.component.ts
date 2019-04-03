@@ -20,19 +20,25 @@ export class RegisterComponent implements OnInit {
       Validators.required,
       Validators.minLength(6)
     ]),
-    confirmpassword: new FormControl('', [
-      Validators.required,]
-    ),
+    // confirmpassword: new FormControl('', [
+    //   Validators.required,]
+    // ),
 
 
   });
   constructor() { }
-  get username() {
+  get userName() {
     return this.form.get('userName')
   }
   ngOnInit() {
   }
+  // onSubmit() {
+  //   alert(JSON.stringify(this.form.value));
+  // }
   onSubmit() {
-    alert(JSON.stringify(this.form.value));
+    if (this.form.valid) {
+      console.log("Form Submitted!");
+      this.form.reset();
+    }
   }
 }

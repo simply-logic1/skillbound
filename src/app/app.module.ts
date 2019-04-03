@@ -52,6 +52,7 @@ import { ForgotComponent } from './client/forgot/forgot.component';
 import { SkillshaveComponent } from './client/skillshave/skillshave.component';
 import { RegisterComponent } from './client/register/register.component';
 import { HeaderComponent} from './header/header.component';
+import { DesignComponent } from './client/design/design.component';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { HeaderComponent} from './header/header.component';
     ForgotComponent,
     SkillshaveComponent,
     HeaderComponent,
+    DesignComponent,
 
   ],
   imports: [
