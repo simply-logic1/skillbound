@@ -1,9 +1,35 @@
 .example-card {
-    max-width: 400px;
+  max-width: 400px;
+}
+/* @font-face {
+  font-family:Bluebell;
+  src: url('../../../assets/fonts/Bluebell.ttf') format("truetype");
+} */
+/* .mat-expansion-panel-header.mat-expanded {
+  background: red;
+} */
+.btn-primary:hover{
+    font-size: 40px;
+    font-weight: bold;
+  /* font-family: 'Bluebell'; */
+}
+.conts1{
+  margin-left: 2vw;
+}
+.constant{
+ margin-left: 2vw;
+}
+@media (min-width: 320px) and (max-width: 480px) {
+  .constant{
+    margin-left: -6vw;
   }
-  .modal-content{
-    height:80vh;
-    background-color: #554f51;
-  }
-
-  
+  .btn-primary:hover{
+    font-size: 25px;
+    font-weight: bold;
+}
+}
+@media (min-width: 760px)  and (max-width: 960px) {
+   .constant{
+     margin-left: -3vw;
+   }
+}

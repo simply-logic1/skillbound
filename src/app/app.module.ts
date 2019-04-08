@@ -39,8 +39,8 @@ import {
   MatToolbarModule,
   MatTooltipModule,
   MatTreeModule } from '@angular/material';
- 
 
+  
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -65,6 +65,8 @@ import { AuthService } from './service/auth.service';
 import { ClientService } from './service/client.service';
 import { HeaderComponent } from './client/header/header.component';
 import { DasboardComponent } from './client/dasboard/dasboard.component';
+import { SocialService } from './service/social.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +76,9 @@ import { DasboardComponent } from './client/dasboard/dasboard.component';
     ForgotComponent,
     SkillshaveComponent,
     HeaderComponent,
-    DasboardComponent
+    DasboardComponent,
+    
+    
   
   ],
   imports: [
@@ -128,7 +132,7 @@ import { DasboardComponent } from './client/dasboard/dasboard.component';
 
     
   ],
-  providers: [AuthService,ClientService],
+  providers: [AuthService,ClientService, SocialService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../../service/client.service';
 import { AuthService } from '../../service/auth.service';
+import {SocialService} from '../../service/social.service';
 import {FormControl, Validators} from '@angular/forms';
 import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers:[ ClientService]
+  providers:[SocialService ]
 
 })
 export class LoginComponent implements OnInit {
-  constructor(private Auth:AuthService,private cli:ClientService){}
+  constructor(private Auth:AuthService,private cli:ClientService,private social:SocialService){}
   
   email = new FormControl('', [Validators.required, Validators.email]);
  password = new FormControl('', [Validators.required]);
@@ -52,6 +53,6 @@ resetForm(loginform?: NgForm) {
   }
   fblogin()
   {
-    this.Auth.onfblogin();
+    this.social.onfblogin();
   }
 }
