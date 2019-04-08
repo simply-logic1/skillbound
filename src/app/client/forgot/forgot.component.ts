@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators,FormControl} from '@angular/forms';
+import {AuthService} from '../../service/auth.service';
 @Component({
   selector: 'app-forgot',
   templateUrl: './forgot.component.html',
@@ -12,7 +13,13 @@ email: new FormControl('', [
       Validators.email
     ]),
   })
-  constructor() { }
+  constructor(public auth:AuthService) { }
+  forgot(value)
+  {
+   
+    this.auth.forgotemail(value);
+    
+  }
 
   ngOnInit() {
   }

@@ -4,20 +4,25 @@ import { RegisterComponent } from './client/register/register.component';
 import {LoginComponent} from './client/login/login.component';
 import { ForgotComponent } from './client/forgot/forgot.component';
 import { SkillshaveComponent } from './client/skillshave/skillshave.component';
-import { HeaderComponent } from './header/header.component';
-import { DesignComponent } from './client/design/design.component';
+import { HeaderComponent } from './client/header/header.component';
+import { DasboardComponent } from './client/dasboard/dasboard.component';
+
 const routes: Routes = [
-{path:'login',component:LoginComponent},
+{path:'',component:LoginComponent},
 {path: 'register', component: RegisterComponent},
 {path:'forgot',component:ForgotComponent},
 {path:'skillshave',component:SkillshaveComponent},
 {path:'header',component:HeaderComponent},
-{path:'design',component:DesignComponent},
+{path:'dashboard',component:DasboardComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, { useHash: true } )
+  ],
+  exports: [RouterModule],
+  declarations: []
+  
 })
 export class AppRoutingModule { 
 

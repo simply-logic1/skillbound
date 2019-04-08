@@ -1,0 +1,61 @@
+
+.section{
+    padding: 0;
+    position: relative;
+    background-image: url('../../../assets/image/background/5.jpg');
+    background-size: cover;
+    min-height: 100vh;
+    width: 100%;
+    background-position: center center;
+   
+}
+
+ .formbg {
+     border-radius: .75rem;
+     background-color: #fff;
+     
+} 
+
+.textbg {
+    background-color:rgba(0,0,0,0.5);
+    border-radius: .75rem;
+    color:#fff;
+    
+} 
+.card{
+    border-radius:0;
+    border: none;
+    background-color: transparent;
+  
+}
+.fb {
+    background-color: #3B5998;
+    color: white;
+  }
+  
+ .brand-logo container{
+     position: absolute;
+    height: 170px;
+    width: 170px;
+    top: -77px;
+    border-radius: 50%;
+    /* background: #60a3bc; */
+    padding: 10px;
+    text-align: center;
+}   
+
+
+@media screen and (max-width: 820px) and (min-width: 310px){
+    .image-container{
+        display: none !important;
+    }
+    .form-container{
+        width: 100% !important;
+      
+    }
+    .content{
+        display: none;
+    }
+    
+
+}

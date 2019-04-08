@@ -1,8 +1,9 @@
 .box{
-    background-image: url('../../../assets/image/icons/bgg2.jpg');
+    background-image: url('../../../assets/image/background/2.png');
     background-repeat: no-repeat;
     background-size: cover;
     height:100%;
+
 }
 .box1{
     /* background-color: #ffffff; */

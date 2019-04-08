@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase:{
+  apiKey: "AIzaSyBatQEh_gRgDs9PeCpcXnrAGCxA2GHuGFw",
+    authDomain: "skilbound.firebaseapp.com",
+    databaseURL: "https://skilbound.firebaseio.com",
+    projectId: "skilbound",
+    storageBucket: "",
+    messagingSenderId: "888192637565"
+  }
 };
 
 /*

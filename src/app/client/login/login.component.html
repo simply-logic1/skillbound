@@ -1,26 +1,54 @@
-<!-- <div class="row">
-  <div class="offset-lg-2  col-lg-8 col-md-12 col-xs-12 col-sm-12 mx-auto">
-    <div class="card" style="width:12rem">
-        <img src="assets/image/icons/logo.png" class="card-img-top my-5">
-          <div class="card-body">
-            <div class="form-group row">
-                <div class="offset-1 col-10">
-                    <input type="email" required class="form-control-lg col-12 text-center sharp" placeholder="Email" name="email" required
-                        pattern="[^@]*@[^@]*" >
-                </div>
-            </div>
-         
-                <div class="form-group row">
-                    <div class="offset-1 col-10">
-                        <input type="password" required class="form-control-lg col-12 text-center sharp" placeholder="Password" name="password">
-                    </div>
-                </div>    
-          </div> 
-          
-          
-    </div>  
+<div class="section p-5">
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-1 "></div>
+        <div class="col-md-10">
+        <div class="d-flex flex-wrap">
+           
+         <div class="col-md-6 order-md-12 formbg">
+       <div class="form-container">
+           <div class="card">
+            <div class="text-center">        
+              <img src="/assets/image/icons/logo.png" class="rounded my-2">     
+           </div>
+      <div class="example-container text-center">
+          <form class="offset-lg-2 col-lg-8 col-md-12 col-xs-12 col-sm-12" #loginform="ngForm" (ngSubmit)="login(email.value, password.value)">
+          <mat-form-field  style="width:205px !important;">
+            <input matInput placeholder="Enter your email" [formControl]="email" required>
+              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field><br>
+          <mat-form-field>
+              <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [formControl]="password" required class="sharp">
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  <mat-error *ngIf="password.invalid">{{getError()}}</mat-error>
+                 
+            </mat-form-field><br>
+            
+      
+
+            <button type="submit" class="btn btn-primary btn-md mx-auto py-2 px-4" 
+        >SIGN IN</button><br>
+        <a href=""routerLink="/forgot">Forgot Password</a><br>
+        <h5>OR</h5>
+        <a href="#" class="fb btn" (click)="fblogin()">
+            <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+           </a>
+          <p>Not a member? <a href=""routerLink="/register">Register</a></p>
+          </form>
   </div>
-</div>      
-
-
-         -->
+      </div>                  
+  </div>
+  </div>
+  <div class="col-md-6 order-md-1 textbg">
+      <div class="content p-3">
+        <h2>SWAP YOUR SKILLS</h2>
+        <p>Some of you may be thinking that you don't have a skill...but you do!! if you can speak a language, drive, whistle, juggle, paint, sing..etc. Then you have a skill someone else might dearly desire...and they may have a skill that will enrich your life.
+         </p>
+      </div>
+    </div> 
+  </div>
+  </div>
+ <div class="col-md-1"></div>
+  </div>
+  </div>
+</div>

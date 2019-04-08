@@ -1,13 +1,6 @@
-.example-card {
-    max-width: 400px;
-  }
-  /* @font-face {
-    font-family:Bluebell;
-    src: url('../../../assets/fonts/Bluebell.ttf') format("truetype");
-  } */
-  /* .mat-expansion-panel-header.mat-expanded {
-    background: red;
-  } */
+.bb{
+  padding: 17px;
+}
   .btn-primary:hover{
       font-size: 40px;
       font-weight: bold;
@@ -26,6 +19,9 @@
     .btn-primary:hover{
       font-size: 25px;
       font-weight: bold;
+  }
+  .bb{
+    padding: 8px;
   }
   }
   @media (min-width: 760px)  and (max-width: 960px) {

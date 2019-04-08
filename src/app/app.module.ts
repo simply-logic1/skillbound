@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule,FormControl, Validators } from '@angular/forms';
+import {HttpModule} from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatAutocompleteModule,
@@ -39,22 +38,33 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatTreeModule,
- } from '@angular/material';
+  MatTreeModule } from '@angular/material';
+ 
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './client/login/login.component';
-import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
-import { ForgotComponent } from './client/forgot/forgot.component';
-import { SkillshaveComponent } from './client/skillshave/skillshave.component';
 import { RegisterComponent } from './client/register/register.component';
-import { HeaderComponent} from './header/header.component';
-import { DesignComponent } from './client/design/design.component';
+import { ForgotComponent } from './client/forgot/forgot.component';
+import { SkillshaveComponent} from './client/skillshave/skillshave.component';
+
+import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
+import { AngularFireModule} from '@angular/fire';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireAuthModule} from '@angular/fire/auth';
 
 
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+
+
+import { AuthService } from './service/auth.service';
+import { ClientService } from './service/client.service';
+import { HeaderComponent } from './client/header/header.component';
+import { DasboardComponent } from './client/dasboard/dasboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,15 +74,15 @@ import { DesignComponent } from './client/design/design.component';
     ForgotComponent,
     SkillshaveComponent,
     HeaderComponent,
-    DesignComponent,
-
+    DasboardComponent
+  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule, 
+    ReactiveFormsModule,
     HttpModule,
-    HttpClientModule,
-    FormsModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,
@@ -108,11 +118,16 @@ import { DesignComponent } from './client/design/design.component';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-    ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebase)
+
+    
   ],
-  providers: [],
+  providers: [AuthService,ClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
