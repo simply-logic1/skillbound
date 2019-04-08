@@ -1,27 +1,27 @@
 .bb{
-  padding: 17px;
+  padding: 11px;
 }
-  .btn-primary:hover{
+.btn-primary:hover{
       font-size: 40px;
       font-weight: bold;
-    /* font-family: 'Bluebell'; */
+   
   }
-  .conts1{
+.conts1{
     margin-left: 2vw;
   }
- .constant{
-   margin-left: 2vw;
+.constant{
+   margin-left: 1vw;
  }
   @media (min-width: 320px) and (max-width: 480px) {
     .constant{
-      margin-left: -6vw;
+      margin-left: -1vw;
     }
     .btn-primary:hover{
       font-size: 25px;
       font-weight: bold;
   }
   .bb{
-    padding: 8px;
+    padding: 7px;
   }
   }
   @media (min-width: 760px)  and (max-width: 960px) {

@@ -1,5 +1,7 @@
 import { Component, OnInit, ElementRef  } from '@angular/core';
 
+
+
 @Component({
   selector: 'app-skillshave',
   templateUrl: './skillshave.component.html',
@@ -7,7 +9,13 @@ import { Component, OnInit, ElementRef  } from '@angular/core';
 })
 export class SkillshaveComponent implements OnInit {
 
-constructor(private elem:ElementRef) { }
+  url='assets/sub_cat.json'
+
+  constructor(private elem:ElementRef) { }
+  // getcategories(){
+  //   return this.http.get('assets/sub_cat.json');
+  // }
+ 
 
   ngOnInit() {
   }

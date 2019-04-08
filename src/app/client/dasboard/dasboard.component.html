@@ -1,1 +1,157 @@
 <app-header></app-header>
+
+<mat-horizontal-stepper >
+    <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Personal information</ng-template>
+      
+      <div class="example-container text-center pt-5">
+         
+            <mat-form-field >
+                <input matInput class="w-100" placeholder="Name"formControlName="firstCtrl" required>
+            </mat-form-field><br>
+         
+        
+          
+          <mat-form-field>
+            <mat-label>Gender</mat-label>
+            <mat-select>
+              <mat-option>none</mat-option>
+              
+              <mat-option *ngFor="let gender of gender" [value]="gender">{{gender}}</mat-option>
+          
+            </mat-select>
+          </mat-form-field><br>
+         
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Date of Birth"formControlName="firstCtrl" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+     
+    </div>
+    </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Contact information</ng-template>
+      <div class="example-container text-center pt-5">
+         
+          <mat-form-field>
+              <mat-label>Country</mat-label>
+              <mat-select>
+                    <mat-option *ngFor="let country of country" [value]="country">{{country}}</mat-option>
+                <mat-option>none</mat-option>
+               
+            
+              </mat-select>
+            </mat-form-field><br>
+       
+              <mat-form-field>
+                  <mat-label>state</mat-label>
+                  <mat-select>
+                        <mat-option *ngFor="let state of state" [value]="state">{{state}}</mat-option>
+                    <mat-option>none</mat-option>
+                    
+                
+                  </mat-select>
+                </mat-form-field><br>
+         
+                <mat-form-field>
+                    <mat-label >city</mat-label>
+                    <mat-select>
+                            <mat-option *ngFor="let city of city" [value]="city">{{city}}</mat-option>
+                      <mat-option>none</mat-option>
+                      
+                  
+                    </mat-select>
+                  </mat-form-field><br>
+             
+                  <mat-form-field>
+                      <input matInput placeholder="ZipCode"formControlName="secondCtrl" required>
+                  </mat-form-field>
+                  
+              
+              
+      </div>
+      </form>
+
+  </mat-step>
+
+
+   <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>Education Details</ng-template> 
+      <div class="example-container text-center pt-5">
+         
+        
+               
+       
+        
+            <mat-form-field>
+                <input matInput placeholder="Qualificaions"formControlName="thirdCtrl" required>
+            </mat-form-field><br>
+       
+            <mat-form-field>
+                <input matInput placeholder="Schools"formControlName="thirdCtrl" required>
+            </mat-form-field><br>
+     
+        
+       
+            <mat-form-field>
+                <input matInput placeholder="Rates"formControlName="thirdCtrl" required>
+            </mat-form-field>
+        
+      </div>
+
+        
+     
+</form>
+</mat-step>
+<mat-step [stepControl]="fourthFormGroup">
+    <form [formGroup]="fourthFormGroup">
+  <ng-template matStepLabel>Professional Details</ng-template>
+  <div class="text-center mx-auto p-3">
+        <label class="example-margin">Are you registering as a:</label>
+        <mat-radio-group aria-label="Select an option ">
+        
+
+                <mat-radio-button  value="company" >Company</mat-radio-button>
+                <mat-radio-button value="individual">Individual</mat-radio-button>
+              </mat-radio-group>
+</div>
+  <div class="example-container text-center ">
+
+        
+           
+        
+        <mat-form-field>
+                <input matInput placeholder="Name of business"formControlName="fourthCtrl" required>
+            </mat-form-field><br>
+      
+            <mat-form-field>
+                <input matInput placeholder="I work as a/an"formControlName="fourthCtrl" required>
+            </mat-form-field><br>
+       
+            <mat-form-field>
+                
+                <input matInput placeholder="company/Organization"formControlName="fourthCtrl" required>
+            </mat-form-field><br>
+        
+            
+               
+      
+            <mat-form-field>
+                <input matInput placeholder="Experiences"formControlName="fourthCtrl" required>
+            </mat-form-field>
+       
+  </div> 
+</form>
+</mat-step>
+<mat-step [stepControl]="fivethFormGroup">
+        <form [formGroup]="fivethFormGroup">
+      <ng-template matStepLabel>Skills Details</ng-template>
+      <app-skillshave></app-skillshave>
+      </form>
+      </mat-step> 
+</mat-horizontal-stepper>
