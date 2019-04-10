@@ -21,23 +21,7 @@ export class SocialService {
   users$ : Observable<User>;
   constructor( public afAuth:AngularFireAuth,private afs: AngularFirestore,
     private router: Router) {  
-      this.afAuth.authState.subscribe((auth)=>{
-        if(auth){
-          console.log('logged in');
-          this.authstate=auth
-          const uida=this.afAuth.auth.currentUser.uid;
-          if(uida !=null||uida!=undefined){
-            console.log(uida +"is htns");
-            this.uid$
-          }
-        }  
-          else
-          {
-            this.router.navigate(['/'])
-            console.log('not logged in');
-          }
-        
-      });
+      
       this.user = this.afAuth.authState.pipe(switchMap(user => {
         if (user) {
           return this.afs.doc<User>(`users/${user.uid}`).valueChanges()

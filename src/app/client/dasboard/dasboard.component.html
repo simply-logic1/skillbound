@@ -1,14 +1,22 @@
 <app-header></app-header>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
 
+    
 <mat-horizontal-stepper >
-    <mat-step [stepControl]="firstFormGroup">
+    <mat-step [stepControl]="firstFormGroup" completed="false">
         <form [formGroup]="firstFormGroup">
+        
       <ng-template matStepLabel>Personal information</ng-template>
       
       <div class="example-container text-center pt-5">
-         
+          
+     <!-- <h4 class="mx-auto">Personal information</h4> -->
+     <div><mat-card-title>Personal information</mat-card-title></div>
+          
             <mat-form-field >
-                <input matInput class="w-100" placeholder="Name"formControlName="firstCtrl" required>
+                <input matInput class="w-100" placeholder="Name" formControlName="firstCtrl" required>
             </mat-form-field><br>
          
         
@@ -28,8 +36,11 @@
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
-     
+              <br>
+             <div class="float-right">&nbsp;<button mat-button matStepperNext >Next</button></div> 
+                 
     </div>
+    
     </form>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
@@ -37,6 +48,7 @@
       <ng-template matStepLabel>Contact information</ng-template>
       <div class="example-container text-center pt-5">
          
+          <div><mat-card-title>Contact information</mat-card-title></div>
           <mat-form-field>
               <mat-label>Country</mat-label>
               <mat-select>
@@ -70,88 +82,100 @@
                   <mat-form-field>
                       <input matInput placeholder="ZipCode"formControlName="secondCtrl" required>
                   </mat-form-field>
-                  
-              
+                  <br>
+                  <div class="float-right"><button mat-button matStepperPrevious>Back</button>&nbsp;&nbsp;
+                  <button mat-button matStepperNext>Next</button>  </div> 
               
       </div>
       </form>
 
   </mat-step>
-
-
-   <mat-step [stepControl]="thirdFormGroup">
-        <form [formGroup]="thirdFormGroup">
-      <ng-template matStepLabel>Education Details</ng-template> 
-      <div class="example-container text-center pt-5">
-         
-        
-               
-       
-        
-            <mat-form-field>
-                <input matInput placeholder="Qualificaions"formControlName="thirdCtrl" required>
-            </mat-form-field><br>
-       
-            <mat-form-field>
-                <input matInput placeholder="Schools"formControlName="thirdCtrl" required>
-            </mat-form-field><br>
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+  <ng-template matStepLabel>Education Details</ng-template> 
+  <div class="example-container text-center pt-5">
      
-        
-       
-            <mat-form-field>
-                <input matInput placeholder="Rates"formControlName="thirdCtrl" required>
-            </mat-form-field>
-        
-      </div>
+    
+      <div><mat-card-title>Education Details</mat-card-title></div>
+   
+    
+        <mat-form-field>
+            <input matInput placeholder="Qualificaions"formControlName="thirdCtrl" required>
+        </mat-form-field><br>
+   
+        <mat-form-field>
+            <input matInput placeholder="Schools"formControlName="thirdCtrl" required>
+        </mat-form-field><br>
+ 
+    
+   
+        <mat-form-field>
+            <input matInput placeholder="Rates"formControlName="thirdCtrl" required>
+        </mat-form-field>
+        <br>
+              <div class="float-right"><button mat-button matStepperPrevious>Back</button>&nbsp;&nbsp;
+          <button mat-button matStepperNext>Next</button>  </div> 
+    
+  </div>
 
-        
-     
+    
+ 
 </form>
 </mat-step>
 <mat-step [stepControl]="fourthFormGroup">
-    <form [formGroup]="fourthFormGroup">
-  <ng-template matStepLabel>Professional Details</ng-template>
-  <div class="text-center mx-auto p-3">
-        <label class="example-margin">Are you registering as a:</label>
-        <mat-radio-group aria-label="Select an option ">
+<form [formGroup]="fourthFormGroup">
+<ng-template matStepLabel>Professional Details</ng-template>
+
+<div class="example-container text-center ">
+
+  <div><mat-card-title>Professional Details</mat-card-title></div>
+  
+  <mat-form-field>
+      <mat-label>Are you registering as a</mat-label>
+      <mat-select>
+        <mat-option>none</mat-option>
         
-
-                <mat-radio-button  value="company" >Company</mat-radio-button>
-                <mat-radio-button value="individual">Individual</mat-radio-button>
-              </mat-radio-group>
-</div>
-  <div class="example-container text-center ">
-
+        <mat-option *ngFor="let select of select" [value]="select">{{select}}</mat-option>
+    
+      </mat-select>
+    </mat-form-field><br>
+      
+ 
+    
+    <mat-form-field>
+            <input matInput placeholder="Name of business"formControlName="fourthCtrl" required>
+        </mat-form-field><br>
+  
+        <mat-form-field>
+            <input matInput placeholder="I work as a/an"formControlName="fourthCtrl" required>
+        </mat-form-field><br>
+   
+        <mat-form-field>
+            
+            <input matInput placeholder="company/Organization"formControlName="fourthCtrl" required>
+        </mat-form-field><br>
+    
         
            
-        
+  
         <mat-form-field>
-                <input matInput placeholder="Name of business"formControlName="fourthCtrl" required>
-            </mat-form-field><br>
-      
-            <mat-form-field>
-                <input matInput placeholder="I work as a/an"formControlName="fourthCtrl" required>
-            </mat-form-field><br>
-       
-            <mat-form-field>
-                
-                <input matInput placeholder="company/Organization"formControlName="fourthCtrl" required>
-            </mat-form-field><br>
-        
-            
-               
-      
-            <mat-form-field>
-                <input matInput placeholder="Experiences"formControlName="fourthCtrl" required>
-            </mat-form-field>
-       
-  </div> 
+            <input matInput placeholder="Experiences"formControlName="fourthCtrl" required>
+        </mat-form-field>
+        <br>
+              <div class="float-right"><button mat-button matStepperPrevious>Back</button>&nbsp;&nbsp;
+          <button mat-button matStepperNext >Next</button>  </div> 
+</div> 
 </form>
 </mat-step>
-<mat-step [stepControl]="fivethFormGroup">
-        <form [formGroup]="fivethFormGroup">
-      <ng-template matStepLabel>Skills Details</ng-template>
-      <app-skillshave></app-skillshave>
-      </form>
-      </mat-step> 
+<mat-step [stepControl]="fifthFormGroup">
+    <form [formGroup]="fifthFormGroup">
+  <ng-template matStepLabel>Skills Details</ng-template>
+  <app-skillshave></app-skillshave>
+  <div><button mat-button matStepperPrevious>Back</button>
+    <button mat-button matStepperNext >Next</button>  </div> 
+  </form>
+  </mat-step> 
 </mat-horizontal-stepper>
+</div>
+</div>
+</div>

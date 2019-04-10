@@ -4,3 +4,6 @@ html,body{
     overflow: hidden;
     height:100%;
    }
+   .mat-horizontal-stepper-header-container {
+    display: none !important;
+  }

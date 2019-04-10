@@ -5,62 +5,11 @@
     height:100%;
 
 }
-.box1{
-    /* background-color: #ffffff; */
-    height: 60vh;
-    width: 30vw;
+.head{
     margin-top: 20vh;
-    margin-left: 8vw;
-    /* opacity:0.9; */
-    
 }
-.reg{
-    color: #ffffff
-}
-/* .head{
-    margin-top: 12vh;
-} */
 @media (min-width: 300px) and (max-width: 767px){
-    .box{
-        background-image: url('../../../assets/image/icons/bgph1.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height:100%;
-    }
-    .box1{
-        background-color: #ffffff;
-        height: 78vh;
-        width: 84vw;
-        margin-top: 12vh;
-        margin-left: 8vw;
-        /* opacity: 0.9; */
-        color: #000000;
-        }
-    .reg{
-        color: #000000;
-    }
-}
-@media (min-width: 768px) and (max-width: 1024px) {
-  
-    .box{
-        background-image: url('../../../assets/image/icons/bgi.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height:100%;
-    }
-    .box1{
-        background-color: #ffffff;
-        height: 78vh;
-        width: 84vw;
-        margin-top: 12vh;
-        margin-left: 8vw;
-        /* opacity: 0.9; */
-        color: #000000;
-        
-    }
-    .reg{
-        color: #000000;
-        margin-bottom: -7vh;
-        margin-top: 12vh;
+    .head{
+        margin-top:15vh;
     }
 }

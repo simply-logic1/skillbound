@@ -50,7 +50,7 @@ import { LoginComponent } from './client/login/login.component';
 import { RegisterComponent } from './client/register/register.component';
 import { ForgotComponent } from './client/forgot/forgot.component';
 import { SkillshaveComponent} from './client/skillshave/skillshave.component';
-
+import {DesignComponent} from './client/design/design.component';
 import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 import { AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
@@ -77,6 +77,7 @@ import { SocialService } from './service/social.service';
     SkillshaveComponent,
     HeaderComponent,
     DasboardComponent,
+    DesignComponent
     
     
   

@@ -14,6 +14,7 @@ export class DasboardComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup:FormGroup;
   fourthFormGroup:FormGroup;
+
   gender : string[]=[
     'Male','Female','Other'
   ];
@@ -25,6 +26,9 @@ export class DasboardComponent implements OnInit {
   ];
   city: string[]=[
     'chennai','coimbatore','Trichy'
+  ];
+  select : string[]=[
+    'Company','individual'
   ];
   options: FormGroup;
   constructor(private _formBuilder: FormBuilder) {
