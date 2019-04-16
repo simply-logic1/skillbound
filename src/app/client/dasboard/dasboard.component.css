@@ -9,7 +9,7 @@
         } 
       }
   
-      @media only screen and (min-width:1024px) and (max-width:1400px) {
+      @media only screen and (min-width:1024px) and (max-width:1950px) {
           .example-container > * {
               width: 58%;
               padding:10px;

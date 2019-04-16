@@ -50,7 +50,12 @@
         <li class="nav-item avatar dropdown">
           <a class="nav-link" id="navbarDropdownMenuLink-55" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
-            <img src="assets/icons/profile.png" class="rounded-circle z-depth-0">
+            <div *ngIf="(profile | async)?.photoURL === empty ; else templateName"><img src='https://firebasestorage.googleapis.com/v0/b/skilbound.appspot.com/o/image%2FPenguins.jpg?alt=media&token=ef352de5-5fb4-4787-ae48-54ff97ab35fc'
+              class="img-thumbnail img-fluid" ></div>
+              <ng-template #templateName>
+                <img [src]="(profile | async)?.photoURL" class=" img-fluid">
+            </ng-template>
+            
           </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
           <a class="dropdown-item" href="#">Profile</a>

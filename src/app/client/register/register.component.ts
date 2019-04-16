@@ -45,6 +45,7 @@ export class RegisterComponent implements OnInit {
     if (this.form.valid) {
       console.log("Form Submitted!");
       this.form.reset();
+    
     }
   }
   }
