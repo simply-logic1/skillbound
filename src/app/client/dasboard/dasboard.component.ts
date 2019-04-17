@@ -30,11 +30,13 @@ export class DasboardComponent implements OnInit {
   select : string[]=[
     'Company','individual'
   ];
+  
   options: FormGroup;
+  
   constructor(private _formBuilder: FormBuilder) {
    
   }
-
+ 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]

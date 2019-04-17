@@ -67,6 +67,7 @@ import { ClientService } from './service/client.service';
 import { HeaderComponent } from './client/header/header.component';
 import { DasboardComponent } from './client/dasboard/dasboard.component';
 import { SocialService } from './service/social.service';
+import { AuthguardService } from './service/authguard.service';
 
 @NgModule({
   declarations: [
@@ -134,7 +135,7 @@ import { SocialService } from './service/social.service';
 
     
   ],
-  providers: [AuthService,ClientService, SocialService],
+  providers: [AuthService,ClientService, SocialService,AuthguardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

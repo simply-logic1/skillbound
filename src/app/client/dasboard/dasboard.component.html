@@ -130,7 +130,7 @@
 
   <div><mat-card-title>Professional Details</mat-card-title></div>
   
-  <mat-form-field>
+  <mat-form-field class="button-spacing"> 
       <mat-label>Are you registering as a</mat-label>
       <mat-select>
         <mat-option>none</mat-option>
@@ -142,8 +142,8 @@
       
  
     
-    <mat-form-field>
-            <input matInput placeholder="Name of business"formControlName="fourthCtrl" required>
+        <mat-form-field >
+            <input matInput placeholder="Name of business"formControlName="fourthCtrl" required >
         </mat-form-field><br>
   
         <mat-form-field>
@@ -167,14 +167,14 @@
 </div> 
 </form>
 </mat-step>
-<mat-step [stepControl]="fifthFormGroup">
+<!-- <mat-step [stepControl]="fifthFormGroup">
     <form [formGroup]="fifthFormGroup">
   <ng-template matStepLabel>Skills Details</ng-template>
   <app-skillshave></app-skillshave>
   <div><button mat-button matStepperPrevious>Back</button>
     <button mat-button matStepperNext >Next</button>  </div> 
   </form>
-  </mat-step> 
+  </mat-step>  -->
 </mat-horizontal-stepper>
 </div>
 </div>
