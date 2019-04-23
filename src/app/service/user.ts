@@ -11,3 +11,9 @@ export interface User {
     displayName?: string;
     fcmTokens?: { [token: string]: true };   
 }
+export class skillshave{
+    id:number;
+    cat_name:string;
+   
+}
+

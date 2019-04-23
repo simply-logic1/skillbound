@@ -1,4 +1,6 @@
 import { Component, OnInit, ElementRef  } from '@angular/core';
+import { skillshave } from '../../service/user';
+import { ClientService } from '../../service/client.service';
 
 
 
@@ -8,27 +10,17 @@ import { Component, OnInit, ElementRef  } from '@angular/core';
   styleUrls: ['./skillshave.component.css']
 })
 export class SkillshaveComponent implements OnInit {
+  skillshaves:skillshave[];
+  // url='assets/sub_cat.json'
 
-  url='assets/sub_cat.json'
-
-  constructor(private elem:ElementRef) { }
+  constructor(private clientservice:ClientService) { }
   // getcategories(){
   //   return this.http.get('assets/sub_cat.json');
   // }
  
 
   ngOnInit() {
+    return this.clientservice.getJSON().subscribe(data => this.skillshaves=data)
   }
 
-  ngAfterViewInit(){
-      var colors=['#1783c3','#ffca08','#2aa7e1','#f5881f','#00ada7','#f05826','#4eb856', '#f36236', '#4eb856', '#ec3146', '#ec3146', '#f469a4', '#d2dd27', '#8d5da7'];
-      // you'll get your through 'elements' below code
-      let elements = this.elem.nativeElement.querySelectorAll('.bga');
-      for(var i=0; i<elements.length;i++)
-    {
-      elements[i].style.backgroundColor = colors[i%8];
-      ;
-    }
-      console.log(elements.length);
-  }
 }

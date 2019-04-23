@@ -55,6 +55,7 @@ import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 import { AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import {HttpClientModule} from '@angular/common/http';
 
 
 import {AngularFirestoreModule} from '@angular/fire/firestore';
@@ -89,6 +90,7 @@ import { AuthguardService } from './service/authguard.service';
     FormsModule, 
     ReactiveFormsModule,
     HttpModule,
+    HttpClientModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,
