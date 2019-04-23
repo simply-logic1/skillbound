@@ -53,7 +53,7 @@
             <div *ngIf="(profile | async)?.photoURL === empty ; else templateName"><img src='https://firebasestorage.googleapis.com/v0/b/skilbound.appspot.com/o/image%2FPenguins.jpg?alt=media&token=ef352de5-5fb4-4787-ae48-54ff97ab35fc'
               class="img-thumbnail img-fluid" ></div>
               <ng-template #templateName>
-                <img [src]="(profile | async)?.photoURL" class=" img-fluid">
+                <img [src]="(profile | async)?.photoURL" class=" rounded-circle ">
             </ng-template>
             
           </a>
