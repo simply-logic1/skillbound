@@ -8,7 +8,7 @@
     <mat-step [stepControl]="firstFormGroup" completed="false">
         <form [formGroup]="firstFormGroup">
         
-      <ng-template matStepLabel>Personal information</ng-template>
+     
       
       <div class="example-container text-center pt-5">
           
@@ -24,7 +24,7 @@
           <mat-form-field>
             <mat-label>Gender</mat-label>
             <mat-select>
-              <mat-option>none</mat-option>
+              <mat-option>None</mat-option>
               
               <mat-option *ngFor="let gender of gender" [value]="gender">{{gender}}</mat-option>
           
@@ -45,35 +45,35 @@
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
         <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Contact information</ng-template>
+     
       <div class="example-container text-center pt-5">
          
           <div><mat-card-title>Contact information</mat-card-title></div>
           <mat-form-field>
               <mat-label>Country</mat-label>
-              <mat-select>
-                    <mat-option *ngFor="let country of country" [value]="country">{{country}}</mat-option>
-                <mat-option>none</mat-option>
+              <mat-select >
+                    <mat-option *ngFor="let country of country" [value]="country"> {{ country }} </mat-option>
+                <mat-option>None</mat-option>
                
             
               </mat-select>
             </mat-form-field><br>
        
-              <mat-form-field>
-                  <mat-label>state</mat-label>
-                  <mat-select>
+              <mat-form-field >
+                  <mat-label>State</mat-label>
+                  <mat-select >
                         <mat-option *ngFor="let state of state" [value]="state">{{state}}</mat-option>
-                    <mat-option>none</mat-option>
+                    <mat-option>None</mat-option>
                     
                 
                   </mat-select>
                 </mat-form-field><br>
          
                 <mat-form-field>
-                    <mat-label >city</mat-label>
-                    <mat-select>
+                    <mat-label >City</mat-label>
+                    <mat-select >
                             <mat-option *ngFor="let city of city" [value]="city">{{city}}</mat-option>
-                      <mat-option>none</mat-option>
+                      <mat-option>None</mat-option>
                       
                   
                     </mat-select>
@@ -92,7 +92,7 @@
   </mat-step>
   <mat-step [stepControl]="thirdFormGroup">
     <form [formGroup]="thirdFormGroup">
-  <ng-template matStepLabel>Education Details</ng-template> 
+  
   <div class="example-container text-center pt-5">
      
     
@@ -104,13 +104,13 @@
         </mat-form-field><br>
    
         <mat-form-field>
-            <input matInput placeholder="Schools"formControlName="thirdCtrl" required>
+            <input matInput placeholder="School(s)"formControlName="thirdCtrl" required>
         </mat-form-field><br>
  
     
    
         <mat-form-field>
-            <input matInput placeholder="Rates"formControlName="thirdCtrl" required>
+            <input matInput placeholder="Licenses"formControlName="thirdCtrl" required>
         </mat-form-field>
         <br>
               <div class="float-right"><button mat-button matStepperPrevious>Back</button>&nbsp;&nbsp;
@@ -123,58 +123,147 @@
 </form>
 </mat-step>
 <mat-step [stepControl]="fourthFormGroup">
-<form [formGroup]="fourthFormGroup">
+  <form [formGroup]="fourthFormGroup">
 <ng-template matStepLabel>Professional Details</ng-template>
 
 <div class="example-container text-center ">
 
-  <div><mat-card-title>Professional Details</mat-card-title></div>
-  
-  <mat-form-field class="button-spacing"> 
-      <mat-label>Are you registering as a</mat-label>
-      <mat-select>
-        <mat-option>none</mat-option>
-        
-        <mat-option *ngFor="let select of select" [value]="select">{{select}}</mat-option>
+    <div><mat-card-title>Professional Details</mat-card-title></div>
     
-      </mat-select>
-    </mat-form-field><br>
+    <mat-form-field >
+        <mat-label>Are you registering as a</mat-label>
+        <mat-select  (selectionChange)="someMethod($event.value)">
+          <mat-option>None</mat-option>
+          
+          <mat-option *ngFor="let select of select" [value]="select" >{{select}}</mat-option>
       
- 
-    
-        <mat-form-field >
-            <input matInput placeholder="Name of business"formControlName="fourthCtrl" required >
-        </mat-form-field><br>
-  
-        <mat-form-field>
-            <input matInput placeholder="I work as a/an"formControlName="fourthCtrl" required>
-        </mat-form-field><br>
-   
-        <mat-form-field>
-            
-            <input matInput placeholder="company/Organization"formControlName="fourthCtrl" required>
-        </mat-form-field><br>
-    
+        </mat-select>
+      </mat-form-field><br >
         
-           
-  
-        <mat-form-field>
-            <input matInput placeholder="Experiences"formControlName="fourthCtrl" required>
-        </mat-form-field>
-        <br>
-              <div class="float-right"><button mat-button matStepperPrevious>Back</button>&nbsp;&nbsp;
-          <button mat-button matStepperNext >Next</button>  </div> 
-</div> 
+      <mat-form-field *ngIf="isNameSelected">
+        <input matInput placeholder="Name of business"formControlName="fourthCtrl" required>
+    </mat-form-field><br *ngIf="isNameSelected">
+       
+      
+            <mat-form-field *ngIf="isName">
+                <input matInput placeholder="I work as a/an"formControlName="fourthCtrl" required>
+            </mat-form-field><br >
+       
+            <mat-form-field *ngIf="isName" >
+                
+                <input matInput placeholder="Company/Organization"formControlName="fourthCtrl" required>
+            </mat-form-field><br>
+            <mat-form-field *ngIf="isName" >
+              <input matInput placeholder="Experiences"formControlName="fourthCtrl" required>
+          </mat-form-field>
+          <br>
+            
+               
+      
+          <mat-form-field *ngIf="isName">
+                <input matInput placeholder="Rates"formControlName="fourthCtrl" required>
+            </mat-form-field>
+            <br>
+            <div class="float-right"><button mat-button matStepperPrevious>Back</button>&nbsp;&nbsp;
+              <button mat-button matStepperNext>Next</button>  </div> 
+          
+      
+      
+    
+        </div>
 </form>
 </mat-step>
-<!-- <mat-step [stepControl]="fifthFormGroup">
-    <form [formGroup]="fifthFormGroup">
-  <ng-template matStepLabel>Skills Details</ng-template>
-  <app-skillshave></app-skillshave>
-  <div><button mat-button matStepperPrevious>Back</button>
+<mat-step [stepControl]="fivethFormGroup">
+    <form [formGroup]="fivethFormGroup">
+        <div class="example-container text-center pt-5">
+                <div><mat-card-title>Skills You Have</mat-card-title></div>
+  <mat-form-field > 
+    <mat-label>Please add one skill you have</mat-label>
+    <mat-select>
+      <mat-option>None</mat-option>
+      
+      <mat-option *ngFor="let skills of skills" [value]="skills">{{skills}}</mat-option>
+  
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+  <mat-label>Sub Category</mat-label>
+  <mat-select>
+    <mat-option>None</mat-option>
+    
+    <mat-option *ngFor="let subcategory of subcategory " [value]="subcategory">{{subcategory}}</mat-option>
+
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Level of Skill</mat-label>
+        <mat-select>
+          <mat-option>None</mat-option>
+          
+          <mat-option *ngFor="let skills of level" [value]="level">{{skills}}</mat-option>
+      
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+            <mat-label>Level of teaching ability</mat-label>
+                <mat-select>
+                  <mat-option>None</mat-option>
+                  
+                  <mat-option *ngFor="let skills of level" [value]="level">{{skills}}</mat-option>
+              
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                    <mat-label>I wish to</mat-label>
+                    <mat-select  multiple>
+                      <mat-option *ngFor="let wish of toppingList" [value]="topping">{{wish}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+  <div class="float-right"><button mat-button matStepperPrevious>Back</button>&nbsp;&nbsp;
     <button mat-button matStepperNext >Next</button>  </div> 
+    </div>
   </form>
-  </mat-step>  -->
+  </mat-step>
+  <mat-step [stepControl]="sixthFormGroup">
+        <form [formGroup]="sixthFormGroup">
+            <div class="example-container text-center pt-5">
+                    <div><mat-card-title>Skills You want</mat-card-title></div>
+      <mat-form-field > 
+        <mat-label>Please add one skill you want</mat-label>
+        <mat-select>
+          <mat-option>None</mat-option>
+          
+          <mat-option *ngFor="let skills of skills" [value]="skill">{{skills}}</mat-option>
+      
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+      <mat-label>Sub Category</mat-label>
+      <mat-select>
+        <mat-option>None</mat-option>
+        
+        <mat-option *ngFor="let subcategory of subcategory" [value]="subcategory">{{subcategory}}</mat-option>
+    
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+            <mat-label>I wish to</mat-label>
+            <mat-select  multiple>
+              <mat-option *ngFor="let wish of toppingList1" [value]="topping">{{wish}}</mat-option>
+            </mat-select>
+          </mat-form-field><br>
+          <mat-checkbox>I have read Skillbound's terms and conditions and privacy policy and agree.</mat-checkbox>
+
+    
+      
+          <div class="float-right"><button mat-button matStepperPrevious >back</button>&nbsp;&nbsp;
+          <button mat-button routerLink="/myprofile">submit</button>
+          </div>
+          
+        </div>
+      </form>
+      </mat-step>
+    
 </mat-horizontal-stepper>
 </div>
 </div>

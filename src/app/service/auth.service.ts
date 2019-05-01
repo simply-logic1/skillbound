@@ -101,6 +101,21 @@ login(email: string, pass: string) {
     throw error
   })
 }
+adminlogin(email: string, pass: string) {
+  return this.afAuth.auth.signInWithEmailAndPassword(email, pass).then(
+    (user) => {
+
+      this.authstate = user
+      // this.getinfo()
+
+      this.router.navigate(['/addashboard'])
+
+    }
+  ).catch(error => {
+
+    throw error
+  })
+}
 getuserdata():any {
     
   const uid = this.afAuth.auth.currentUser.uid;
@@ -109,56 +124,16 @@ getuserdata():any {
   const userRef$ = this.afs.collection('users').doc(uid);
   // this.afs.doc<User>(`users/${uid}`);
 }
-//Facebook login starts
-// onfblogin(){
-//   const provider = new firebase.auth.FacebookAuthProvider()
-  
-//   return this.oAuthLogin(provider);
-// }
 
-// private oAuthLogin(provider) {
-//   return this.afAuth.auth.signInWithPopup(provider)
-//     .then((credential) => {
-//       this.updateUserData(credential.user)
-//       this.router.navigate(['/dashboard']);
-//     })
-// }
-
-
-// private updateUserData(user) {
-//   // Sets user data to firestore on login
-
-//   const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
-
-//   const data: User = {
-//     uid: user.uid,
-//     email: user.email,
-//     displayName: user.displayName,
-//     photoURL: user.photoURL,
-//     roles: {
-//       user: true
-//   }
-    
-//   }
-
-//   return userRef.set(data)
-
-// }
-
-
-// signOut() {
-//   this.afAuth.auth.signOut().then(() => {
-//       this.router.navigate(['/']);
-//   });
-// }
 //register
 registerclient(userd){
-  return this.afAuth.auth.createUserWithEmailAndPassword(userd.email,userd.username)
+  return this.afAuth.auth.createUserWithEmailAndPassword(userd.email,userd.phone)
   .then(
     (user)=>{
       this.authstate = user 
       this.getinfo(userd)
-      this.userdata(userd, this.afAuth.auth.currentUser.uid ).then(()=>{console.log("updated")
+     
+      this.updateuserdata(userd, this.afAuth.auth.currentUser.uid ).then(()=>{console.log("updated")
       this.afAuth.auth.sendPasswordResetEmail(this.afAuth.auth.currentUser.email).then(() => this.router.navigate(['/'])).catch((e) => {
           console.log(e.message);
           return e
@@ -170,6 +145,23 @@ registerclient(userd){
     throw error
   })
 }
+private updateuserdata(user, uid) {
+
+  const userRef$: AngularFirestoreDocument<any> = this.afs.doc<User>(`users/${uid}`);
+  const userdata: User = {
+      uid: uid,
+      displayName: user.name,
+      
+      email: user.email,
+     phonenumber: user.phone,
+      // url:user.url,
+      roles: {
+          user: true
+      }
+  }
+
+  return userRef$.set(userdata, { merge: true })
+}
 private userdata(user, uid) {
 
   const userRef$: AngularFirestoreDocument<any> = this.afs.doc<User>(`users/${uid}`);
@@ -177,7 +169,7 @@ private userdata(user, uid) {
       uid: uid,
       displayName: user.name,
       email: user.email,
-    
+     phonenumber: user.phone,
       // url:user.url,
       roles: {
           user: true
@@ -191,7 +183,7 @@ getinfo(userd) {
       if (user) {
         user.updateProfile({
           displayName : userd.name,
-          photoURL: "https://firebasestorage.googleapis.com/v0/b/agent-sync-sonderworks.appspot.com/o/userprofile%2Fuser.jpg?alt=media&token=d3b47a22-a861-4c7a-9104-bef874ea39bf"
+          photoURL: 'https://firebasestorage.googleapis.com/v0/b/skilbound.appspot.com/o/image%2Fimages.png?alt=media&token=16804003-ae51-4b79-8319-0d31d9d4901a'
         })
         var displayName = user.displayName;
         var email = user.email;
@@ -203,12 +195,24 @@ getinfo(userd) {
         
         var uids = user.uid;
         
-        console.log(uids)
+        console.log(uids+displayName+photoURL+email)
        
         
       }
     })
   }
+  get profiledata() {
+   
+    const givenemail = this.email;
+
+    const data = this.afs.collection(`users`, ref => ref.where('email', '==', givenemail)).valueChanges().pipe(take(1)).subscribe(res=>{return res})
+    console.log(data)
+    return this.data
+  }
+  signOut(): void {
+    this.afAuth.auth.signOut().then(() => this.router.navigate(['/']))
+      
+    }
   //forgot
   forgotemail(email)
   {

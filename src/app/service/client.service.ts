@@ -20,6 +20,14 @@ export class ClientService {
       throw error
     })   
   }
+  adminlogin(email, pass) {
+    // this.uid$ = this.afAuth.auth.currentUser.uid;
+    // console.log(this.getuserdata(this.uid$)+"isis")
+    return this.auth.adminlogin(email, pass).catch(error => {
+
+      throw error
+    })
+  }
   //register
   register(registerForm){
     return this.auth.registerclient(registerForm)
@@ -28,4 +36,8 @@ export class ClientService {
   public getJSON(): Observable<any> {
     return this.http.get ("../../assets/categories.json");
 }
+getUsername()
+  {
+    return this.afAuth.auth.currentUser.displayName;
+  }  
 }

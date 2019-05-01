@@ -68,6 +68,11 @@ import { HeaderComponent } from './client/header/header.component';
 import { DasboardComponent } from './client/dasboard/dasboard.component';
 import { SocialService } from './service/social.service';
 import { AuthguardService } from './service/authguard.service';
+import { AdminheaderComponent } from './admin/adminheader/adminheader.component';
+import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.component';
+import { AdminuserComponent } from './admin/adminuser/adminuser.component';
+import { AdminsidenavComponent } from './admin/adminsidenav/adminsidenav.component';
+import { MyprofileComponent } from './client/myprofile/myprofile.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +84,12 @@ import { AuthguardService } from './service/authguard.service';
     SkillshaveComponent,
     HeaderComponent,
     DasboardComponent,
-    DesignComponent
+    DesignComponent,
+    AdminheaderComponent,
+    AdmindashboardComponent,
+    AdminuserComponent,
+    AdminsidenavComponent,
+    MyprofileComponent
     
     
   

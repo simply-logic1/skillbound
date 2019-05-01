@@ -18,13 +18,10 @@
           }
           
           .mat-button{
-            background-color: lightblue;
+            background-color:#009CFF;
           }
          
            
   
   
-    mat-radio-button ~ .mat-radio-button {
-      margin-left: 16px;
-     
-    }
+   

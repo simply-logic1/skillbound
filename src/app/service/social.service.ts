@@ -4,7 +4,7 @@ import * as firebase from 'firebase/app';
 import {AngularFireAuth} from '@angular/fire/auth';
 import { Observable,of } from 'rxjs';
 import { switchMap} from 'rxjs/operators';
-import { User } from './user';
+import { FbUser} from './user';
 import {AngularFirestore,  AngularFirestoreDocument} from '@angular/fire/firestore';
 
 @Injectable({
@@ -18,13 +18,13 @@ export class SocialService {
   authstate=null;
   error: any = null;
   data: Observable<any[]>;
-  users$ : Observable<User>;
+  users$ : Observable<FbUser>;
   constructor( public afAuth:AngularFireAuth,private afs: AngularFirestore,
     private router: Router) {  
       
       this.user = this.afAuth.authState.pipe(switchMap(user => {
         if (user) {
-          return this.afs.doc<User>(`users/${user.uid}`).valueChanges()
+          return this.afs.doc<FbUser>(`push/${user.uid}`).valueChanges()
         } else {
           return of(null)
         }
@@ -50,9 +50,9 @@ export class SocialService {
   private updateUserData(user) {
     // Sets user data to firestore on login
 
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+    const userRef: AngularFirestoreDocument<FbUser> = this.afs.doc(`push/${user.uid}`);
 
-    const data: User = {
+    const data: FbUser = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,

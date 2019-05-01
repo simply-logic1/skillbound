@@ -8,7 +8,7 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="#">My profile</a>
+        <a class="nav-link" href="" [routerLink]="['/myprofile']"routerLinkActive="active" >My profile</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Search Skill</a>
@@ -50,8 +50,8 @@
         <li class="nav-item avatar dropdown">
           <a class="nav-link" id="navbarDropdownMenuLink-55" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
-            <div *ngIf="(profile | async)?.photoURL === empty ; else templateName"><img src='https://firebasestorage.googleapis.com/v0/b/skilbound.appspot.com/o/image%2FPenguins.jpg?alt=media&token=ef352de5-5fb4-4787-ae48-54ff97ab35fc'
-              class="img-thumbnail img-fluid" ></div>
+            <div *ngIf="(profile | async)?.photoURL === empty ; else templateName"><img src='https://firebasestorage.googleapis.com/v0/b/skilbound.appspot.com/o/image%2Fimages.png?alt=media&token=16804003-ae51-4b79-8319-0d31d9d4901a'
+              class="rounded-circle size" ></div>
               <ng-template #templateName>
                 <img [src]="(profile | async)?.photoURL" class=" rounded-circle ">
             </ng-template>

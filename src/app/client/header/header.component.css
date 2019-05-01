@@ -5,7 +5,9 @@
 .img{
   height: 50px;
 }
-
+.size{
+    height:7vh;
+}
 .nav-link{
     font-size: 15px;
 }

@@ -2,8 +2,8 @@
     background-image: url('../../../assets/image/background/2.png');
     background-repeat: no-repeat;
     background-size: cover;
-    height:100%;
-
+    height:100vh;
+    
 }
 .head{
     margin-top: 20vh;
