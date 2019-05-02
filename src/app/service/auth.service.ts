@@ -16,7 +16,7 @@ export class AuthService {
   user;
   property:any;
   usersdocument:any;
-  authstate=null;
+   authState = null;
   error: any = null;
   data: Observable<any[]>;
   users$ : Observable<User>;
@@ -27,7 +27,7 @@ export class AuthService {
     this.afAuth.authState.subscribe((auth)=>{
       if(auth){
         console.log('logged in');
-        this.authstate=auth
+        this. authState =auth
         const uida=this.afAuth.auth.currentUser.uid;
         if(uida !=null||uida!=undefined){
           console.log(uida +"is htns");
@@ -66,21 +66,21 @@ export class AuthService {
 
    }
    get currentUserId(): string {
-    return (this.authstate !== null) ? this.authstate.uid : 'no'
+    return (this.authState !== null) ? this.authState.uid : 'no'
 }
 
 get currentUser(): any {
-    return (this.authstate !== null) ? this.authstate : null;
+    return (this.authState !== null) ? this.authState: null;
 }
 get displayName():string{
-  return (this.authstate !== null) ? this.authstate['displayName'] : ""
+  return (this.authState !== null) ? this.authState['displayName'] : ""
 }
 
 get email():string{
-  return (this.authstate !== null) ? this.authstate['email'] : ""
+  return (this.authState !== null) ? this.authState['email'] : ""
 }
 get isUserEmailLoggedIn(): boolean {
-  if (this.authstate !== null)  {
+  if (this.authState !== null)  {
       return true
   } else {
       return false
@@ -90,7 +90,7 @@ login(email: string, pass: string) {
   return this.afAuth.auth.signInWithEmailAndPassword(email, pass).then(
     (user) => {
     
-      this.authstate = user
+      this.authState = user
       // this.getinfo()
       
       this.router.navigate(['/dashboard'])
@@ -153,16 +153,19 @@ getuserdata():any {
 // }
 //register
 registerclient(userd){
-  return this.afAuth.auth.createUserWithEmailAndPassword(userd.email,userd.username)
+  return this.afAuth.auth.createUserWithEmailAndPassword(userd.email, userd.phone)
   .then(
     (user)=>{
-      this.authstate = user 
+      this.authState = user 
       this.getinfo(userd)
-      this.userdata(userd, this.afAuth.auth.currentUser.uid ).then(()=>{console.log("updated")
-      this.afAuth.auth.sendPasswordResetEmail(this.afAuth.auth.currentUser.email).then(() => this.router.navigate(['/'])).catch((e) => {
+      
+      this.userdata(userd, this.afAuth.auth.currentUser.uid ).then(()=>{console.log("updated firestore")
+     
+      this.afAuth.auth.sendPasswordResetEmail(this.afAuth.auth.currentUser.email).then(() => this.router.navigate(['/thanks'])).catch((e) => {
           console.log(e.message);
           return e
-        })}).catch((e)=>console.log("not updated"))
+        })
+      }).catch((e)=>console.log("not updated"))
         
     }
   ).catch(error => {
@@ -177,11 +180,12 @@ private userdata(user, uid) {
       uid: uid,
       displayName: user.name,
       email: user.email,
-    
-      // url:user.url,
-      roles: {
-          user: true
-      }
+      phonenumber: user.phone,
+            
+            roles: {
+                user: true
+            }
+      
   }
 
   return userRef$.set(userdata, { merge: true })
@@ -200,7 +204,7 @@ getinfo(userd) {
         var isAnonymous = user.isAnonymous;
 
         var providerData = user.providerData;
-        
+        var phone = user.phoneNumber;
         var uids = user.uid;
         
         console.log(uids)

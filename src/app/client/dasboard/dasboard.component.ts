@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-
+import {AngularFirestore,  AngularFirestoreDocument} from '@angular/fire/firestore';
+export interface User{
+  name:any;
+  id: string;
+}
 @Component({
   selector: 'app-dasboard',
   templateUrl: './dasboard.component.html',
@@ -9,17 +13,22 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   
 })
 export class DasboardComponent implements OnInit {
- 
+  isNameSelected: boolean; 
+  isName:boolean;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup:FormGroup;
   fourthFormGroup:FormGroup;
+  fifthFormGroup:FormGroup;
+  country:any;
   gender : string[]=[
     'Male','Female','Other'
   ];
-  country :string[]=[
-    'india','Australia','china'
+  select : string[]=[
+    'Company','individual'
   ];
+  
+ 
   state:string[]=[
     'Tamilnadu','kerala','karataka'
   ];
@@ -27,7 +36,7 @@ export class DasboardComponent implements OnInit {
     'chennai','coimbatore','Trichy'
   ];
   options: FormGroup;
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: FormBuilder,private afs: AngularFirestore) {
    
   }
 
@@ -44,8 +53,26 @@ export class DasboardComponent implements OnInit {
     this.fourthFormGroup = this._formBuilder.group({
       fourthCtrl: ['', Validators.required]
     });
+    this.fifthFormGroup = this._formBuilder.group({
+      fourthCtrl: ['', Validators.required]
+    });
+    this.country=this.afs.collection('country').snapshotChanges();
+   
     
   }
- 
+  someMethod(event){
+    if (event == "Company") {
+    this.isNameSelected = true;
+    this.isName = true;
+  } else if(event == "individual"){
+    this.isName = true;
+    this.isNameSelected = false;
+  }
+    console.log('Some option selected', event);
+  }
+ getcity(a:any){
+   console.log(a)
+
+ }
 }
 

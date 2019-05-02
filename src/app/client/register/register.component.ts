@@ -13,38 +13,24 @@ import { AuthService } from '../../service/auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  form = new FormGroup({
-    
-    email: new FormControl('', [
-      Validators.required,
-      Validators.email
-    ]),
-   
-
-  });
+  
   error: { name: string, message: string } = { name: '', message: '' };
 
   constructor(public cli:ClientService,public router:Router) { }
   register(registerForm:User)
   {
     this.cli.register(registerForm).catch(_error=>{
-      this.error=_error;
+     this.error = _error;
+    
       return this.error
-    })
+   })
+   
   }
   resetForm(registerForm?: NgForm) {
     if (registerForm != null)
       registerForm.reset();
   }
- 
   ngOnInit() {
     this.resetForm();
-  }
-  
-  onSubmit() {
-    if (this.form.valid) {
-      console.log("Form Submitted!");
-      this.form.reset();
-    }
   }
   }

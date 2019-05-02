@@ -131,7 +131,7 @@ import { SocialService } from './service/social.service';
 
     
   ],
-  providers: [AuthService,ClientService, SocialService],
+  providers: [AuthService,ClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

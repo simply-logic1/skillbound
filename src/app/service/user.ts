@@ -6,8 +6,9 @@ export interface Roles{
 export interface User {
     roles:Roles;
     uid?:string;
-    email:string;
+    displayName:string;
     photoURL?: string;
-    displayName?: string;
+    email:string;
+    phonenumber:string;
     fcmTokens?: { [token: string]: true };   
 }

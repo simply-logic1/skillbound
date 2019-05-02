@@ -73,6 +73,7 @@ export class SocialService {
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
+      phonenumber: user,
       roles: {
         user: true
     }
