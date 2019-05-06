@@ -1,0 +1,44 @@
+.navdes
+{
+    background-color: #F07C49 !important;
+    color:#fff;
+}
+a.nav-link {
+    color: #fff;
+}
+.sidenav{
+    background-color: #656565 !important;
+    /* width: 25vw; */
+        height: 92vh;
+    }
+    .fa {
+        font-size: 1.5rem;
+        letter-spacing: 1rem;
+    }
+    .box{
+        border: 1px solid #ddd;
+        margin: 5px;
+        padding: 5px;
+    }
+    .box h4{
+        border-bottom: 1px solid #EEE;
+        padding-bottom: 10px;
+    }
+    
+    .box table{
+        margin: 5px;
+        width: 97%;
+    }
+
+    .box .tab{
+        margin: 5px;
+        width: 86%;
+    }
+    .box .tab1{
+        margin: 5px;
+        width: 86%;
+    }
+    .size{
+        height:23vh;
+    }
+    

@@ -50,11 +50,12 @@ import { LoginComponent } from './client/login/login.component';
 import { RegisterComponent } from './client/register/register.component';
 import { ForgotComponent } from './client/forgot/forgot.component';
 import { SkillshaveComponent} from './client/skillshave/skillshave.component';
-
+import {DesignComponent} from './client/design/design.component';
 import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 import { AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import {HttpClientModule} from '@angular/common/http';
 
 
 import {AngularFirestoreModule} from '@angular/fire/firestore';
@@ -66,6 +67,12 @@ import { ClientService } from './service/client.service';
 import { HeaderComponent } from './client/header/header.component';
 import { DasboardComponent } from './client/dasboard/dasboard.component';
 import { SocialService } from './service/social.service';
+import { AuthguardService } from './service/authguard.service';
+import { AdminheaderComponent } from './admin/adminheader/adminheader.component';
+import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.component';
+import { AdminuserComponent } from './admin/adminuser/adminuser.component';
+import { AdminsidenavComponent } from './admin/adminsidenav/adminsidenav.component';
+import { MyprofileComponent } from './client/myprofile/myprofile.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +84,12 @@ import { SocialService } from './service/social.service';
     SkillshaveComponent,
     HeaderComponent,
     DasboardComponent,
+    DesignComponent,
+    AdminheaderComponent,
+    AdmindashboardComponent,
+    AdminuserComponent,
+    AdminsidenavComponent,
+    MyprofileComponent
     
     
   
@@ -87,6 +100,7 @@ import { SocialService } from './service/social.service';
     FormsModule, 
     ReactiveFormsModule,
     HttpModule,
+    HttpClientModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,
@@ -131,7 +145,7 @@ import { SocialService } from './service/social.service';
 
     
   ],
-  providers: [AuthService,ClientService],
+  providers: [AuthService,ClientService, SocialService,AuthguardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

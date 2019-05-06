@@ -2,30 +2,26 @@
   margin: 0 12px;
 }
     */
-  @media only screen and (min-width:320px) and (max-width:1000px) {
-    .example-container > * {
-        width: 100%;
-        padding:15px;
-      } 
-    }
-
-    @media only screen and (min-width:1024px) and (max-width:1400px) {
-        .example-container > * {
-            width: 58%;
-            padding:10px;
+    @media only screen and (min-width:320px) and (max-width:1000px) {
+      .example-container > * {
+          width: 100%;
+          padding:15px;
+        } 
+      }
+  
+      @media only screen and (min-width:1024px) and (max-width:1950px) {
+          .example-container > * {
+              width: 58%;
+              padding:10px;
+            }
+            
           }
           
-        }
-        
-        .mat-button{
-          background-color: lightblue;
-        }
-       
+          .mat-button{
+            background-color:#009CFF;
+          }
          
-
-
-  mat-radio-button ~ .mat-radio-button {
-    margin-left: 16px;
+           
+  
+  
    
-  }
-

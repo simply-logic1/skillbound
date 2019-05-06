@@ -5,6 +5,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import {ClientService} from '../../service/client.service';
 import { Router } from '@angular/router';
 import { User } from '../../service/user';
+
 import { AuthService } from '../../service/auth.service';
 
 @Component({
@@ -33,4 +34,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.resetForm();
   }
+
   }
+  

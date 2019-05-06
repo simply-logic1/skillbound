@@ -1,0 +1,60 @@
+<app-adminheader></app-adminheader>
+  
+  <br>
+ 
+ <div class="row mt-4 ">
+     <div class="d-none d-md-block d-lg-block d-xl-block col-md-3  sidenav">
+         <app-adminsidenav></app-adminsidenav>
+     </div>
+     <div class="col-md-9 col-sm-12 my-2 bg-light">
+         <div class="row ">
+           <div class="col-md-12 p-1 my-2 bg-white">
+               <h3 class="text-dark">Users</h3>
+               <div class="example-container mat-elevation-z8">
+                    <div class="example-header">
+                      <mat-form-field>
+                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                      </mat-form-field>
+                    </div>
+                  
+                    <table mat-table [dataSource]="dataSource" matSort>
+                  
+                      <!-- No Column -->
+                      <ng-container matColumnDef="uid">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> uid </th>
+                        <td mat-cell *matCellDef="let orders">{{orders.uid}} </td>
+                      </ng-container>
+                  
+                      <!-- Building Column -->
+                      <ng-container matColumnDef="displayname">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Displayednames </th>
+                        <td mat-cell *matCellDef="let orders">{{orders.displayName}}<br>{{orders.squarefeet}}  </td>
+                      </ng-container>
+                  
+                      <!-- Address Column -->
+                      <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                        <td mat-cell *matCellDef="let orders">{{orders.email}}  </td>
+                      </ng-container>
+                  
+                      <!-- Date/Time Column -->
+                      <ng-container matColumnDef="phone">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> PhoneNumber</th>
+                        <td mat-cell *matCellDef="let orders">{{orders.phonenumber}}  </td>
+                      </ng-container>
+                      <!-- OrderValue-->
+                      
+    
+                      <!--Edit/delete-->
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+                  
+           </div>
+       
+         </div>
+   </div>
+   </div>

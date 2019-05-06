@@ -1,0 +1,18 @@
+.navdes
+{
+    background-color: #F07C49 !important;
+    color:#fff;
+}
+a.nav-link {
+    color: #fff;
+}
+.sidenav{
+    background-color: #656565 !important;
+    width: 25vw;
+        height: 92vh;
+    }
+    .fa {
+        font-size: 1.5rem;
+        letter-spacing: 1rem;
+    }
+    

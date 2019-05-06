@@ -5,11 +5,13 @@
 .img{
   height: 50px;
 }
-
+.size{
+    height:10vh;
+}
 .nav-link{
     font-size: 15px;
 }
-@media screen and (max-width:480px){
+@media screen and (max-width:1025px){
     .nav-link{
         text-align: center;
     }

@@ -5,179 +5,264 @@
 
     
 <mat-horizontal-stepper >
-    <mat-step [stepControl]="firstFormGroup" completed="false">
-        <form [formGroup]="firstFormGroup">
+    <mat-step [stepControl]="firstFormGroup" completed="false" >
+        <form [formGroup]="firstFormGroup" #form="ngForm" autocomplete="off"   >
         
-      <ng-template matStepLabel>Personal information</ng-template>
+     
       
       <div class="example-container text-center pt-5">
           
      <!-- <h4 class="mx-auto">Personal information</h4> -->
      <div><mat-card-title>Personal information</mat-card-title></div>
           
-            <mat-form-field >
-                <input matInput class="w-100" placeholder="Name" formControlName="firstCtrl" required>
+            <mat-form-field  >
+                <input matInput class="w-100" *ngFor="let name of name | async" [(value)]="name.displayName" formControlName="uname" readonly required>
             </mat-form-field><br>
-         
-        
           
           <mat-form-field>
             <mat-label>Gender</mat-label>
-            <mat-select>
-              <mat-option>none</mat-option>
+            <mat-select formControlName="gender" >
+              <mat-option>None</mat-option>
               
-              <mat-option *ngFor="let gender of gender" [value]="gender">{{gender}}</mat-option>
+              <mat-option *ngFor="let gender of gender" [(value)]="gender" >{{gender}}</mat-option>
           
             </mat-select>
           </mat-form-field><br>
          
             <mat-form-field>
-                <input matInput [matDatepicker]="picker" placeholder="Date of Birth"formControlName="firstCtrl" required>
+                <input matInput [matDatepicker]="picker" placeholder="Date of Birth" formControlName="date"  required>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
               <br>
-             <div class="float-right">&nbsp;<button mat-button matStepperNext >Next</button></div> 
+             <div class="float-right" *ngFor="let name of name | async" >&nbsp;<button mat-button matStepperNext  (click)="personal(firstFormGroup.value,name.displayName)">Next</button></div> 
                  
     </div>
     
     </form>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Contact information</ng-template>
+        <form [formGroup]="secondFormGroup"  >
+     
       <div class="example-container text-center pt-5">
          
           <div><mat-card-title>Contact information</mat-card-title></div>
           <mat-form-field>
               <mat-label>Country</mat-label>
-              <mat-select (selectionChange)="getcity($event.value)">
-                    <mat-option *ngFor="let country of country ;let i = index" [value]="country.name">{{country.name}}</mat-option>
-                <mat-option>none</mat-option>
+              <mat-select formControlName="country" >
+                    <mat-option *ngFor="let country of country" [(value)]="country"> {{ country }} </mat-option>
+                <mat-option>None</mat-option>
                
             
               </mat-select>
             </mat-form-field><br>
        
-              <mat-form-field>
-                  <mat-label>state</mat-label>
-                  <mat-select>
-                        <mat-option *ngFor="let state of state" [value]="state">{{state}}</mat-option>
-                    <mat-option>none</mat-option>
+              <mat-form-field >
+                  <mat-label>State</mat-label>
+                  <mat-select formControlName="state">
+                        <mat-option *ngFor="let state of state" [(value)]="state">{{state}}</mat-option>
+                    <mat-option>None</mat-option>
                     
                 
                   </mat-select>
                 </mat-form-field><br>
          
                 <mat-form-field>
-                    <mat-label >city</mat-label>
-                    <mat-select>
-                            <mat-option *ngFor="let city of city" [value]="city">{{city}}</mat-option>
-                      <mat-option>none</mat-option>
+                    <mat-label >City</mat-label>
+                    <mat-select formControlName="city">
+                            <mat-option *ngFor="let city of city" [(value)]="city">{{city}}</mat-option>
+                      <mat-option>None</mat-option>
                       
                   
                     </mat-select>
                   </mat-form-field><br>
              
                   <mat-form-field>
-                      <input matInput placeholder="ZipCode"formControlName="secondCtrl" required>
+                      <input matInput placeholder="ZipCode" required formControlName="zip">
                   </mat-form-field>
                   <br>
-                  <div class="float-right"><button mat-button matStepperPrevious>Back</button>&nbsp;&nbsp;
-                  <button mat-button matStepperNext>Next</button>  </div> 
+                  <div class="float-right" *ngFor="let name of name | async"><button mat-button matStepperPrevious>Back</button>&nbsp;&nbsp;
+                  <button mat-button matStepperNext (click)="contact(secondFormGroup.value,name.displayName)">Next</button>  </div> 
               
       </div>
       </form>
 
   </mat-step>
-
-
-   <mat-step [stepControl]="thirdFormGroup">
-        <form [formGroup]="thirdFormGroup">
-      <ng-template matStepLabel>Education Details</ng-template> 
-      <div class="example-container text-center pt-5">
-         
-        
-          <div><mat-card-title>Education Details</mat-card-title></div>
-       
-        
-            <mat-form-field>
-                <input matInput placeholder="Qualificaions"formControlName="thirdCtrl" required>
-            </mat-form-field><br>
-       
-            <mat-form-field>
-                <input matInput placeholder="Schools"formControlName="thirdCtrl" required>
-            </mat-form-field><br>
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+  
+  <div class="example-container text-center pt-5">
      
-        
-       
-            <mat-form-field>
-                <input matInput placeholder="Rates"formControlName="thirdCtrl" required>
-            </mat-form-field>
-            <br>
-                  <div class="float-right"><button mat-button matStepperPrevious>Back</button>&nbsp;&nbsp;
-              <button mat-button matStepperNext>Next</button>  </div> 
-        
-      </div>
+    
+      <div><mat-card-title>Education Details</mat-card-title></div>
+   
+    
+        <mat-form-field>
+            <input matInput placeholder="Qualificaions"formControlName="qualify" required>
+        </mat-form-field><br>
+   
+        <mat-form-field>
+            <input matInput placeholder="School(s)"formControlName="school" required>
+        </mat-form-field><br>
+ 
+    
+   
+        <mat-form-field>
+            <input matInput placeholder="Licenses"formControlName="Licenses" required>
+        </mat-form-field>
+        <br>
+              <div class="float-right" *ngFor="let name of name | async"><button mat-button matStepperPrevious>Back</button>&nbsp;&nbsp;
+          <button mat-button matStepperNext (click)="Education(thirdFormGroup.value,name.displayName)">Next</button>  </div> 
+    
+  </div>
 
-        
-     
+    
+ 
 </form>
 </mat-step>
 <mat-step [stepControl]="fourthFormGroup">
-    <form [formGroup]="fourthFormGroup">
-  <ng-template matStepLabel>Professional Details</ng-template>
-  
-  <div class="example-container text-center ">
+  <form [formGroup]="fourthFormGroup">
+<ng-template matStepLabel>Professional Details</ng-template>
 
-      <div><mat-card-title>Professional Details</mat-card-title></div>
+<div class="example-container text-center ">
+
+    <div><mat-card-title>Professional Details</mat-card-title></div>
+    
+    <mat-form-field >
+        <mat-label>Are you registering as a</mat-label>
+        <mat-select  (selectionChange)="someMethod($event.value)" formControlName="category">
+          <mat-option>None</mat-option>
+          
+          <mat-option *ngFor="let select of select" [(value)]="select" >{{select}}</mat-option>
       
-      <mat-form-field >
-          <mat-label>Are you registering as a</mat-label>
-          <mat-select  (selectionChange)="someMethod($event.value)">
-            <mat-option>none</mat-option>
-            
-            <mat-option *ngFor="let select of select" [value]="select" >{{select}}</mat-option>
+        </mat-select>
+      </mat-form-field><br >
         
-          </mat-select>
-        </mat-form-field><br >
-          
-        <mat-form-field *ngIf="isNameSelected">
-          <input matInput placeholder="Name of business"formControlName="fourthCtrl" required>
-      </mat-form-field><br *ngIf="isNameSelected">
-         
-        
-              <mat-form-field *ngIf="isName">
-                  <input matInput placeholder="I work as a/an"formControlName="fourthCtrl" required>
-              </mat-form-field><br>
-         
-              <mat-form-field *ngIf="isName">
-                  
-                  <input matInput placeholder="company/Organization"formControlName="fourthCtrl" required>
-              </mat-form-field><br>
-          
-              
-                 
-        
-              <mat-form-field *ngIf="isName">
-                  <input matInput placeholder="Experiences"formControlName="fourthCtrl" required>
-              </mat-form-field>
-              <br>
+      <mat-form-field *ngIf="isNameSelected">
+        <input matInput placeholder="Name of business" formControlName="nbus" required>
+    </mat-form-field><br *ngIf="isNameSelected">
+       
+      
+            <mat-form-field *ngIf="isName">
+                <input matInput placeholder="I work as a/an"formControlName="work" required>
+            </mat-form-field><br >
+       
+            <mat-form-field *ngIf="isName" >
+                
+                <input matInput placeholder="Company/Organization"formControlName="company" required>
+            </mat-form-field><br>
+            <mat-form-field *ngIf="isName" >
+              <input matInput placeholder="Experiences"formControlName="exp" required>
+          </mat-form-field>
+          <br>
             
         
         
       
-          </div>
+          <mat-form-field *ngIf="isName">
+                <input matInput placeholder="Rates" formControlName="rates" required>
+            </mat-form-field>
+            <br>
+            <div class="float-right" *ngFor="let name of name | async"><button mat-button matStepperPrevious>Back</button>&nbsp;&nbsp;
+              <button mat-button matStepperNext (click)="category(fourthFormGroup.value,name.displayName)">Next</button>  </div> 
+          
+      
+      
+    
+        </div>
 </form>
 </mat-step>
-<mat-step [stepControl]="fifthFormGroup">
-        <form [formGroup]="fifthFormGroup">
-      <ng-template matStepLabel>Skills Details</ng-template>
-      <app-skillshave></app-skillshave>
-      <div><button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext >Next</button>  </div> 
+<mat-step [stepControl]="fivethFormGroup">
+    <form [formGroup]="fivethFormGroup">
+        <div class="example-container text-center pt-5">
+                <div><mat-card-title>Skills You Have</mat-card-title></div>
+  <mat-form-field > 
+    <mat-label>Please add one skill you have</mat-label>
+    <mat-select formControlName="skilly">
+      <mat-option>None</mat-option>
+      
+      <mat-option *ngFor="let skills of skills" [(value)]="skills" >{{skills}}</mat-option>
+  
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+  <mat-label>Sub Category</mat-label>
+  <mat-select formControlName="subcategoryy">
+    <mat-option>None</mat-option>
+    
+    <mat-option *ngFor="let subcategory of subcategory " [(value)]="subcategory" >{{subcategory}}</mat-option>
+
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Level of Skill</mat-label>
+        <mat-select formControlName="levely">
+          <mat-option>None</mat-option>
+          
+          <mat-option *ngFor="let skills of level" [(value)]="skills"  >{{skills}}</mat-option>
+      
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+            <mat-label>Level of teaching ability</mat-label>
+                <mat-select formControlName="tlevely">
+                  <mat-option>None</mat-option>
+                  
+                  <mat-option *ngFor="let skills of level" [(value)]="skills" >{{skills}}</mat-option>
+              
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                    <mat-label>I wish to</mat-label>
+                    <mat-select  multiple formControlName="listy">
+                      <mat-option *ngFor="let wish of toppingList" [(value)]="wish" >{{wish}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+  <div class="float-right" *ngFor="let name of name | async"><button mat-button matStepperPrevious>Back</button>&nbsp;&nbsp;
+    <button mat-button matStepperNext (click)="skillyou(fivethFormGroup.value,name.displayName)">Next</button>  </div> 
+    </div>
+  </form>
+  </mat-step>
+  <mat-step [stepControl]="sixthFormGroup">
+        <form [formGroup]="sixthFormGroup">
+            <div class="example-container text-center pt-5">
+                    <div><mat-card-title>Skills You want</mat-card-title></div>
+      <mat-form-field > 
+        <mat-label>Please add one skill you want</mat-label>
+        <mat-select formControlName="skillw">
+          <mat-option>None</mat-option>
+          
+          <mat-option *ngFor="let skills of skills" [(value)]="skills" >{{skills}}</mat-option>
+      
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+      <mat-label>Sub Category</mat-label>
+      <mat-select formControlName="subcategoryw">
+        <mat-option>None</mat-option>
+        
+        <mat-option *ngFor="let subcategory of subcategory" [(value)]="subcategory" >{{subcategory}}</mat-option>
+    
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+            <mat-label>I wish to</mat-label>
+            <mat-select  multiple formControlName="listw">
+              <mat-option *ngFor="let wish of toppingList1" [(value)]="wish" >{{wish}}</mat-option>
+            </mat-select>
+          </mat-form-field><br>
+          <mat-checkbox>I have read Skillbound's terms and conditions and privacy policy and agree.</mat-checkbox>
+
+    
+      
+          <div class="float-right" *ngFor="let name of name | async"><button mat-button matStepperPrevious >back</button>&nbsp;&nbsp;
+          <button mat-button routerLink="/myprofile" (click)="skillwant(sixthFormGroup.value,name.displayName)">submit</button>
+          </div>
+          
+        </div>
       </form>
-      </mat-step> 
+      </mat-step>
+    
 </mat-horizontal-stepper>
 </div>
 </div>
