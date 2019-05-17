@@ -1,15 +1,17 @@
+
 <app-header></app-header>
-<div class="col-3 float-left d-none d-md-block d-sm-none d-lg-block ">
+
+<div class="col-3 float-left d-none d-md-block d-sm-none d-lg-block   ">
         <div class=" mt-3 ">
         <nav class=" bg-dark text-center" style="height: 40vh;">
-                <div *ngIf="(profile | async)?.photoURL === empty ; else templateName"><img src='https://firebasestorage.googleapis.com/v0/b/skilbound.appspot.com/o/image%2Fimages.png?alt=media&token=16804003-ae51-4b79-8319-0d31d9d4901a'
+                <div *ngIf="(profile | async)?.PhotoURL === empty ; else templateName"><img src='https://firebasestorage.googleapis.com/v0/b/skilbound.appspot.com/o/image%2Fimages.png?alt=media&token=16804003-ae51-4b79-8319-0d31d9d4901a'
                     class="rounded-circle size my-2" ></div>
                     <ng-template #templateName>
-                      <img [src]="(profile | async)?.photoURL" class=" my-2 size rounded-circle ">
+                      <img [src]="(profile | async)?.PhotoURL" class=" my-4 size rounded-circle pb-2 w-50 ">
                   </ng-template>
             <!-- <img src="bird.jpg" alt="Logo" class="  p-2 img-fluid rounded-circle" style="width:100px;"> -->
             
-            <p class="text-white"> {{(profile | async)?.displayName}}</p>
+            <p class="text-white "> {{(profile | async)?.displayName}}</p>
         
           
         </nav>
@@ -19,45 +21,43 @@
         <nav class="navbar bg-dark">
           <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#">Monetize your skills</a>
+              <a class="nav-link" href="#"><i class="fa fa-usd float-left"></i>Monetize your skills</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Press to monetize your skills</a>
+              <a class="nav-link" href="#"><i class="fa fa-paper-plane"></i>Press to monetize your skills</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Skills list and wish list</a>
+              <a class="nav-link" href="#"><i class="fa fa-th-list"></i>Skills list and wish list</a>
             </li>
             <li class="nav-item">
-                    <a class="nav-link" href="#">Add skills to your profile</a>
+                    <a class="nav-link" href="#"><i class="fa fa-plus"></i>Add skills to your profile</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Select the skills you want</a>
+                    <a class="nav-link" href="#"><i class="fa fa-hand-o-right"></i>Select the skills you want</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Pitch us a skills suggestion
-
-                        </a>
+                    <a class="nav-link" href="#"><i class="fa fa-download"></i>Pitch us a skills suggestion</a>
                   </li>
                   <li class="nav-item">
-                        <a class="nav-link" href="#">Request for endorsement</a>
+                        <a class="nav-link" href="#"><i class="fa fa-plus"></i>Request for endorsement</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">Privacy settings</a>
+                        <a class="nav-link" href="#"><i class="fa fa-lock"></i>Privacy settings</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">Endorsements</a>
+                        <a class="nav-link" href="#"><i class="fa fa-thumbs-up"></i>Endorsements</a>
                       </li>
                       <li class="nav-item">
-                            <a class="nav-link" href="#">Check these guys out!</a>
+                            <a class="nav-link" href="#"><i class="fa fa-user"></i>Check these guys out!</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" href="#"> Ridiculously skilled members</a>
+                            <a class="nav-link" href="#"><i class="fa fa-star"></i>Ridiculously skilled members</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" href="#">Members with weird skills</a>
+                            <a class="nav-link" href="#"><i class="fa fa-chess-rook"></i>Members with weird skills</a>
                           </li>
                           <li class="nav-item">
-                                <a class="nav-link" href="#"> Members with endorsed skills</a>
+                                <a class="nav-link" href="#"><i class="fa fa-thumbs-up"></i>Members with endorsed skills</a>
                               </li>
           </ul>
         </nav>
@@ -65,7 +65,7 @@
         </div>
         <div class="col-lg-9 col-12 col-md-9 float-right mt-3 " *ngFor="let detaill of (details|async) ; let i = index ">
                 <div class="border border-secondary">
-                  <label class="bg-primary text-white w-100">Skills</label>
+                  <label class="bg-primary text-white w-100" ><i class="fa fa-flask float-left ml-1"></i>Skills<i class="fa fa-pencil-square-o float-right"></i></label>
                  <div class="box">
                  <h4 class="font-weight-normal" >Skills you have listed</h4>
                  <table>
@@ -140,11 +140,11 @@
                   </div><br>
 <div class="row">
 
-                  <div class="col-12 col-md-6 col-lg-6">
+                  <div class="col-12 col-md-12 col-lg-12">
                   <div class="border border-secondary">
-                        <label class="bg-primary text-white w-100">Personal Settings</label>
+                        <label class="bg-primary text-white w-100"><i class="fa fa-info-circle float-left ml-1"></i>Personal Settings<i class="fa fa-pencil-square-o float-right"></i></label>
                         <div class="box">
-                            <table>
+                            <table >
                                 <tbody>
                                     <tr>
                                         <th class="font-weight-normal">Joined</th>
@@ -176,67 +176,12 @@
 
                    </div>     
                   </div> 
-                  <div class="col-12 col-md-6 col-lg-6">
+                  <!-- <div class="col-12 col-md-6 col-lg-6">
                       <div class="border border-secondary">
-                        <label class="bg-primary text-white w-100">Friends</label>
+                        <label class="bg-primary text-white w-100"><i class="fa fa-user-o float-left"></i>Friends<i class="fa fa-pencil-square-o ml-2"></i><a href="" class="float-right">Add Friends<i class="fa fa-plus-circle"></i></a></label>
+                       
                    </div>     
 
-                  </div>     
+                  </div>      -->
                   </div>
         </div>
-
-   
-    <!-- <div class="col-md-9 col-sm-12 my-2 bg-light float-right">
-    <div class="container">
-    <div class="row">
-                <div class="col-md-6">
-                <h4>Skills you have listed</h4>
-                <label>Skill Name</label><br>
-                <label>Level of Skill</label><br>
-                <label>Teaching level</label><br>
-                <label>Member wishes to</label><br>
-                </div>
-                <div class="col-md-6">
-                      
-                        <label>good</label><br>
-                        <label>basic</label><br>
-                        <label>swap this skill</label><br>
-                        </div>
-                        
-                <div class="col-md-12">
-                    <h4>Desired Skills</h4>
-                    <label>Skill Name</label><br>
-                    <label>Member wishes to</label><br>
-                </div>    
-                <div class="col-md-12">
-                    <h4>Skills For Sale</h4>
-                    <label>Class Name</label><br>
-                    <label>Conducted</label><br>
-                    <label>Skills</label><br>
-                </div>
-                
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h3>Personal Settings</h3>
-                        <label>Joined</label><br>
-                        <label>Job</label><br>
-                        <label>Gender</label><br>
-                        <label>City</label><br>
-                        <label>State</label><br>
-                        <label>Country</label><br>
-                    </div>
-                    <div class="col-md-6">
-                        <h3>Friends</h3>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-       
-             -->
-        
-
-  

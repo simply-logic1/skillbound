@@ -11,7 +11,11 @@ import { switchMap} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ClientService {
-
+  displayName: string;
+  name;
+  email;
+  phone;
+  
   constructor(private auth :AuthService,private router:Router,private afAuth:AngularFireAuth,private afs:AngularFirestore,
     private http:HttpClient) { }
   clientlogin(email,pass){

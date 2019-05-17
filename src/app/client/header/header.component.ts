@@ -22,5 +22,5 @@ export class HeaderComponent implements OnInit {
     console.log(this.userid);
     this.profile= this.afs.doc(`users/${this.userid}`).valueChanges();
   }
-
+  
 }

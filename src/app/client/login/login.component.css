@@ -1,12 +1,14 @@
 
 .section{
     padding: 0;
-    position: relative;
+   position: absolute;
     background-image: url('../../../assets/image/background/5.jpg');
     background-size: cover;
     min-height: 100vh;
     width: 100%;
     background-position: center center;
+    overflow-y: hidden;
+    
    
 }
 
@@ -54,10 +56,12 @@
         width: 100% !important;
       
     }
-   
     .content{
         display: none;
     }
+    
+   
+   
     
 
 }

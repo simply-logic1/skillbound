@@ -6,8 +6,7 @@
     
 <mat-horizontal-stepper >
     <mat-step [stepControl]="firstFormGroup" completed="false" >
-        <form [formGroup]="firstFormGroup" #form="ngForm" autocomplete="off"   >
-        
+      <form [formGroup]="firstFormGroup" #form="ngForm" autocomplete="off" novalidate (ngsubmit)="perinfo(firstFormGroup.value)">        
      
       
       <div class="example-container text-center pt-5">
@@ -16,7 +15,8 @@
      <div><mat-card-title>Personal information</mat-card-title></div>
           
             <mat-form-field  >
-                <input matInput class="w-100" *ngFor="let name of name | async" [(value)]="name.displayName" formControlName="uname" readonly required>
+                <input matInput class="w-100" *ngFor="let name of name | async" [(value)]="name.displayName"  readonly required>
+
             </mat-form-field><br>
           
           <mat-form-field>
@@ -27,69 +27,78 @@
               <mat-option *ngFor="let gender of gender" [(value)]="gender" >{{gender}}</mat-option>
           
             </mat-select>
+            <mat-error *ngIf="hasErrorp('gender', 'required')">Gender is required</mat-error>
+
           </mat-form-field><br>
          
             <mat-form-field>
-                <input matInput [matDatepicker]="picker" placeholder="Date of Birth" formControlName="date"  required>
+                <input matInput [matDatepicker]="picker" placeholder="Date of Birth" formControlName="dateofbirth"  required>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
               <br>
-             <div class="float-right" *ngFor="let name of name | async" >&nbsp;<button mat-button matStepperNext  (click)="personal(firstFormGroup.value,name.displayName)">Next</button></div> 
+             <div class="float-right" *ngFor="let name of name | async" >&nbsp;<button mat-button matStepperNext [disabled]="!firstFormGroup.valid" (click)="personal(firstFormGroup.value,name.displayName)">Next</button></div> 
                  
     </div>
     
     </form>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup"  >
-     
-      <div class="example-container text-center pt-5">
-         
-          <div><mat-card-title>Contact information</mat-card-title></div>
-          <mat-form-field>
-              <mat-label>Country</mat-label>
-              <mat-select formControlName="country" >
-                    <mat-option *ngFor="let country of country" [(value)]="country"> {{ country }} </mat-option>
-                <mat-option>None</mat-option>
-               
-            
-              </mat-select>
-            </mat-form-field><br>
+      <form [formGroup]="secondFormGroup" autocomplete="off" novalidate (ngsubmit)="continfo(secondFormGroup.value)">
+   
+    <div class="example-container text-center pt-5">
        
-              <mat-form-field >
-                  <mat-label>State</mat-label>
-                  <mat-select formControlName="state">
-                        <mat-option *ngFor="let state of state" [(value)]="state">{{state}}</mat-option>
-                    <mat-option>None</mat-option>
-                    
-                
-                  </mat-select>
-                </mat-form-field><br>
-         
-                <mat-form-field>
-                    <mat-label >City</mat-label>
-                    <mat-select formControlName="city">
-                            <mat-option *ngFor="let city of city" [(value)]="city">{{city}}</mat-option>
-                      <mat-option>None</mat-option>
-                      
+        <div><mat-card-title>Contact information</mat-card-title></div>
+        <mat-form-field>
+            <mat-label>Country</mat-label>
+            <mat-select formControlName="country" (selectionChange)="countryus($event.value)" >
+                  <mat-option *ngFor="let country of country" [(value)]="country"> {{ country }} </mat-option>
+              <mat-option>None</mat-option>
+             
+          
+            </mat-select>
+            <mat-error *ngIf="hasErrorc('country', 'required')">Country is required</mat-error>
+
+          </mat-form-field><br>
+     
+            <mat-form-field >
+                <mat-label>State</mat-label>
+                <mat-select formControlName="state" (selectionChange)="stateus($event.value)">
+                      <mat-option *ngFor="let state of state" [(value)]="state">{{state}}</mat-option>
+                  <mat-option>None</mat-option>
                   
+              
+                </mat-select>
+                <mat-error *ngIf="hasErrorc('state', 'required')">state is required</mat-error>
+
+              </mat-form-field><br>
+       
+              <mat-form-field>
+                  <mat-label >City</mat-label>
+                  <mat-select formControlName="city">
+                          <mat-option *ngFor="let city of city" [(value)]="city">{{city}}</mat-option>
+                    <mat-option>None</mat-option>
                     </mat-select>
-                  </mat-form-field><br>
+                    <mat-error *ngIf="hasErrorc('city', 'required')">city is required</mat-error>
+
+  </mat-form-field><br>
              
                   <mat-form-field>
-                      <input matInput placeholder="ZipCode" required formControlName="zip">
+                      <input matInput placeholder="ZipCode" required formControlName="zipcode">
+                      <mat-error *ngIf="hasErrorc('zipcode', 'required')">ZipCode is required</mat-error>
+                      <mat-error *ngIf="hasErrorc('zipcode', 'minlength')">enter 5 numbers code</mat-error>
+
                   </mat-form-field>
                   <br>
                   <div class="float-right" *ngFor="let name of name | async"><button mat-button matStepperPrevious>Back</button>&nbsp;&nbsp;
-                  <button mat-button matStepperNext (click)="contact(secondFormGroup.value,name.displayName)">Next</button>  </div> 
+                  <button mat-button matStepperNext [disabled]="!secondFormGroup.valid"(click)="contact(secondFormGroup.value,name.displayName)">Next</button>  </div> 
               
       </div>
       </form>
 
   </mat-step>
   <mat-step [stepControl]="thirdFormGroup">
-    <form [formGroup]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup" autocomplete="off" novalidate (ngsubmit)="eduinfo(thirdFormGroup.value)">
   
   <div class="example-container text-center pt-5">
      
@@ -98,21 +107,27 @@
    
     
         <mat-form-field>
-            <input matInput placeholder="Qualificaions"formControlName="qualify" required>
+            <input matInput placeholder="Qualifications"formControlName="qualify" required>
+            <mat-error *ngIf="hasErrore('qualify', 'required')">Qualifications is required</mat-error>
+
         </mat-form-field><br>
    
         <mat-form-field>
             <input matInput placeholder="School(s)"formControlName="school" required>
+            <mat-error *ngIf="hasErrore('school', 'required')">school is required</mat-error>
+
         </mat-form-field><br>
  
     
    
         <mat-form-field>
             <input matInput placeholder="Licenses"formControlName="Licenses" required>
+            <mat-error *ngIf="hasErrore('Licenses', 'required')">Licenses is required</mat-error>
+
         </mat-form-field>
         <br>
               <div class="float-right" *ngFor="let name of name | async"><button mat-button matStepperPrevious>Back</button>&nbsp;&nbsp;
-          <button mat-button matStepperNext (click)="Education(thirdFormGroup.value,name.displayName)">Next</button>  </div> 
+          <button mat-button matStepperNext [disabled]="!thirdFormGroup.valid" (click)="Education(thirdFormGroup.value,name.displayName)">Next</button>  </div> 
     
   </div>
 
@@ -121,7 +136,7 @@
 </form>
 </mat-step>
 <mat-step [stepControl]="fourthFormGroup">
-  <form [formGroup]="fourthFormGroup">
+  <form [formGroup]="fourthFormGroup" autocomplete="off" novalidate (ngsubmit)="perinfo(fourthFormGroup.value)">
 <ng-template matStepLabel>Professional Details</ng-template>
 
 <div class="example-container text-center ">
@@ -136,23 +151,33 @@
           <mat-option *ngFor="let select of select" [(value)]="select" >{{select}}</mat-option>
       
         </mat-select>
+        <mat-error *ngIf="hasErrorpr('category', 'required')">choose option is required</mat-error>
+
       </mat-form-field><br >
         
       <mat-form-field *ngIf="isNameSelected">
         <input matInput placeholder="Name of business" formControlName="nbus" required>
+        <mat-error *ngIf="hasErrorpr('nbus', 'required')">Business name is required</mat-error>
+
     </mat-form-field><br *ngIf="isNameSelected">
        
       
             <mat-form-field *ngIf="isName">
                 <input matInput placeholder="I work as a/an"formControlName="work" required>
+                <mat-error *ngIf="hasErrorpr('work', 'required')">Field name  is required</mat-error>
+
             </mat-form-field><br >
        
             <mat-form-field *ngIf="isName" >
                 
                 <input matInput placeholder="Company/Organization"formControlName="company" required>
+                <mat-error *ngIf="hasErrorpr('company', 'required')">Company name is required</mat-error>
+
             </mat-form-field><br>
             <mat-form-field *ngIf="isName" >
               <input matInput placeholder="Experiences"formControlName="exp" required>
+              <mat-error *ngIf="hasErrorpr('exp', 'required')">Experience required</mat-error>
+
           </mat-form-field>
           <br>
             
@@ -161,10 +186,12 @@
       
           <mat-form-field *ngIf="isName">
                 <input matInput placeholder="Rates" formControlName="rates" required>
+                <mat-error *ngIf="hasErrorpr('rates', 'required')">Rates required</mat-error>
+
             </mat-form-field>
             <br>
             <div class="float-right" *ngFor="let name of name | async"><button mat-button matStepperPrevious>Back</button>&nbsp;&nbsp;
-              <button mat-button matStepperNext (click)="category(fourthFormGroup.value,name.displayName)">Next</button>  </div> 
+              <button mat-button matStepperNext  (click)="category(fourthFormGroup.value,name.displayName)">Next</button>  </div> 
           
       
       
@@ -173,17 +200,19 @@
 </form>
 </mat-step>
 <mat-step [stepControl]="fivethFormGroup">
-    <form [formGroup]="fivethFormGroup">
+    <form [formGroup]="fivethFormGroup" autocomplete="off" novalidate (ngsubmit)="skillha(fivethFormGroup.value)">
         <div class="example-container text-center pt-5">
                 <div><mat-card-title>Skills You Have</mat-card-title></div>
   <mat-form-field > 
     <mat-label>Please add one skill you have</mat-label>
-    <mat-select formControlName="skilly">
+    <mat-select formControlName="skilly" (selectionChange)="skilladd($event.value)">
       <mat-option>None</mat-option>
       
       <mat-option *ngFor="let skills of skills" [(value)]="skills" >{{skills}}</mat-option>
   
     </mat-select>
+    <mat-error *ngIf="hasErrorsh('skilly', 'required')">Skills required</mat-error>
+
   </mat-form-field>
   <mat-form-field>
   <mat-label>Sub Category</mat-label>
@@ -193,6 +222,8 @@
     <mat-option *ngFor="let subcategory of subcategory " [(value)]="subcategory" >{{subcategory}}</mat-option>
 
   </mat-select>
+  <mat-error *ngIf="hasErrorsh('subcategoryy', 'required')">Subcategory required</mat-error>
+
 </mat-form-field>
 <mat-form-field>
     <mat-label>Level of Skill</mat-label>
@@ -202,6 +233,8 @@
           <mat-option *ngFor="let skills of level" [(value)]="skills"  >{{skills}}</mat-option>
       
         </mat-select>
+        <mat-error *ngIf="hasErrorsh('levely', 'required')">Levels required</mat-error>
+
       </mat-form-field>
       <mat-form-field>
             <mat-label>Level of teaching ability</mat-label>
@@ -211,30 +244,36 @@
                   <mat-option *ngFor="let skills of level" [(value)]="skills" >{{skills}}</mat-option>
               
                 </mat-select>
+                <mat-error *ngIf="hasErrorsh('tlevely', 'required')">Levels required</mat-error>
+
               </mat-form-field>
               <mat-form-field>
                     <mat-label>I wish to</mat-label>
                     <mat-select  multiple formControlName="listy">
                       <mat-option *ngFor="let wish of toppingList" [(value)]="wish" >{{wish}}</mat-option>
                     </mat-select>
+                    <mat-error *ngIf="hasErrorsh('listy', 'required')">List required</mat-error>
+
                   </mat-form-field>
   <div class="float-right" *ngFor="let name of name | async"><button mat-button matStepperPrevious>Back</button>&nbsp;&nbsp;
-    <button mat-button matStepperNext (click)="skillyou(fivethFormGroup.value,name.displayName)">Next</button>  </div> 
+    <button mat-button matStepperNext [disabled]="!fivethFormGroup.valid" (click)="skillyou(fivethFormGroup.value,name.displayName)">Next</button>  </div> 
     </div>
   </form>
   </mat-step>
   <mat-step [stepControl]="sixthFormGroup">
-        <form [formGroup]="sixthFormGroup">
+        <form [formGroup]="sixthFormGroup" autocomplete="off" novalidate (ngsubmit)="skillwa(sixthFormGroup.value)">
             <div class="example-container text-center pt-5">
                     <div><mat-card-title>Skills You want</mat-card-title></div>
       <mat-form-field > 
         <mat-label>Please add one skill you want</mat-label>
-        <mat-select formControlName="skillw">
+        <mat-select formControlName="skillw" (selectionChange)="skilladd($event.value)">
           <mat-option>None</mat-option>
           
           <mat-option *ngFor="let skills of skills" [(value)]="skills" >{{skills}}</mat-option>
       
         </mat-select>
+        <mat-error *ngIf="hasErrorsw('skillw', 'required')">Skills required</mat-error>
+
       </mat-form-field>
       <mat-form-field>
       <mat-label>Sub Category</mat-label>
@@ -244,19 +283,27 @@
         <mat-option *ngFor="let subcategory of subcategory" [(value)]="subcategory" >{{subcategory}}</mat-option>
     
       </mat-select>
+      <mat-error *ngIf="hasErrorsw('subcategoryw', 'required')">Subcategory required</mat-error>
+
     </mat-form-field>
     <mat-form-field>
             <mat-label>I wish to</mat-label>
             <mat-select  multiple formControlName="listw">
               <mat-option *ngFor="let wish of toppingList1" [(value)]="wish" >{{wish}}</mat-option>
             </mat-select>
+            <mat-error *ngIf="hasErrorsw('listw', 'required')">List required</mat-error>
+
           </mat-form-field><br>
-          <mat-checkbox>I have read Skillbound's terms and conditions and privacy policy and agree.</mat-checkbox>
+          <mat-checkbox formControlName="termsFormControl">I have read Skillbound's terms and conditions and privacy policy and agree.</mat-checkbox>
+          <mat-error *ngIf="hasErrorsw('termsFormControl','required')">
+           
+    </mat-error>
 
     
       
           <div class="float-right" *ngFor="let name of name | async"><button mat-button matStepperPrevious >back</button>&nbsp;&nbsp;
-          <button mat-button routerLink="/myprofile" (click)="skillwant(sixthFormGroup.value,name.displayName)">submit</button>
+          <button mat-button routerLink="/myprofile" [disabled]="!sixthFormGroup.valid" (click)="skillwant(sixthFormGroup.value,name.displayName,name.email,name.photoURL,name.uid)">submit</button>
+         
           </div>
           
         </div>

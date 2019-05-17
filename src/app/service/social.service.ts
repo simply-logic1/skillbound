@@ -41,22 +41,47 @@ export class SocialService {
   private oAuthLogin(provider) {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
-        this.updateUserData(credential.user)
-        this.router.navigate(['/dashboard']);
+        console.log(credential);
+     console.log(credential.additionalUserInfo.profile)
+    
+       
+        var checking = this.afs.doc<FbUser>(`users/${credential.user.uid}`).valueChanges();
+      checking.subscribe(data => {
+  console.log(data);
+  if (!data) {
+      console.log('exist user');
+      
+      this.router.navigate(['/dashboard']) 
+      this.updateUserData(credential.user)
+      
+    } else {
+     
+      console.log('new user');
+
+
+ this.router.navigate(['/myprofile']) 
+ 
+     
+     
+    }
+      })
+   
+ 
       })
   }
 
 
   private updateUserData(user) {
     // Sets user data to firestore on login
-
+console.log(user);
     const userRef: AngularFirestoreDocument<FbUser> = this.afs.doc(`push/${user.uid}`);
 
     const data: FbUser = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      photoURL: user.photoURL,
+      photoURL: user.photoURL+'?width=200&height=200',
+     
       roles: {
         user: true
     }

@@ -11,9 +11,12 @@ a.nav-link {
     /* width: 25vw; */
         height: 92vh;
     }
-    .fa {
-        font-size: 1.5rem;
-        letter-spacing: 1rem;
+    .fa  {
+       
+        letter-spacing: 0.3rem;
+       
+        margin-top: 3px;
+        
     }
     .box{
         border: 1px solid #ddd;
@@ -38,7 +41,7 @@ a.nav-link {
         margin: 5px;
         width: 86%;
     }
-    .size{
+    /* .size{
         height:23vh;
     }
-    
+  */

@@ -3,11 +3,11 @@
     background-repeat: no-repeat;
     background-size: cover;
     height:100vh;
+    overflow: hidden!important;
 }
 .head{
     margin-top: 20vh;
 }
 body{
-    overflow-x: hidden!important;
-    overflow-y: hidden;
+  
 }

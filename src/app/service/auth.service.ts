@@ -8,7 +8,6 @@ import { User } from './user';
 import { first, map, mergeMap, flatMap, take } from 'rxjs/operators';
 import {AngularFirestore,  AngularFirestoreDocument} from '@angular/fire/firestore';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +16,7 @@ export class AuthService {
   user;
   property:any;
   usersdocument:any;
-   authState = null;
+  authstate=null;
   error: any = null;
   data: Observable<any[]>;
   users$ : Observable<User>;
@@ -28,7 +27,7 @@ export class AuthService {
     this.afAuth.authState.subscribe((auth)=>{
       if(auth){
         console.log('logged in');
-        this. authState =auth
+        this.authstate=auth
         const uida=this.afAuth.auth.currentUser.uid;
         if(uida !=null||uida!=undefined){
           console.log(uida +"is htns");
@@ -67,21 +66,21 @@ export class AuthService {
 
    }
    get currentUserId(): string {
-    return (this.authState !== null) ? this.authState.uid : 'no'
+    return (this.authstate !== null) ? this.authstate.uid : 'no'
 }
 
 get currentUser(): any {
-    return (this.authState !== null) ? this.authState: null;
+    return (this.authstate !== null) ? this.authstate : null;
 }
 get displayName():string{
-  return (this.authState !== null) ? this.authState['displayName'] : ""
+  return (this.authstate !== null) ? this.authstate['displayName'] : ""
 }
 
 get email():string{
-  return (this.authState !== null) ? this.authState['email'] : ""
+  return (this.authstate !== null) ? this.authstate['email'] : ""
 }
 get isUserEmailLoggedIn(): boolean {
-  if (this.authState !== null)  {
+  if (this.authstate !== null)  {
       return true
   } else {
       return false
@@ -91,14 +90,22 @@ login(email: string, pass: string) {
   return this.afAuth.auth.signInWithEmailAndPassword(email, pass).then(
     (user) => {
     
-      this.authState = user
-      
-     
+      this.authstate = user
       // this.getinfo()
-
- this.router.navigate(['/dashboard'])   
+      
+      var checking = this.afs.doc<User>(`push/${user.user.uid}`).valueChanges();
+      checking.subscribe(data => {
+  console.log(data);
+  if (data.register === true) {
+      console.log('exist user');
+      this.router.navigate(['/myprofile']) 
+    } else {
+      console.log('new user');
+      this.router.navigate(['/dashboard']) 
      
-     
+    }
+      })
+      
     }
   ).catch(error => {
 
@@ -109,11 +116,15 @@ adminlogin(email: string, pass: string) {
   return this.afAuth.auth.signInWithEmailAndPassword(email, pass).then(
     (user) => {
 
-      this.authState = user
+      this.authstate = user
       // this.getinfo()
 
-      this.router.navigate(['/addashboard'])
-
+      console.log(user);
+    
+      // this.getinfo()
+     
+     
+ 
     }
   ).catch(error => {
 
@@ -134,15 +145,14 @@ registerclient(userd){
   return this.afAuth.auth.createUserWithEmailAndPassword(userd.email,userd.phone)
   .then(
     (user)=>{
-      this.authState = user 
+      this.authstate = user 
       this.getinfo(userd)
      
       this.updateuserdata(userd, this.afAuth.auth.currentUser.uid ).then(()=>{console.log("updated")
       this.afAuth.auth.sendPasswordResetEmail(this.afAuth.auth.currentUser.email).then(() => this.router.navigate(['/'])).catch((e) => {
           console.log(e.message);
           return e
-        })
-      }).catch((e)=>console.log("not updated"))
+        })}).catch((e)=>console.log("not updated"))
         
     }
   ).catch(error => {
@@ -152,13 +162,14 @@ registerclient(userd){
 }
 private updateuserdata(user, uid) {
 
-  const userRef$: AngularFirestoreDocument<any> = this.afs.doc<User>(`users/${uid}`);
+  const userRef$: AngularFirestoreDocument<any> = this.afs.doc<User>(`push/${uid}`);
   const userdata: User = {
       uid: uid,
       displayName: user.name,
-      
+      register:false,
       email: user.email,
      phonenumber: user.phone,
+     photoURL:'https://firebasestorage.googleapis.com/v0/b/skilbound.appspot.com/o/image%2Fimages.png?alt=media&token=16804003-ae51-4b79-8319-0d31d9d4901a',
       // url:user.url,
       roles: {
           user: true
@@ -175,6 +186,7 @@ private userdata(user, uid) {
       displayName: user.name,
       email: user.email,
      phonenumber: user.phone,
+     register:false,
       // url:user.url,
       roles: {
           user: true
@@ -197,7 +209,7 @@ getinfo(userd) {
         var isAnonymous = user.isAnonymous;
 
         var providerData = user.providerData;
-        var phone = user.phoneNumber;
+        
         var uids = user.uid;
         
         console.log(uids+displayName+photoURL+email)
