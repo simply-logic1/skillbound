@@ -5,28 +5,31 @@ import {LoginComponent} from './client/login/login.component';
 import { ForgotComponent } from './client/forgot/forgot.component';
 import { SkillshaveComponent } from './client/skillshave/skillshave.component';
 import { HeaderComponent } from './client/header/header.component';
+import {SkillsComponent} from './client/skills/skills.component';
 import { DasboardComponent } from './client/dasboard/dasboard.component';
 import { MyprofileComponent } from './client/myprofile/myprofile.component';
-
 import { AuthguardService } from './service/authguard.service';
 import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 import { AdminheaderComponent } from './admin/adminheader/adminheader.component';
 import { AdminuserComponent } from './admin/adminuser/adminuser.component';
-
 import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.component';
+import {AboutMComponent} from './client/about-m/about-m.component';
 const routes: Routes = [
 {path:'',component:LoginComponent},
 {path: 'register', component: RegisterComponent},
 {path:'forgot',component:ForgotComponent},
-{path:'skillshave',component:SkillshaveComponent},
 {path:'header',component:HeaderComponent},
-{path:'myprofile',component:MyprofileComponent},
+{path:'dashboard',component:DasboardComponent,canActivate:[AuthguardService]},
+{path:'oldprofile',component:MyprofileComponent},
+{path:'myprofile',component:SkillsComponent},
+{path:'about',component:AboutMComponent},
+{path:'skillshave',component:SkillshaveComponent},
 {path:'adlogin',component:AdminloginComponent},
 {path:'adheader',component:AdminheaderComponent},
 {path:'aduser',component:AdminuserComponent},
 {path:'addashboard',component:AdmindashboardComponent},
 
-{path:'dashboard',component:DasboardComponent,canActivate:[AuthguardService]}
+
 ];
 
 @NgModule({

@@ -11,8 +11,31 @@
 .nav-link{
     font-size: 15px;
 }
-@media screen and (max-width:1025px){
+@media screen and (max-width:1089px){
     .nav-link{
         text-align: center;
+    }
+}
+@media (min-width:1090px){
+    .expand-navbar {
+        flex-flow: row nowrap ;
+        justify-content: flex-start  ;
+    }
+    .expand-navbar .navbar-toggler {
+        display: none;
+    }
+    .expand-navbar .navbar-collapse {
+        display: flex!important;
+        flex-basis: auto;
+    }
+    .expand-navbar .navbar-nav {
+        flex-direction: row;
+    }
+    .expand-navbar .navbar-nav .nav-link {
+        padding-right: .5rem;
+        padding-left: .5rem;
+    }
+    .expand-navbar .navbar-nav .dropdown-menu {
+        position: absolute;
     }
 }

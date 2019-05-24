@@ -1,0 +1,207 @@
+<app-header></app-header>
+<a [routerLink]="['/myprofile']"routerLinkActive="active"><h5><i class="fa fa-long-arrow-left" style="font-size:24px"></i>&nbsp;Back</h5></a>
+<div class="container-fluid" *ngFor="let details of details | async">
+	<div class="card">
+  <div class="card-header">
+   Personal Info<i class="fa fa-pencil float-right"></i>
+  </div>
+  <div class="card-body">
+  <div class="row">
+  	<div class="col-6">
+  	<label>Name</label>
+  	</div>
+  	<div class="col-6">
+  		<label>{{details.Username}}</label>
+  	</div>
+  </div>
+   <div class="row">
+  	<div class="col-6">
+  	<label>Gender</label>
+  	</div>
+  	<div class="col-6">
+  		<label>{{details.Gender}}</label>
+  	</div>
+  </div>
+   <div class="row">
+  	<div class="col-6">
+  	<label>DOB</label>
+  	</div>
+  	<div class="col-6">
+  		<label>{{ details.Birthdate.toDate()| date:'mediumDate'}}</label>
+  	</div>
+  </div>
+</div>
+</div>
+<div class="card">
+  <div class="card-header">
+   Contact Info<i class="fa fa-pencil float-right"></i>
+  </div>
+  <div class="card-body">
+  <div class="row">
+  	<div class="col-6">
+  	<label>Country</label>
+  	</div>
+  	<div class="col-6">
+  		<label>{{details.Country}}</label>
+  	</div>
+  </div>
+   <div class="row">
+  	<div class="col-6">
+  	<label>State</label>
+  	</div>
+  	<div class="col-6">
+  		<label>{{details.State}}</label>
+  	</div>
+  </div>
+   <div class="row">
+  	<div class="col-6">
+  	<label>city</label>
+  	</div>
+  	<div class="col-6">
+  		<label>{{details.City}}</label>
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="col-6">
+  	<label>Zip Code</label>
+  	</div>
+  	<div class="col-6">
+  		<label>{{details.Zip}}</label>
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="col-6">
+  	<label>Mobile</label>
+  	</div>
+  	<div class="col-6">
+  		<label>{{details.Phonenumber}}</label>
+  	</div>
+  </div>
+</div>
+</div>
+<div class="card">
+  <div class="card-header">
+   Education Info<i class="fa fa-pencil float-right"></i>
+  </div>
+  <div class="card-body">
+  <div class="row">
+  	<div class="col-3">
+  	<label>School(s)</label>
+  	</div>
+  	<div class="col-9">
+  		<label>{{details.Schools}}</label>
+  	</div>
+  </div>
+   </div>
+</div>
+<div class="card">
+  <div class="card-header">
+  Professional Info<i class="fa fa-pencil float-right"></i>
+  </div>
+  <div class="card-body">
+  <div class="row">
+  	<div class="col-6">
+  	<label>Work As</label>
+  	</div>
+  	<div class="col-6">
+  		<label>{{details.Work}}</label>
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="col-6">
+  	<label>Company</label>
+  	</div>
+  	<div class="col-6">
+  		<label>{{details.Company}}</label>
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="col-6">
+  	<label>Experiene</label>
+  	</div>
+  	<div class="col-6">
+  		<label>{{details.Experiences}}</label>
+  	</div>
+  </div>
+   </div>
+</div>
+<div class="card">
+  <div class="card-header">
+ Skills You Have<i class="fa fa-pencil float-right"></i>
+  </div>
+  <div class="card-body">
+  <div class="row">
+  	<div class="col-6">
+  	<label>Skill Name</label>
+  	</div>
+  	<div class="col-6">
+  		<label>{{details.Skill}}</label>
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="col-6">
+  	<label>SubCategory</label>
+  	</div>
+  	<div class="col-6">
+  		<label>{{details.Subcategory}}</label>
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="col-6">
+  	<label>Level of Skill</label>
+  	</div>
+  	<div class="col-6">
+  		<label>{{details.level}}</label>
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="col-6">
+  	<label>Teaching Level</label>
+  	</div>
+  	<div class="col-6">
+  		<label>{{details.TeachingLevel}}</label>
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="col-6">
+  	<label>Wishes to</label>
+  	</div>
+  	<div class="col-6">
+  		<label>{{details.toppingList}}</label>
+  	</div>
+  </div>
+   </div>
+</div>
+<div class="card">
+  <div class="card-header">
+ Skills You Want<i class="fa fa-pencil float-right"></i>
+  </div>
+  <div class="card-body">
+  <div class="row">
+  	<div class="col-6">
+  	<label>Skill Name</label>
+  	</div>
+  	<div class="col-6">
+  		<label>{{details.Skillw}}</label>
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="col-6">
+  	<label>SubCategory</label>
+  	</div>
+  	<div class="col-6">
+  		<label>{{details.SubCategoryw}}</label>
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="col-6">
+  	<label>Wishes to</label>
+  	</div>
+  	<div class="col-6">
+  		<label>{{details.toppingListw}}</label>
+  	</div>
+  </div>
+   </div>
+</div>
+
+</div>

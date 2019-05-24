@@ -1,0 +1,214 @@
+<app-header></app-header>
+<div class="container-fluid re" *ngFor="let details of details | async" >
+
+  <img src="https://i.ytimg.com/vi/EXp1oa782RQ/maxresdefault.jpg" class="fb-image-lg">
+  <h5 class=" fb-text mb-2">{{details.Username}}</h5>
+  <button type="button" class="btn btn-outline bottomright"><i class="fa fa-pencil p-1"></i>EditProfile</button>
+  
+
+
+<nav class="navbar" > 
+
+<img [src]="details.PhotoURL"
+ class="fb-image-profile  rounded-circle mx-auto mx-lg-0 mx-md-0">
+
+<ul class="nav mx-auto border-left">
+<li class="nav-item ">
+  <a class="nav-link" href="#">TimeLine</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="#">About</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="#">Friends</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="#">Skills</a>
+</li>
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+   More
+  </a>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#">Privacy</a>
+</div>
+</li>    
+</ul>
+</nav>
+</div>  
+<br class="re">
+
+  <div class="card-header border re font-weight-bold bg-light ro">
+      <i class="fa fa-user" style="font-size:24px"> </i>&nbsp;&nbsp;About
+   </div>
+ <div class=" row border bg-light re ro">
+ 
+   <div class="col-3 border-right py-4 float-left">
+     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+       <a class="nav-link active" id="v-pills-overview-tab" data-toggle="pill" href="#v-pills-overview" role="tab" aria-controls="v-pills-overview" aria-selected="true">Overview</a>
+       
+       <a class="nav-link" id="v-pills-personal-tab" data-toggle="pill" href="#v-pills-personal" role="tab" aria-controls="v-pills-personal" aria-selected="false">Personal and Contact Info</a>
+       
+       <a class="nav-link" id="v-pills-work-tab" data-toggle="pill" href="#v-pills-work" role="tab" aria-controls="v-pills-work" aria-selected="false">Work and Education</a>
+       
+       <a class="nav-link" id="v-pills-skillsyh-tab" data-toggle="pill" href="#v-pills-skillsyh" role="tab" aria-controls="v-pills-skillsyh" aria-selected="false">Skills You Have</a>
+       <a class="nav-link" id="v-pills-skillsyw-tab" data-toggle="pill" href="#v-pills-skillsyw" role="tab" aria-controls="v-pills-skillsyw" aria-selected="false">Skills You Want</a>
+     </div>
+   </div>
+   <div class="col-9 p-4 float-right">
+     <div class="tab-content" id="v-pills-tabContent" *ngFor="let details of details | async" >
+       <div class="tab-pane fade show active" id="v-pills-overview" role="tabpanel" aria-labelledby="v-pills-overview-tab">
+         <div class="row">
+           <div class="col-9"><p id="name"><i class="fa fa-briefcase circle-icon" style="font-size:24px;opacity:0.5"></i>&nbsp;{{details.Work}}
+           <a (click)="edit()" style="color:#407FE6; margin-left: 15rem;"><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></p>
+           <form class="form-inline " id="inp" style="display:none;" >
+            <input type="text" #works="ngModel" [(ngModel)]="details.Work" class="form-control" id="works" name="works">
+            <button type="submit"   class="mx-4 btn btn-primary" (click)="updatework(works.value,details.Username)">Update</button>
+          </form>
+           <hr>
+        <p><i class="fa fa-graduation-cap circle-icon" style="font-size:24px;opacity:0.5"></i>&nbsp;Studied at&nbsp;:&nbsp;{{details.Schools}}
+          <a style="color:#407FE6; margin-left: 2.5rem;"><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></p>
+       
+      <hr>
+      <p><i class="fa fa-location-arrow circle-icon" style="font-size:24px;opacity:0.5"></i>&nbsp;Lives in&nbsp;:&nbsp;{{details.City}}
+        <a style="color:#407FE6; margin-left: 12.9rem;"><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></p>
+      
+</div>
+      <div class="col-3 "><p class="mx-4"><i class="fa fa-mobile-phone" style="font-size:25px;opacity:0.5"></i>&nbsp;&nbsp;{{details.Phonenumber}}
+        <a style="color:#407FE6; margin-left:.9rem;"><i class="fa fa-pencil" style="font-size:15px; "></i></a></p>
+      
+        <p class="mx-3"><i class="fa fa-birthday-cake" style="font-size:20px;opacity:0.5"></i>&nbsp;&nbsp;{{details.Birthdate.toDate()|date:'longDate'}}
+          <a style="color:#407FE6; margin-left:.17rem;">&nbsp;<i class="fa fa-pencil" style="font-size:15px; "></i></a></p>
+      </div>
+    </div>
+    </div>
+    <div class="tab-pane fade" id="v-pills-personal" role="tabpanel" aria-labelledby="v-pills-personal-tab">
+
+      <h5>Personal Information <a class="float-right" style="color:#407FE6; "><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></h5>
+      <hr>
+      <div class="row"> <div class="col-4"><p>Birth Date</p></div><div class="col-3"><p>{{details.Birthdate.toDate()|date:'MMMM d'}}</p></div>  </div>
+    
+  <hr>
+  <div class="row"> <div class="col-4"><p>Birth Year</p></div> <div class="col-3"><p>{{details.Birthdate.toDate()|date:'y'}}</p></div></div>
+ <hr>
+ <div class="row"> <div class="col-4"><p>Gender</p></div><div class="col-3"><p>{{details.Gender}}</p></div> </div>
+  <hr>
+  
+   
+  
+<br>
+<br>
+<h5>Contact Information <a class="float-right" style="color:#407FE6; "><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></h5> 
+<hr>
+<div class="row"> <div class="col-4"><p>Mobile Phone</p></div><div class="col-3"><p>{{details.Phonenumber}}</p></div> </div>
+ 
+
+<hr>
+<div class="row"> <div class="col-4"><p>Email</p></div><div class="col-3"><p>{{details.Email}}</p></div> </div>
+ 
+
+<hr>
+<br>
+       </div>
+       <div class="tab-pane fade" id="v-pills-work" role="tabpanel" aria-labelledby="v-pills-work-tab">
+<h5>Work <a class="float-right" style="color:#407FE6; "><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></h5>
+<hr>
+<p class=""><i class="fa fa-building-o circle-icon" style="font-size:24px;opacity:0.5"></i>&nbsp;{{details.Company}}</p><hr>
+<p class=""><i class="fa fa-briefcase circle-icon" style="font-size:24px;opacity:0.5"></i>&nbsp;{{details.Work}}</p><hr>
+          
+
+<br>
+<br>
+<h5>Education <a class="float-right" style="color:#407FE6; "><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></h5>
+<hr>
+<p><i class="fa fa-graduation-cap circle-icon" style="font-size:24px;opacity:0.5"></i>&nbsp;Studied at&nbsp;:&nbsp;{{details.Schools}}</p>
+      <hr>
+       </div>
+   <div class="tab-pane fade" id="v-pills-skillsyh" role="tabpanel" aria-labelledby="v-pills-skillsyh-tab">
+    <h5>Skills <a class="float-right" style="color:#407FE6; "><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></h5> 
+    <hr>
+      <div class="row"> <div class="col-4"><p>Skill name</p></div><div class="col-3"><p>{{ details.Skill}}</p></div>  </div>
+    
+  <hr>
+  <div class="row"> <div class="col-4"><p>Sub category</p></div> <div class="col-3"><p>{{ details.Subcategory}}</p></div></div>
+ <hr>
+ <div class="row"> <div class="col-4"><p>Level of skill</p></div><div class="col-3"><p>{{ details.level}}</p></div> </div>
+  <hr>
+  <div class="row"> <div class="col-4"><p>Teaching level</p></div><div class="col-3"><p>{{ details.TeachingLevel}}</p></div> </div>
+  <hr>
+  <div class="row"> <div class="col-4"><p>Member wishes to</p></div><div class="col-3"><p>{{ details.toppingList}}</p></div> </div>
+  <hr>
+   </div>
+    
+   <div class="tab-pane fade" id="v-pills-skillsyw" role="tabpanel" aria-labelledby="v-pills-skillsyw-tab">
+      <h5>Skills <a class="float-right" style="color:#407FE6; "><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></h5> 
+      <hr>
+        <div class="row"> <div class="col-4"><p>Skill name</p></div><div class="col-3"><p>{{ details.Skillw}}</p></div>  </div>
+      
+    <hr>
+    <div class="row"> <div class="col-4"><p>Sub category</p></div> <div class="col-3"><p>{{ details.Subcategoryw}}</p></div></div>
+   <hr>
+    <div class="row"> <div class="col-4"><p>Member wishes to</p></div><div class="col-3"><p>{{ details.toppingListw}}</p></div> </div>
+    <hr>
+   </div>
+     </div>
+   </div>
+ </div>
+ 
+ <!--mobile-->
+ <div class="container-fluid cd" *ngFor="let details of details | async">
+	<div class="row">
+		<div class="col-12" style="padding-left:0!important;padding-right:0!important;">
+
+	<img src="https://i.ytimg.com/vi/EXp1oa782RQ/maxresdefault.jpg" class="fb-image-lg1"></div></div>
+	<div class="row">
+		<div class="col-12 text-center">
+	<img [src]="details.PhotoURL" class="fb-image-profile1  rounded-circle mx-auto mx-lg-0 mx-md-0 "></div></div>
+	<div class="row">
+		<div class="col-12  p-3 text-center">
+			<h5>{{details.Username}}</h5>
+		</div>
+	</div><hr>
+	<div class="row">
+		<div class="col-12 text-center">
+			<p><i class="fa fa-plus p-1"></i>Add Bio</p>
+		</div>
+	</div><hr>
+	<div class="row text-center">
+		<div class="col-4"><i class="fa fa-plus-circle p-1"></i>
+
+			<p>Add Photos</p>
+		</div>
+		<div class="col-4"><i class="fa fa-user-circle p-1"></i>
+			<p>Edit Profile</p>
+		</div>
+		<div class="col-4"><i class="fa fa-plus p-1"></i>
+			<p>More</p>
+		</div>
+	</div><hr>
+	<div class="row">
+	  <div class="col-12">
+	  	<p><i class="fa fa-briefcase p-1"></i>{{details.Work}}</p>
+	  </div></div>
+	  <div class="row">
+	  <div class="col-12 ">
+	  	<p><i class="fa fa-graduation-cap p-1"></i>Studied&nbsp;at&nbsp;&nbsp; {{details.Schools}}</p></div></div>
+	  	<div class="row">
+	  <div class="col-12">
+	  	<p><i class="fa fa-location-arrow p-1"></i>Lives&nbsp;in&nbsp;:&nbsp;&nbsp;{{details.City}}</p>
+	  </div></div>
+	  <div class="row">
+	  <div class="col-12">
+	  	<p><i class="fa fa-clock-o p-1"></i>Joined&nbsp;&nbsp;{{ details.Join.toDate()| date:'mediumDate'}}</p>
+	  </div></div><hr>
+	  <div class="row">
+	  	<div class="col-12 text-center">
+	  		<p>Edit Details</p>
+	  	</div>
+	  </div><hr>
+	  <div class="row">
+	  	<div class="col-12 text-center">
+	  		<p [routerLink]="['/about']"routerLinkActive="active">More About {{details.Username}} <i class="fa fa-angle-right p-1"></i></p>
+	  	</div>		
+	  </div>		
+  </div>

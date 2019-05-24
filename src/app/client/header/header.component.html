@@ -1,60 +1,60 @@
-<nav class="navbar  bg-dark navbar-dark">
-  <a class="navbar-brand">
-    <img src="assets/icons/logo.png" height="45" alt="">
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="" [routerLink]="['/myprofile']"routerLinkActive="active">My profile</a>
-        <div #target></div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Search Skill</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Browse Skill</a>
-      </li> 
-      <li class="nav-item">
-        <a class="nav-link" href="#">Skill Members Have</a>
-      </li>    
-      <li class="nav-item">
-        <a class="nav-link" href="#">Skill Members Want</a>
-      </li>    
-      <li class="nav-item">
-        <a class="nav-link" href="#">Post video Files</a>
-      </li>   
-      <li class="nav-item">
-        <a class="nav-link" href="#">Post audio Files</a>
-      </li>    
-      <li class="nav-item">
-        <a class="nav-link" href="#">Classes</a>
-      </li>   
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="#">Logout</a>
-      </li>           -->
-    </ul>
-    <ul class="navbar-nav ml-auto nav-flex-icons">
-      
-      
-        <li class="nav-item avatar dropdown">
-          <a class="nav-link" id="navbarDropdownMenuLink-55" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
-            <div *ngIf="(profile | async)?.PhotoURL === empty ; else templateName"><img src='https://firebasestorage.googleapis.com/v0/b/skilbound.appspot.com/o/image%2Fimages.png?alt=media&token=16804003-ae51-4b79-8319-0d31d9d4901a'
-              class="rounded-circle size" ></div>
-              <ng-template #templateName>
-                <img [src]="(profile | async)?.PhotoURL" class="  size rounded-circle  w-20 ">
-            </ng-template>
-            
-          </a>
-        <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-          <a class="dropdown-item" href="" [routerLink]="['/myprofile']" routerLinkActive="active">Profile</a>
-          <a class="dropdown-item" href="#">Message</a>
-          <a class="dropdown-item" href="#" click="auth.signOut()">Logout</a>
-        </div>
-      </li>
-    </ul>
-  </div>   
-</nav>
+<nav class="navbar expand-navbar  bg-dark navbar-dark">
+    <a class="navbar-brand">
+        <img src="assets/icons/logo.png" height="45" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="" [routerLink]="['/myprofile']"routerLinkActive="active">My Profile</a>
+          <div #target></div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" >Search Skill</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Browse Skill</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link" href="#">Skill Members Have</a>
+        </li>    
+        <li class="nav-item">
+          <a class="nav-link" href="#">Skill Members Want</a>
+        </li>    
+        <li class="nav-item">
+          <a class="nav-link" href="#">Post Video Files</a>
+        </li>   
+        <li class="nav-item">
+          <a class="nav-link" href="#">Post Audio Files</a>
+        </li>    
+        <li class="nav-item">
+          <a class="nav-link" href="#">Classes</a>
+        </li>   
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="#">Logout</a>
+        </li>           -->
+      </ul>
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        
+        
+          <li class="nav-item avatar dropdown">
+            <a class="nav-link" id="navbarDropdownMenuLink-55" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              <div *ngIf="(profile | async)?.PhotoURL === empty ; else templateName"><img src='https://firebasestorage.googleapis.com/v0/b/skilbound.appspot.com/o/image%2Fimages.png?alt=media&token=16804003-ae51-4b79-8319-0d31d9d4901a'
+                class="rounded-circle size" ></div>
+                <ng-template #templateName>
+                  <img [src]="(profile | async)?.PhotoURL" class="  size rounded-circle  w-20 ">
+              </ng-template>
+              
+            </a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+            <a class="dropdown-item" href="" [routerLink]="['/myprofile']" routerLinkActive="active">Profile</a>
+            <a class="dropdown-item" href="#">Message</a>
+            <a class="dropdown-item" href="#" click="auth.signOut()">Logout</a>
+          </div>
+        </li>
+      </ul>
+    </div>   
+  </nav>

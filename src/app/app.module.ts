@@ -73,6 +73,8 @@ import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.c
 import { AdminuserComponent } from './admin/adminuser/adminuser.component';
 import { AdminsidenavComponent } from './admin/adminsidenav/adminsidenav.component';
 import { MyprofileComponent } from './client/myprofile/myprofile.component';
+import { SkillsComponent } from './client/skills/skills.component';
+import { AboutMComponent } from './client/about-m/about-m.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +91,9 @@ import { MyprofileComponent } from './client/myprofile/myprofile.component';
     AdmindashboardComponent,
     AdminuserComponent,
     AdminsidenavComponent,
-    MyprofileComponent
+    MyprofileComponent,
+    SkillsComponent,
+    AboutMComponent
     
     
   

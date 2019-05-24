@@ -37,7 +37,7 @@
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
               <br>
-             <div class="float-right" *ngFor="let name of name | async" >&nbsp;<button mat-button matStepperNext [disabled]="!firstFormGroup.valid" (click)="personal(firstFormGroup.value,name.displayName)">Next</button></div> 
+             <div class="float-right" *ngFor="let name of name | async" >&nbsp;<button mat-button matStepperNext [disabled]="!firstFormGroup.valid" (click)="personal(firstFormGroup.value,name.displayName,name.email,name.photoURL)">Next</button></div> 
                  
     </div>
     
@@ -49,6 +49,14 @@
     <div class="example-container text-center pt-5">
        
         <div><mat-card-title>Contact information</mat-card-title></div>
+
+        <mat-form-field>
+          <input matInput placeholder="Mobile Number" required formControlName="phone">
+          <mat-error *ngIf="hasErrorc('phone', 'required')">Mobile Number is required</mat-error>
+          <mat-error *ngIf="hasErrorc('phone', 'minlength')">enter 10 numbers</mat-error>
+
+      </mat-form-field>
+      <br>
         <mat-form-field>
             <mat-label>Country</mat-label>
             <mat-select formControlName="country" (selectionChange)="countryus($event.value)" >

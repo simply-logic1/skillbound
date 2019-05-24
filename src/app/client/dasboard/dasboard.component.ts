@@ -74,6 +74,7 @@ skills:string[]=[
     });
     
     this.secondFormGroup=new FormGroup({
+      phone:new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
       country:new FormControl('', [Validators.required]),
       state:new FormControl('',[Validators.required]),
       city:new FormControl('',[Validators.required]),
@@ -319,14 +320,17 @@ this.name= this.afs.collection('push' , ref => ref.where('uid','==', this.userid
  }
 
 
- personal(a, b){
+ personal(a, b,c,d){
   
-console.log(a,b);
+console.log(a,b,c,d);
   const db = this.afs.doc(`Details/${b}`)
     const details = {
+      Email: c,
+      PhotoURL: d,
       Username: b,
      Birthdate: a.dateofbirth,
      Gender: a.gender,
+     
 
   }
   return db.set(details);
@@ -336,7 +340,7 @@ console.log(a,b);
   contact(a,b){
     const db = this.afs.doc(`Details/${b}`)
     const details = {
-     
+     Phonenumber: a.phone,
      Country: a.country,
      State: a.state,
      City: a.city,

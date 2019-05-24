@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.userid = this.afAuth.auth.currentUser.uid;
     console.log(this.userid);
-    this.profile= this.afs.doc(`users/${this.userid}`).valueChanges();
+    this.profile= this.afs.doc(`push/${this.userid}`).valueChanges();
   }
   
 }

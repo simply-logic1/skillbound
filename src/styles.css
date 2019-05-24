@@ -3,7 +3,7 @@
 html,body{
   margin: 0; 
     height: 100%; 
-   
+    background-color:#E9EBEE !important; 
     overflow:auto !important;
    }
    .mat-horizontal-stepper-header-container {
