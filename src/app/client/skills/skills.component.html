@@ -63,22 +63,46 @@
            <a (click)="edit()" style="color:#407FE6; margin-left: 15rem;"><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></p>
            <form class="form-inline " id="inp" style="display:none;" >
             <input type="text" #works="ngModel" [(ngModel)]="details.Work" class="form-control" id="works" name="works">
-            <button type="submit"   class="mx-4 btn btn-primary" (click)="updatework(works.value,details.Username)">Update</button>
+            <button type="submit"   class="mx-4 btn btn-primary" (click)="updatework(works.value,details.Username)">Add</button>
           </form>
            <hr>
-        <p><i class="fa fa-graduation-cap circle-icon" style="font-size:24px;opacity:0.5"></i>&nbsp;Studied at&nbsp;:&nbsp;{{details.Schools}}
-          <a style="color:#407FE6; margin-left: 2.5rem;"><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></p>
-       
+        <p id="name1"><i class="fa fa-graduation-cap circle-icon" style="font-size:24px;opacity:0.5"></i>&nbsp;Studied at&nbsp;:&nbsp;{{details.Schools}}
+          <a (click)="edit1()" style="color:#407FE6; margin-left: 2.5rem;"><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></p>
+          <form class="form-inline " id="inp1" style="display:none;" >
+            <input type="text" #schools="ngModel" [(ngModel)]="details.Schools" class="form-control" id="schools" name="schools">
+            <button type="submit"   class="mx-4 btn btn-primary" (click)="updateschool(schools.value,details.Username)">Add</button>
+          </form>
       <hr>
-      <p><i class="fa fa-location-arrow circle-icon" style="font-size:24px;opacity:0.5"></i>&nbsp;Lives in&nbsp;:&nbsp;{{details.City}}
-        <a style="color:#407FE6; margin-left: 12.9rem;"><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></p>
+      <p id="cityname"><i class="fa fa-location-arrow circle-icon" style="font-size:24px;opacity:0.5"></i>&nbsp;Lives in&nbsp;:&nbsp;{{details.City}}
+        <a (click)="editcity(details.Country, details.State, details.City)" style="color:#407FE6; margin-left: 12.9rem;"><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a>
+        </p>
+        <form class="form-inline " id="cityedit" style="display:none;" >
+        <mat-form-field>
+          <mat-label>City</mat-label>
+          <mat-select [(value)]="selected" (selectionChange)="updatecity($event.value,details.Username)">
+                <mat-option *ngFor="let details of details | async" [value]="details.City"> {{ details.City }} </mat-option>
+                <mat-option *ngFor="let city of city | async" [value]="city"> {{ city }} </mat-option>
+            <mat-option>None</mat-option>
+           
+        
+          </mat-select></mat-form-field>
+        </form>
       
 </div>
-      <div class="col-3 "><p class="mx-4"><i class="fa fa-mobile-phone" style="font-size:25px;opacity:0.5"></i>&nbsp;&nbsp;{{details.Phonenumber}}
-        <a style="color:#407FE6; margin-left:.9rem;"><i class="fa fa-pencil" style="font-size:15px; "></i></a></p>
-      
-        <p class="mx-3"><i class="fa fa-birthday-cake" style="font-size:20px;opacity:0.5"></i>&nbsp;&nbsp;{{details.Birthdate.toDate()|date:'longDate'}}
-          <a style="color:#407FE6; margin-left:.17rem;">&nbsp;<i class="fa fa-pencil" style="font-size:15px; "></i></a></p>
+      <div class="col-3 "><p id="name2" class="mx-4"><i class="fa fa-mobile-phone" style="font-size:25px;opacity:0.5"></i>&nbsp;&nbsp;{{details.Phonenumber}}
+        <a (click)="edit2()" style="color:#407FE6; margin-left:.9rem;"><i class="fa fa-pencil" style="font-size:15px; "></i></a></p>
+        <form class="form-inline " id="inp2" style="display:none;" >
+          <input type="text" #phone="ngModel" [(ngModel)]="details.Phonenumber" class="col-6 form-control" id="phone" name="phone">
+          <button type="submit"   class="mx-4 btn btn-primary" (click)="updatephone(phone.value,details.Username)">Add</button>
+        </form>
+        <p id="change" class="mx-3"><i class="fa fa-birthday-cake" style="font-size:20px;opacity:0.5"></i>&nbsp;&nbsp;{{details.Birthdate.toDate()|date:'longDate'}}
+          <a (click)="sdate(details.Birthdate.toDate())" style="color:#407FE6; margin-left:.17rem;">&nbsp;<i class="fa fa-pencil" style="font-size:15px; "></i></a></p>
+          <form class="form-inline " id="change1" style="display:none;" >
+            <mat-form-field >
+              <input matInput [matDatepicker]="picker"  placeholder="Choose a date" [formControl]="date" (dateChange)="datechange($event.target.value,details.Username)">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field></form>
       </div>
     </div>
     </div>
@@ -93,12 +117,33 @@
  <hr>
  <div class="row"> <div class="col-4"><p>Gender</p></div><div class="col-3"><p>{{details.Gender}}</p></div> </div>
   <hr>
-  
+  <div class="row"> 
+    <form class="form-inline " id="change2" style="display:none;" >
+      <div class="col-4"><p>Date Of Birth</p></div>
+      <hr> 
+      <div class="col-3">
+        <mat-form-field >
+          <input matInput [matDatepicker]="picker"  placeholder="Choose a date" [formControl]="date" (dateChange)="datechange($event.target.value,details.Username)">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+     </form>
+  </div>
+  <div class="row"> 
+    <form class="form-inline " id="change2" style="display:none;" >
+      <div class="col-4"><p>Gender</p></div>
+      <hr> 
+      <div class="col-3">
+        
+      </div>
+     </form>
+  </div>
    
   
 <br>
 <br>
-<h5>Contact Information <a class="float-right" style="color:#407FE6; "><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></h5> 
+<h5>Contact Information <a  class="float-right" style="color:#407FE6; "><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></h5> 
 <hr>
 <div class="row"> <div class="col-4"><p>Mobile Phone</p></div><div class="col-3"><p>{{details.Phonenumber}}</p></div> </div>
  
@@ -138,6 +183,7 @@
   <hr>
   <div class="row"> <div class="col-4"><p>Member wishes to</p></div><div class="col-3"><p>{{ details.toppingList}}</p></div> </div>
   <hr>
+  
    </div>
     
    <div class="tab-pane fade" id="v-pills-skillsyw" role="tabpanel" aria-labelledby="v-pills-skillsyw-tab">

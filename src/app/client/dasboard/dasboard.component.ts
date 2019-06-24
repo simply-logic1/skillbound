@@ -3,7 +3,8 @@ import {FormBuilder, FormGroup, Validators,FormControl,NgForm} from '@angular/fo
 import {AngularFirestore,  AngularFirestoreDocument} from '@angular/fire/firestore';
 import {AngularFireAuth} from '@angular/fire/auth';
 import { contact, personal, education,skillhave, skillwant} from '../../service/user';
-
+import { AngularFireDatabase } from '@angular/fire/database';
+import {ClientService} from '../../service/client.service';
 @Component({
   selector: 'app-dasboard',
   templateUrl: './dasboard.component.html',
@@ -16,8 +17,10 @@ export class DasboardComponent implements OnInit {
   userid:any
   empty:any;
   name:any;
-  state:string[];
-  city:string[];
+  state:any;
+  city:any;
+  Count;
+
   subcategory:string[];
   firstFormGroup: FormGroup;
   secondFormGroup:FormGroup;
@@ -27,19 +30,15 @@ export class DasboardComponent implements OnInit {
   sixthFormGroup:FormGroup;
   isNameSelected: boolean; 
   isName:boolean;
+  item:any;
   gender : string[]=[
     'Male','Female','Other'
-  ];
-  country:string[]=[
-    'United States','United Kingdom'
   ];
 
 skills:string[]=[
   'WebDesign','Construction','Chartism','Designing','Engineering Software'
 ];
-// subcategory:string[]=[
-//   'HTML','XTML','Javascript'
-// ]; 
+
   select : string[]=[
     'Company','Individual'
   ];
@@ -63,7 +62,7 @@ skills:string[]=[
     console.log('Some option selected', event);
   }
   
-  constructor(private _formBuilder: FormBuilder,private afs:AngularFirestore,private afAuth:AngularFireAuth ) {
+  constructor(private cli: ClientService, private db:AngularFireDatabase, private _formBuilder: FormBuilder,private afs:AngularFirestore,private afAuth:AngularFireAuth ) {
    
   }
   
@@ -112,14 +111,14 @@ skills:string[]=[
     
     
     });
-    // termsFormControl = new FormControl('', [(control) => {    
-    //   return !control.value ? { 'required': true } : null;
-    // }]
+    
    
   
 //<!---name get--->    
 this.userid=this.afAuth.auth.currentUser.uid
 console.log(this.userid);
+this.item = this.db.list('/Data').valueChanges();
+this.cli.bscountry.subscribe(country=> this.Count=country);
 this.name= this.afs.collection('push' , ref => ref.where('uid','==', this.userid)).valueChanges();
 //
   }
@@ -225,70 +224,15 @@ this.name= this.afs.collection('push' , ref => ref.where('uid','==', this.userid
   }
   //
   countryus(a){
-    console.log(a);
-    if(a == 'United States'){
-   this.state=[
-       'California','Arizona','Georgia','Florida','Texas'
-     ]
-    }
-    else{
-     this.state=[
-       'Antrim','Avon','Borders', 'Central', 'Cumbria'
-     ]
-    }
+    this.state = this.db.object(`/Data/${a}/states`).valueChanges();
+    this.Count=a;
+    this.cli.updatecountry(this.Count);
   }
   stateus(a){
-   console.log(a);
-   if(a == 'California'){
-  this.city=[
-      'California City','Los Angeles','San Diego','San Francisco','Fresno'
-    ]
-   }
-   else if(a == 'Arizona'){
-    this.city=[
-      'Phoenix','Tucson','Scottsdale', 'Tempe', 'Mesa'
-    ]
-   }
-   else if(a == 'Georgia'){
-     this.city=[
-       'Atlanta','Columbus','Savannah', 'Athens', 'Sandy Springs'
-     ]
-    }
-    else if(a == 'Florida'){
-      this.city=[
-    'Miami','Tampa','Orlando', 'Jacksonville', 'Winter Haven'
-    ]
-   }
-   else if(a == 'Texas'){
-    this.city=[
-      'Fredericksburg','Jefferson','Wimberley', 'Canyon', 'Port Isabel'
-    ]
-   }
-   else if(a == 'Antrim'){
-    this.city=[
-      'Antrim','Ballymena','Ballymoney', 'Belfast', 'Crumlin'
-    ]
-   }
-   else if(a == 'Avon'){
-    this.city=[
-      'Avonmouth','Banwell','Clevedon', 'Bristol', 'Yate'
-    ]
-   }
-   else if(a == 'Borders'){
-    this.city=[
-      'Berwick Upon Tweed','Cockburnspath','Duns', 'Eyemouth', 'Galashiels'
-    ]
-   }
-   else if(a == 'Central'){
-    this.city=[
-      'Alloa','Bonnybridge','Denny', 'Falkirk', 'Grangemouth'
-    ]
-   }
-   else if(a == 'Cumbria'){
-    this.city=[
-      'Annaside','Appleby','Barrow In Furness', 'Beckermet', 'Carlisle'
-    ]
-   }
+    const b=this.Count;
+   
+    
+   this.city = this.db.object(`/Data/${b}/city/${a}`).valueChanges();
  }
  skilladd(c){
    console.log(c);
@@ -418,11 +362,3 @@ console.log(a,b,c,d);
   return db1.set(details1), db.update(details), db2.update(details2);
   }
 }
-  
-  
-
-
- 
-
- 
-

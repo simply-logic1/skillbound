@@ -19,7 +19,7 @@ const routes: Routes = [
 {path: 'register', component: RegisterComponent},
 {path:'forgot',component:ForgotComponent},
 {path:'header',component:HeaderComponent},
-{path:'dashboard',component:DasboardComponent,canActivate:[AuthguardService]},
+{path:'dashboard',component:DasboardComponent},
 {path:'oldprofile',component:MyprofileComponent},
 {path:'myprofile',component:SkillsComponent},
 {path:'about',component:AboutMComponent},

@@ -60,7 +60,7 @@
         <mat-form-field>
             <mat-label>Country</mat-label>
             <mat-select formControlName="country" (selectionChange)="countryus($event.value)" >
-                  <mat-option *ngFor="let country of country" [(value)]="country"> {{ country }} </mat-option>
+                  <mat-option *ngFor="let items of item | async " [(value)]="items.name"> {{ items.name }} </mat-option>
               <mat-option>None</mat-option>
              
           
@@ -72,7 +72,7 @@
             <mat-form-field >
                 <mat-label>State</mat-label>
                 <mat-select formControlName="state" (selectionChange)="stateus($event.value)">
-                      <mat-option *ngFor="let state of state" [(value)]="state">{{state}}</mat-option>
+                  <mat-option *ngFor="let statea of (state | async)?.Name" [(value)]="statea">{{statea}}</mat-option>
                   <mat-option>None</mat-option>
                   
               
@@ -84,7 +84,7 @@
               <mat-form-field>
                   <mat-label >City</mat-label>
                   <mat-select formControlName="city">
-                          <mat-option *ngFor="let city of city" [(value)]="city">{{city}}</mat-option>
+                    <mat-option *ngFor="let city of city | async" [(value)]="city">{{city}}</mat-option>
                     <mat-option>None</mat-option>
                     </mat-select>
                     <mat-error *ngIf="hasErrorc('city', 'required')">city is required</mat-error>
