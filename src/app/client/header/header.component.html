@@ -24,10 +24,10 @@
           <a class="nav-link" href="#">Skill Members Want</a>
         </li>    
         <li class="nav-item">
-          <a class="nav-link" href="#">Post Video Files</a>
+          <a class="nav-link" href="#" [routerLink]="['/audio-video']" routerLinkActive="active">Post Video Files</a>
         </li>   
         <li class="nav-item">
-          <a class="nav-link" href="#">Post Audio Files</a>
+          <a class="nav-link" href="#" [routerLink]="['/audio-video']" routerLinkActive="active">Post Audio Files</a>
         </li>    
         <li class="nav-item">
           <a class="nav-link" href="#">Classes</a>
@@ -42,7 +42,7 @@
           <li class="nav-item avatar dropdown">
             <a class="nav-link" id="navbarDropdownMenuLink-55" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">
-              <div *ngIf="(profile | async)?.PhotoURL === empty ; else templateName"><img src='https://firebasestorage.googleapis.com/v0/b/skilbound.appspot.com/o/image%2Fimages.png?alt=media&token=16804003-ae51-4b79-8319-0d31d9d4901a'
+              <div *ngIf="(profile | async)?.PhotoURL === empty ; else templateName"><img src='https://firebasestorage.googleapis.com/v0/b/skilbound.appspot.com/o/profile%2Fprofile.png?alt=media&token=69819afb-796f-466a-8b49-184935d4f981'
                 class="rounded-circle size" ></div>
                 <ng-template #templateName>
                   <img [src]="(profile | async)?.PhotoURL" class="  size rounded-circle  w-20 ">

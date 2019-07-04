@@ -14,6 +14,8 @@ import { AdminheaderComponent } from './admin/adminheader/adminheader.component'
 import { AdminuserComponent } from './admin/adminuser/adminuser.component';
 import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.component';
 import {AboutMComponent} from './client/about-m/about-m.component';
+import {EditprofileMComponent} from './client/editprofile-m/editprofile-m.component';
+import{AudioVideoComponent} from './client/audio-video/audio-video.component';
 const routes: Routes = [
 {path:'',component:LoginComponent},
 {path: 'register', component: RegisterComponent},
@@ -23,12 +25,13 @@ const routes: Routes = [
 {path:'oldprofile',component:MyprofileComponent},
 {path:'myprofile',component:SkillsComponent},
 {path:'about',component:AboutMComponent},
+{path:'editprofile', component:EditprofileMComponent},
 {path:'skillshave',component:SkillshaveComponent},
 {path:'adlogin',component:AdminloginComponent},
 {path:'adheader',component:AdminheaderComponent},
 {path:'aduser',component:AdminuserComponent},
 {path:'addashboard',component:AdmindashboardComponent},
-
+{path:'audio-video',component:AudioVideoComponent}
 
 ];
 

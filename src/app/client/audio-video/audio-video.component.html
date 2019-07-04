@@ -1,0 +1,89 @@
+<app-header></app-header>
+<div class="container my-3">
+    <mat-tab-group>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon><i class="far fa-images"style="font-size:24px;"></i></mat-icon>&nbsp;&nbsp;Create Album
+              </ng-template>
+            <div class="example-large-box mat-elevation-z4 text-center mx-auto">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Album Title" #title>
+                </mat-form-field>
+                <br>
+               
+                <mat-form-field class="example-full-width" >
+                  <mat-label>Select privacy:</mat-label>
+                  <mat-select>
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let privacy of privacy" [(value)]="privacy">{{privacy}}</mat-option>
+                  </mat-select>
+                </mat-form-field><br><br>
+               <mat-label style="margin-right:-7%">Add an album cover image&nbsp;:&nbsp;&nbsp;<!--<button mat-raised-button color="primary" multiple=true (click)=" multipleimageupload($event,title.value)">Upload</button>
+                <input hidden type="file" #fileInput ></mat-label> -->
+                <input type="file" mat-raised-button color="primary" class="btn btn-default" multiple=true (change)=" multipleimageupload($event)"></mat-label>
+               
+                <div class="float-right my-2"> {{ progressBarValue | number: '1.0-0' }}%</div>
+              
+              </div>
+        </mat-tab>
+        <mat-tab> 
+          <ng-template mat-tab-label>
+            <mat-icon><i class="far fa-image" style="font-size:24px;"></i></mat-icon>&nbsp;&nbsp;Add Photos 
+          </ng-template>
+          <div class="example-large-box mat-elevation-z4 text-center">
+            <mat-label style="margin-right:-7%">Add a image&nbsp;: &nbsp;&nbsp;<!--<button mat-raised-button color="primary" (click)="fileInput.click()">Upload</button>
+             <input hidden type="file" #fileInput> -->
+             <input type="file" mat-raised-button color="primary" class="btn btn-default"  (change)=" singleimageupload($event)"></mat-label>
+             <div class="float-right my-2"> {{ progressBarValue | number: '1.0-0' }}%</div>
+            </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon><i class="fas fa-music"style="font-size:24px;"></i></mat-icon>&nbsp;&nbsp;Upload an Audio File
+          </ng-template>
+          <div class="example-large-box mat-elevation-z4 text-center">
+          <mat-form-field class="example-full-width">
+              
+              <input matInput placeholder="Title of Audio">
+          </mat-form-field>
+          <br><br>
+         
+          <mat-form-field class="example-full-width">
+            <mat-label>Select Audio File for</mat-label>
+            <mat-select>
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let audio of audio" [(value)]="audio">{{audio}}</mat-option>
+            </mat-select>
+          </mat-form-field><br>
+           <mat-label style="margin-right:-7%">Upload Audio file&nbsp;:&nbsp;&nbsp; <!--<button mat-raised-button color="primary" (click)="fileInput.click()">Upload</button>
+            <input hidden type="file" #fileInput></mat-label> --><input type="file" mat-raised-button color="primary" class="btn btn-default"  (change)=" audioupload($event)"></mat-label>
+            <div class="float-right my-2"> {{ progressBarValue | number: '1.0-0' }}%</div>
+          </div> 
+      </mat-tab>
+     
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon><i class="fab fa-youtube"style="font-size:24px;"></i></mat-icon>&nbsp;&nbsp;Upload a Video File
+        </ng-template>
+        
+           <div class="example-large-box mat-elevation-z4 text-center"> 
+        <mat-form-field class="example-full-width ">
+          <input matInput placeholder="Title of Video">
+        </mat-form-field>
+        <br>
+       
+        <mat-form-field class="example-full-width">
+          <mat-label>Select Video for</mat-label>
+          <mat-select>
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let audio of audio" [(value)]="audio">{{audio}}</mat-option>
+          </mat-select>
+        </mat-form-field><br>
+        <mat-label style="margin-right:-7%">Upload video &nbsp;:&nbsp;&nbsp;<!--<button mat-raised-button color="primary" (click)="fileInput.click()">Upload</button>
+           <input hidden type="file" #fileInput></mat-label>--><input type="file" mat-raised-button color="primary" class="btn btn-default"  (change)=" videoupload($event)"></mat-label>
+           <div class="float-right my-2"> {{ progressBarValue | number: '1.0-0' }}%</div>
+      </div> 
+    </mat-tab>
+    
+      </mat-tab-group>
+</div>

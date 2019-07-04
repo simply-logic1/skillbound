@@ -1,9 +1,9 @@
 <app-header></app-header>
-<a [routerLink]="['/myprofile']"routerLinkActive="active"><h5><i class="fa fa-long-arrow-left" style="font-size:24px"></i>&nbsp;Back</h5></a>
+<a  [routerLink]="['/myprofile']"routerLinkActive="active"><h5 class="p-2"><i class="fas fa-long-arrow-alt-left" style="font-size:24px"></i>&nbsp;Back</h5></a>
 <div class="container-fluid" *ngFor="let details of details | async">
 	<div class="card">
   <div class="card-header">
-   Personal Info<i class="fa fa-pencil float-right"></i>
+   Personal Info
   </div>
   <div class="card-body">
   <div class="row">
@@ -32,9 +32,9 @@
   </div>
 </div>
 </div>
-<div class="card">
+<div class="card my-2">
   <div class="card-header">
-   Contact Info<i class="fa fa-pencil float-right"></i>
+   Contact Info<i (click)="editcontact(details.Country, details.State,details.City )" class="fas fa-pencil-alt float-right"></i>
   </div>
   <div class="card-body">
   <div class="row">
@@ -42,7 +42,16 @@
   	<label>Country</label>
   	</div>
   	<div class="col-6">
-  		<label>{{details.Country}}</label>
+		  <label id="c1">{{details.Country}}</label>
+		  <form class="form-inline " id="c6" style="display:none;" >
+			<label><mat-form-field>
+				<mat-select  (selectionChange)="updatestate($event.value)">
+					  <mat-option *ngFor="let country of country | async" [(value)]="country.name"> {{ country.name }} </mat-option> 
+				  <mat-option>None</mat-option>
+				 
+			  
+				</mat-select></mat-form-field></label>
+			</form>
   	</div>
   </div>
    <div class="row">
@@ -50,7 +59,16 @@
   	<label>State</label>
   	</div>
   	<div class="col-6">
-  		<label>{{details.State}}</label>
+		  <label id="c2">{{details.State}}</label>
+		  <form class="form-inline " id="c7" style="display:none;"  >
+			<label><mat-form-field>
+				<mat-select  (selectionChange)="updatecity($event.value)" >
+					  <mat-option *ngFor="let statea of (state | async)?.Name" [(value)]="statea">{{statea}}</mat-option>
+				  <mat-option>None</mat-option>
+				 
+			  
+				</mat-select></mat-form-field></label>
+			</form>
   	</div>
   </div>
    <div class="row">
@@ -58,7 +76,16 @@
   	<label>city</label>
   	</div>
   	<div class="col-6">
-  		<label>{{details.City}}</label>
+		  <label id="c3">{{details.City}}</label>
+		  <form class="form-inline " id="c8" style="display:none;" >
+			<label><mat-form-field>
+				<mat-select  (selectionChange)="updatecity1($event.value)" >
+					<mat-option *ngFor="let city of city | async" [(value)]="city">{{city}}</mat-option>
+				  <mat-option>None</mat-option>
+				 
+			  
+				</mat-select></mat-form-field></label>
+			</form>
   	</div>
   </div>
   <div class="row">
@@ -66,7 +93,11 @@
   	<label>Zip Code</label>
   	</div>
   	<div class="col-6">
-  		<label>{{details.Zip}}</label>
+		  <label id="c4">{{details.Zip}}</label>
+		  <form class="form-inline " id="c9" style="display:none;" >
+			<label> <input type="text" #zip [(value)]="details.Zip" class=" form-control" id="zip" name="zip">
+			</label>
+			</form>
   	</div>
   </div>
   <div class="row">
@@ -74,14 +105,19 @@
   	<label>Mobile</label>
   	</div>
   	<div class="col-6">
-  		<label>{{details.Phonenumber}}</label>
+		  <label id="c5">{{details.Phonenumber}}</label>
+		  <form class="form-inline " id="c10" style="display:none;" >
+			<label> <input type="text" #phone [(value)]="details.Phonenumber" class=" form-control" id="phone" name="phone">
+			</label>
+			<button type="button" class="btn btn-primary" (click)="updatecontact( zip.value, phone.value,details.Username)">add</button>
+			</form>
   	</div>
   </div>
 </div>
 </div>
 <div class="card">
   <div class="card-header">
-   Education Info<i class="fa fa-pencil float-right"></i>
+   Education Info<i (click)="editschool()"class="fas fa-pencil-alt float-right"></i>
   </div>
   <div class="card-body">
   <div class="row">
@@ -89,14 +125,18 @@
   	<label>School(s)</label>
   	</div>
   	<div class="col-9">
-  		<label>{{details.Schools}}</label>
+		  <label id="s11">{{details.Schools}}</label>
+		  <form class="form-inline " id="s21" style="display:none;" >
+			<input type="text" #schools [(value)]="details.Schools" class="form-control" id="schools" name="schools">
+			<button type="submit"   class="mx-4 btn btn-primary" (click)="updateschool(schools.value,details.Username)">Add</button>
+		  </form>
   	</div>
   </div>
    </div>
 </div>
-<div class="card">
+<div class="card my-2">
   <div class="card-header">
-  Professional Info<i class="fa fa-pencil float-right"></i>
+  Professional Info<i (click)="editdetails()" class="fas fa-pencil-alt float-right"></i>
   </div>
   <div class="card-body">
   <div class="row">
@@ -104,15 +144,21 @@
   	<label>Work As</label>
   	</div>
   	<div class="col-6">
-  		<label>{{details.Work}}</label>
+		  <label id="p1">{{details.Work}}</label>
+		  <form class="form-inline " id="p2" style="display:none;" >
+            <input type="text" #works  [(value)]="details.Work" class="form-control" id="works" name="works">
+             </form>
   	</div>
   </div>
   <div class="row">
   	<div class="col-6">
-  	<label>Company</label>
+	  <label >Company</label>
   	</div>
   	<div class="col-6">
-  		<label>{{details.Company}}</label>
+		  <label id="p3">{{details.Company}}</label>
+		  <form class="form-inline " id="p4" style="display:none;" >
+            <input type="text" #company [(ngModel)]="details.Company" class="form-control" id="company" name="company">
+             </form>
   	</div>
   </div>
   <div class="row">
@@ -120,14 +166,18 @@
   	<label>Experiene</label>
   	</div>
   	<div class="col-6">
-  		<label>{{details.Experiences}}</label>
+		  <label id="p5">{{details.Experiences}}</label>
+		  <form class="form-inline " id="p6" style="display:none;" >
+            <input type="text" #exp [(value)]="details.Experiences" class="form-control" id="exp" name="exp">
+            <button type="submit"   class="mx-4 btn btn-primary" (click)="updatedetails(works.value, company.value,exp.value,details.Username)">Add</button>
+          </form>
   	</div>
   </div>
    </div>
 </div>
 <div class="card">
   <div class="card-header">
- Skills You Have<i class="fa fa-pencil float-right"></i>
+ Skills You Have<i (click)="editskill(details.Skill, details.Subcategory, details.level,details.TeachingLevel,details.toppingList)" class="fas fa-pencil-alt float-right"></i>
   </div>
   <div class="card-body">
   <div class="row">
@@ -135,7 +185,16 @@
   	<label>Skill Name</label>
   	</div>
   	<div class="col-6">
-  		<label>{{details.Skill}}</label>
+		  <label id="s1">{{details.Skill}}</label>
+		  <label id="s2"  style="display:none;">
+			<mat-form-field >
+				<mat-select [(value)]="skill"  #skillsh (selectionChange)="skillsub($event.value)"  >
+					  <mat-option *ngFor="let skills of skills | async"    [value]="skills.cat_name" > {{ skills.cat_name }} </mat-option>
+				  <mat-option>None</mat-option>
+				 
+			  
+				</mat-select></mat-form-field>
+		  </label>
   	</div>
   </div>
   <div class="row">
@@ -143,7 +202,19 @@
   	<label>SubCategory</label>
   	</div>
   	<div class="col-6">
-  		<label>{{details.Subcategory}}</label>
+		  <label id="s3">{{details.Subcategory}}</label>
+		  <label id="s4"  style="display:none;">
+			<mat-form-field *ngIf="issubcategory" >
+				<mat-select [(value)]="skillsu"  (selectionChange)="skillcate($event.value)" >
+			 <mat-option  *ngFor="let subcategory of subcategory | async" [value]="subcategory" >{{subcategory}}</mat-option>
+			   <mat-option>None</mat-option>
+			</mat-select></mat-form-field>
+			<mat-form-field *ngIf="issubcategory1">
+				<mat-select    (selectionChange)="skillcate($event.value)">
+			  <mat-option *ngFor="let subcate of subcate | async" [value]="subcate"> {{ subcate}} </mat-option>
+			  <mat-option>None</mat-option>
+			</mat-select></mat-form-field>
+		  </label>
   	</div>
   </div>
   <div class="row">
@@ -151,15 +222,29 @@
   	<label>Level of Skill</label>
   	</div>
   	<div class="col-6">
-  		<label>{{details.level}}</label>
-  	</div>
+  		<label id="s5">{{details.level}}</label>
+<label id="s6"  style="display:none;">
+	<mat-form-field>
+	<mat-select [(value)]="level"  #skilllevel  >
+        <mat-option *ngFor="let skills of levels" [value]="skills" >{{skills}}</mat-option>
+  <mat-option>None</mat-option>
+</mat-select></mat-form-field>
+</label>
+	</div>
   </div>
   <div class="row">
   	<div class="col-6">
   	<label>Teaching Level</label>
   	</div>
   	<div class="col-6">
-  		<label>{{details.TeachingLevel}}</label>
+		  <label id="s7">{{details.TeachingLevel}}</label>
+		  <label id="s8"  style="display:none;">
+			<mat-form-field >
+				<mat-select [(value)]="tlevel"  #skilltlevel  >
+					<mat-option *ngFor="let skills of levels" [value]="skills" >{{skills}}</mat-option>
+			  <mat-option>None</mat-option>
+			</mat-select></mat-form-field>
+		  </label>
   	</div>
   </div>
   <div class="row">
@@ -167,14 +252,23 @@
   	<label>Wishes to</label>
   	</div>
   	<div class="col-6">
-  		<label>{{details.toppingList}}</label>
+		  <label id="s9">{{details.toppingList}}</label>
+		  <label id="s10"  style="display:none;">
+				<mat-form-field >
+						<mat-select [(value)]="tlist" multiple #skilltlist  >
+							<mat-option *ngFor="let wish of toppingList" [value]="wish" >{{wish}}</mat-option>
+					  <mat-option>None</mat-option>
+					</mat-select></mat-form-field>
+					<button type="button" class="btn btn-primary mx-auto" (click)="updateskill(skillsh.value, skilllevel.value, skilltlevel.value, skilltlist.value,details.Username)">Add</button>  
+  
+		  </label>
   	</div>
   </div>
    </div>
 </div>
-<div class="card">
+<div class="card my-2">
   <div class="card-header">
- Skills You Want<i class="fa fa-pencil float-right"></i>
+ Skills You Want<i (click)="editskillw(details.Skill,details.Subcategory, details.toppingList)" class="fas fa-pencil-alt float-right"></i>
   </div>
   <div class="card-body">
   <div class="row">
@@ -182,7 +276,16 @@
   	<label>Skill Name</label>
   	</div>
   	<div class="col-6">
-  		<label>{{details.Skillw}}</label>
+		  <label id="sw1">{{details.Skillw}}</label>
+		  <label id="sw2"  style="display:none;">
+				<mat-form-field >
+						<mat-select [(value)]="skill1"  #skillsh1 (selectionChange)="skillsub1($event.value)"  >
+							  <mat-option *ngFor="let skills of skills1 | async"    [value]="skills.cat_name" > {{ skills.cat_name }} </mat-option>
+						  <mat-option>None</mat-option>
+						 
+					  
+						</mat-select></mat-form-field>
+		  </label>
   	</div>
   </div>
   <div class="row">
@@ -190,7 +293,19 @@
   	<label>SubCategory</label>
   	</div>
   	<div class="col-6">
-  		<label>{{details.Subcategoryw}}</label>
+		  <label id="sw3">{{details.Subcategoryw}}</label>
+		  <label id="sw4"  style="display:none;">
+				<mat-form-field *ngIf="issubcategoryw">
+						<mat-select [(value)]="skillsu1" (selectionChange)="skillcate($event.value)"  >
+					 <mat-option  *ngFor="let subcategory of subcategory1 | async" [value]="subcategory" >{{subcategory}}</mat-option>
+						<mat-option>None</mat-option>
+					</mat-select></mat-form-field>
+					<mat-form-field *ngIf="issubcategoryw1" >
+						<mat-select   (selectionChange)="skillcate($event.value)" >
+					   <mat-option *ngFor="let subcate of subcate1 | async" [value]="subcate"> {{ subcate}} </mat-option>
+					  <mat-option>None</mat-option>
+					</mat-select></mat-form-field>
+		  </label>
   	</div>
   </div>
   <div class="row">
@@ -198,7 +313,16 @@
   	<label>Wishes to</label>
   	</div>
   	<div class="col-6">
-  		<label>{{details.toppingListw}}</label>
+		  <label id="sw5">{{details.toppingListw}}</label>
+		  <label id="sw6"  style="display:none;">
+				<mat-form-field >
+						<mat-select [(value)]="tlist1" multiple #skilltlist1  >
+							<mat-option *ngFor="let wish of toppingList" [value]="wish" >{{wish}}</mat-option>
+					  <mat-option>None</mat-option>
+					</mat-select></mat-form-field>
+					<button type="button" class="btn btn-primary mx-auto" (click)="updateskillw(skillsh1.value,  skilltlist1.value,details.Username)">Add</button>  
+
+		  </label>
   	</div>
   </div>
    </div>

@@ -216,7 +216,7 @@
     <mat-select formControlName="skilly" (selectionChange)="skilladd($event.value)">
       <mat-option>None</mat-option>
       
-      <mat-option *ngFor="let skills of skills" [(value)]="skills" >{{skills}}</mat-option>
+      <mat-option *ngFor="let skills of skills | async" [(value)]="skills.cat_name" >{{skills.cat_name}}</mat-option>
   
     </mat-select>
     <mat-error *ngIf="hasErrorsh('skilly', 'required')">Skills required</mat-error>
@@ -227,8 +227,8 @@
   <mat-select formControlName="subcategoryy">
     <mat-option>None</mat-option>
     
-    <mat-option *ngFor="let subcategory of subcategory " [(value)]="subcategory" >{{subcategory}}</mat-option>
-
+    <mat-option *ngFor="let subcategory of subcategory | async" [(value)]="subcategory.s_cat_name" >{{subcategory.s_cat_name}}</mat-option>
+    
   </mat-select>
   <mat-error *ngIf="hasErrorsh('subcategoryy', 'required')">Subcategory required</mat-error>
 
@@ -276,9 +276,8 @@
         <mat-label>Please add one skill you want</mat-label>
         <mat-select formControlName="skillw" (selectionChange)="skilladd($event.value)">
           <mat-option>None</mat-option>
-          
-          <mat-option *ngFor="let skills of skills" [(value)]="skills" >{{skills}}</mat-option>
-      
+          <mat-option *ngFor="let skills of skills | async" [(value)]="skills.cat_name" >{{skills.cat_name}}</mat-option>
+  
         </mat-select>
         <mat-error *ngIf="hasErrorsw('skillw', 'required')">Skills required</mat-error>
 
@@ -288,7 +287,7 @@
       <mat-select formControlName="subcategoryw">
         <mat-option>None</mat-option>
         
-        <mat-option *ngFor="let subcategory of subcategory" [(value)]="subcategory" >{{subcategory}}</mat-option>
+        <mat-option *ngFor="let subcategory of subcategory | async" [(value)]="subcategory.s_cat_name" >{{subcategory.s_cat_name}}</mat-option>
     
       </mat-select>
       <mat-error *ngIf="hasErrorsw('subcategoryw', 'required')">Subcategory required</mat-error>

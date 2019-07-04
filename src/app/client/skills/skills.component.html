@@ -3,7 +3,7 @@
 
   <img src="https://i.ytimg.com/vi/EXp1oa782RQ/maxresdefault.jpg" class="fb-image-lg">
   <h5 class=" fb-text mb-2">{{details.Username}}</h5>
-  <button type="button" class="btn btn-outline bottomright"><i class="fa fa-pencil p-1"></i>EditProfile</button>
+  <button type="button" class="btn btn-outline bottomright" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-pencil-alt p-1"></i>EditProfile</button>
   
 
 
@@ -36,7 +36,7 @@
 </ul>
 </nav>
 </div>  
-<br class="re">
+
 
   <div class="card-header border re font-weight-bold bg-light ro">
       <i class="fa fa-user" style="font-size:24px"> </i>&nbsp;&nbsp;About
@@ -60,28 +60,27 @@
        <div class="tab-pane fade show active" id="v-pills-overview" role="tabpanel" aria-labelledby="v-pills-overview-tab">
          <div class="row">
            <div class="col-9"><p id="name"><i class="fa fa-briefcase circle-icon" style="font-size:24px;opacity:0.5"></i>&nbsp;{{details.Work}}
-           <a (click)="edit()" style="color:#407FE6; margin-left: 15rem;"><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></p>
+           &nbsp;&nbsp;<a (click)="edit()" style="color:#407FE6;"><i class="fas fa-pencil-alt" style="font-size:15px; "></i>&nbsp;Edit</a></p>
            <form class="form-inline " id="inp" style="display:none;" >
             <input type="text" #works="ngModel" [(ngModel)]="details.Work" class="form-control" id="works" name="works">
             <button type="submit"   class="mx-4 btn btn-primary" (click)="updatework(works.value,details.Username)">Add</button>
           </form>
            <hr>
         <p id="name1"><i class="fa fa-graduation-cap circle-icon" style="font-size:24px;opacity:0.5"></i>&nbsp;Studied at&nbsp;:&nbsp;{{details.Schools}}
-          <a (click)="edit1()" style="color:#407FE6; margin-left: 2.5rem;"><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></p>
+          &nbsp;&nbsp;<a (click)="edit1()" style="color:#407FE6; "><i class="fas fa-pencil-alt" style="font-size:15px; "></i>&nbsp;Edit</a></p>
           <form class="form-inline " id="inp1" style="display:none;" >
             <input type="text" #schools="ngModel" [(ngModel)]="details.Schools" class="form-control" id="schools" name="schools">
             <button type="submit"   class="mx-4 btn btn-primary" (click)="updateschool(schools.value,details.Username)">Add</button>
           </form>
       <hr>
       <p id="cityname"><i class="fa fa-location-arrow circle-icon" style="font-size:24px;opacity:0.5"></i>&nbsp;Lives in&nbsp;:&nbsp;{{details.City}}
-        <a (click)="editcity(details.Country, details.State, details.City)" style="color:#407FE6; margin-left: 12.9rem;"><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a>
+        &nbsp;&nbsp;<a (click)="editcity(details.Country, details.State, details.City)" style="color:#407FE6; "><i class="fas fa-pencil-alt" style="font-size:15px; "></i>&nbsp;Edit</a>
         </p>
         <form class="form-inline " id="cityedit" style="display:none;" >
         <mat-form-field>
           <mat-label>City</mat-label>
           <mat-select [(value)]="selected" (selectionChange)="updatecity($event.value,details.Username)">
-                <mat-option *ngFor="let details of details | async" [value]="details.City"> {{ details.City }} </mat-option>
-                <mat-option *ngFor="let city of city | async" [value]="city"> {{ city }} </mat-option>
+                <mat-option *ngFor="let city of city | async" [value]="city"> {{ city }} </mat-option> 
             <mat-option>None</mat-option>
            
         
@@ -90,112 +89,172 @@
       
 </div>
       <div class="col-3 "><p id="name2" class="mx-4"><i class="fa fa-mobile-phone" style="font-size:25px;opacity:0.5"></i>&nbsp;&nbsp;{{details.Phonenumber}}
-        <a (click)="edit2()" style="color:#407FE6; margin-left:.9rem;"><i class="fa fa-pencil" style="font-size:15px; "></i></a></p>
+        <a (click)="edit2()" style="color:#407FE6; margin-left:.9rem;"><i class="fas fa-pencil-alt" style="font-size:15px; "></i></a></p>
         <form class="form-inline " id="inp2" style="display:none;" >
           <input type="text" #phone="ngModel" [(ngModel)]="details.Phonenumber" class="col-6 form-control" id="phone" name="phone">
           <button type="submit"   class="mx-4 btn btn-primary" (click)="updatephone(phone.value,details.Username)">Add</button>
         </form>
         <p id="change" class="mx-3"><i class="fa fa-birthday-cake" style="font-size:20px;opacity:0.5"></i>&nbsp;&nbsp;{{details.Birthdate.toDate()|date:'longDate'}}
-          <a (click)="sdate(details.Birthdate.toDate())" style="color:#407FE6; margin-left:.17rem;">&nbsp;<i class="fa fa-pencil" style="font-size:15px; "></i></a></p>
-          <form class="form-inline " id="change1" style="display:none;" >
-            <mat-form-field >
-              <input matInput [matDatepicker]="picker"  placeholder="Choose a date" [formControl]="date" (dateChange)="datechange($event.target.value,details.Username)">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field></form>
+          <a  style="color:#407FE6; margin-left:.17rem;"></a></p>
+          
       </div>
     </div>
     </div>
     <div class="tab-pane fade" id="v-pills-personal" role="tabpanel" aria-labelledby="v-pills-personal-tab">
 
-      <h5>Personal Information <a class="float-right" style="color:#407FE6; "><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></h5>
+      <h5>Personal Information </h5>
       <hr>
-      <div class="row"> <div class="col-4"><p>Birth Date</p></div><div class="col-3"><p>{{details.Birthdate.toDate()|date:'MMMM d'}}</p></div>  </div>
+      <div class="row" > <div class="col-4"><p>Birth Date</p></div><div class="col-3"><p>{{details.Birthdate.toDate()|date:'MMMM d'}}</p></div>  </div>
     
-  <hr>
-  <div class="row"> <div class="col-4"><p>Birth Year</p></div> <div class="col-3"><p>{{details.Birthdate.toDate()|date:'y'}}</p></div></div>
- <hr>
- <div class="row"> <div class="col-4"><p>Gender</p></div><div class="col-3"><p>{{details.Gender}}</p></div> </div>
-  <hr>
-  <div class="row"> 
-    <form class="form-inline " id="change2" style="display:none;" >
-      <div class="col-4"><p>Date Of Birth</p></div>
-      <hr> 
-      <div class="col-3">
-        <mat-form-field >
-          <input matInput [matDatepicker]="picker"  placeholder="Choose a date" [formControl]="date" (dateChange)="datechange($event.target.value,details.Username)">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-      </div>
-     </form>
-  </div>
-  <div class="row"> 
-    <form class="form-inline " id="change2" style="display:none;" >
-      <div class="col-4"><p>Gender</p></div>
-      <hr> 
-      <div class="col-3">
-        
-      </div>
-     </form>
-  </div>
+  <hr >
+  <div class="row" > <div class="col-4"><p>Birth Year</p></div> <div class="col-3"><p>{{details.Birthdate.toDate()|date:'y'}}</p></div></div>
+ <hr >
+ <div class="row" > <div class="col-4"><p>Gender</p></div><div class="col-3"><p>{{details.Gender}}</p></div> </div>
+  <hr  >
+  
+    
+   
    
   
 <br>
 <br>
-<h5>Contact Information <a  class="float-right" style="color:#407FE6; "><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></h5> 
+<h5>Contact Information <a  class="float-right" style="color:#407FE6; " (click)="editpe()"><i class="fas fa-pencil-alt" style="font-size:15px; "></i>&nbsp;Edit</a></h5> 
 <hr>
-<div class="row"> <div class="col-4"><p>Mobile Phone</p></div><div class="col-3"><p>{{details.Phonenumber}}</p></div> </div>
- 
-
+<div class="row"> <div class="col-4"><p>Mobile Phone</p></div><div class="col-3" id="p1"><p>{{details.Phonenumber}}</p></div> 
+<form class="form-inline " id="p2" style="display:none;" >
+  <input type="text" #phone="ngModel" [(ngModel)]="details.Phonenumber" class="col-6 form-control" id="phone" name="phone">
+  <button type="submit"   class="mx-4 btn btn-primary" (click)="updatephone1(phone.value,details.Username)">Add</button>
+</form>
+</div>
 <hr>
-<div class="row"> <div class="col-4"><p>Email</p></div><div class="col-3"><p>{{details.Email}}</p></div> </div>
- 
-
+<div class="row"> <div class="col-4"><p>Email</p></div><div class="col-3" id="e1"><p>{{details.Email}}</p></div> 
+<form class="form-inline " id="e2" style="display:none;" >
+  <input type="text" #email="ngModel" [(ngModel)]="details.Email" class="col-6 form-control" id="email" name="email">
+  <button type="submit"   class="mx-4 btn btn-primary" (click)="updateemail(email.value,details.Username)">Add</button>
+</form>
+</div>
 <hr>
 <br>
        </div>
        <div class="tab-pane fade" id="v-pills-work" role="tabpanel" aria-labelledby="v-pills-work-tab">
-<h5>Work <a class="float-right" style="color:#407FE6; "><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></h5>
+<h5>Work <a class="float-right" style="color:#407FE6; " (click)="editwc()"><i class="fas fa-pencil-alt" style="font-size:15px; "></i>&nbsp;Edit</a></h5>
 <hr>
-<p class=""><i class="fa fa-building-o circle-icon" style="font-size:24px;opacity:0.5"></i>&nbsp;{{details.Company}}</p><hr>
-<p class=""><i class="fa fa-briefcase circle-icon" style="font-size:24px;opacity:0.5"></i>&nbsp;{{details.Work}}</p><hr>
+<p class="" id="company"><i class="fas fa-building circle-icon" style="font-size:24px;opacity:0.5"></i>&nbsp;{{details.Company}}</p><hr id="w">
+<p class="" id="work"><i class="fa fa-briefcase circle-icon" style="font-size:24px;opacity:0.5"></i>&nbsp;{{details.Work}}</p><hr id="w1">
           
+<form class="form-inline " id="work1" style="display:none;" >
+  <input type="text" #works="ngModel" [(ngModel)]="details.Work" class="form-control" id="works" name="works">
+  <input type="text" #company="ngModel" [(ngModel)]="details.Company" class="form-control mx-3" id="company" name="company">
+  
+  <button type="submit"   class="mx-4 btn btn-primary" (click)="updatework1(works.value,company.value,details.Username)">Add</button>
+  <hr>
+</form>
 
 <br>
 <br>
-<h5>Education <a class="float-right" style="color:#407FE6; "><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></h5>
+<h5>Education <a (click)="editnumber()" class="float-right" style="color:#407FE6; " ><i class="fas fa-pencil-alt" style="font-size:15px; "></i>&nbsp;Edit</a></h5>
 <hr>
-<p><i class="fa fa-graduation-cap circle-icon" style="font-size:24px;opacity:0.5"></i>&nbsp;Studied at&nbsp;:&nbsp;{{details.Schools}}</p>
+<p id="number1"><i class="fa fa-graduation-cap circle-icon" style="font-size:24px;opacity:0.5"></i>&nbsp;Studied at&nbsp;:&nbsp;{{details.Schools}}</p>
+<form class="form-inline " id="number2" style="display:none;" >
+  <input type="text" #schools="ngModel" [(ngModel)]="details.Schools" class="form-control" id="schools" name="schools">
+  <button type="submit"   class="mx-4 btn btn-primary" (click)="updateschool1(schools.value,details.Username)">Add</button>
+</form>
       <hr>
        </div>
    <div class="tab-pane fade" id="v-pills-skillsyh" role="tabpanel" aria-labelledby="v-pills-skillsyh-tab">
-    <h5>Skills <a class="float-right" style="color:#407FE6; "><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></h5> 
+    <h5>Skills <a class="float-right" style="color:#407FE6; " (click)="editskillh(details.Skill,details.Subcategory,details.level, details.TeachingLevel, details.toppingList  )"><i class="fas fa-pencil-alt" style="font-size:15px; "></i>&nbsp;Edit</a></h5> 
     <hr>
-      <div class="row"> <div class="col-4"><p>Skill name</p></div><div class="col-3"><p>{{ details.Skill}}</p></div>  </div>
+      <div class="row" id="sh1"> <div class="col-4"><p>Skill name</p></div><div class="col-3"><p>{{ details.Skill}}</p></div>  </div>
     
-  <hr>
-  <div class="row"> <div class="col-4"><p>Sub category</p></div> <div class="col-3"><p>{{ details.Subcategory}}</p></div></div>
- <hr>
- <div class="row"> <div class="col-4"><p>Level of skill</p></div><div class="col-3"><p>{{ details.level}}</p></div> </div>
-  <hr>
-  <div class="row"> <div class="col-4"><p>Teaching level</p></div><div class="col-3"><p>{{ details.TeachingLevel}}</p></div> </div>
-  <hr>
-  <div class="row"> <div class="col-4"><p>Member wishes to</p></div><div class="col-3"><p>{{ details.toppingList}}</p></div> </div>
-  <hr>
-  
+  <hr id="s1">
+  <div class="row"  id="sh2"> <div class="col-4"><p>Sub category</p></div> <div class="col-3"><p>{{ details.Subcategory}}</p></div></div>
+ <hr id="s2">
+ <div class="row"  id="sh3"> <div class="col-4"><p>Level of skill</p></div><div class="col-3"><p>{{ details.level}}</p></div> </div>
+  <hr id="s3">
+  <div class="row"  id="sh4"> <div class="col-4"><p>Teaching level</p></div><div class="col-3"><p>{{ details.TeachingLevel}}</p></div> </div>
+  <hr id="s4">
+  <div class="row"  id="sh5"> <div class="col-4"><p>Member wishes to</p></div><div class="col-3"><p>{{ details.toppingList}}</p></div> </div>
+  <hr id="s5">
+  <form id="s6" style="display: none" >
+    <div class="row" > <div class="col-4"><p>Skill name</p></div><div class="col-3"><mat-form-field >
+      <mat-select [(value)]="skill"  #skillsh (selectionChange)="skillsub($event.value)"  >
+            <mat-option *ngFor="let skills of skills | async"    [value]="skills.cat_name" > {{ skills.cat_name }} </mat-option>
+        <mat-option>None</mat-option>
+       
+    
+      </mat-select></mat-form-field></div>  </div>
+    
+  <hr >
+  <div class="row"  > <div class="col-4"><p>Sub category</p></div> <div class="col-3"><mat-form-field *ngIf="issubcategory" >
+      <mat-select [(value)]="skillsu"  (selectionChange)="skillcate($event.value)" >
+   <mat-option  *ngFor="let subcategory of subcategory | async" [value]="subcategory" >{{subcategory}}</mat-option>
+     <mat-option>None</mat-option>
+  </mat-select></mat-form-field>
+  <mat-form-field *ngIf="issubcategory1">
+      <mat-select    (selectionChange)="skillcate($event.value)">
+    <mat-option *ngFor="let subcate of subcate | async" [value]="subcate"> {{ subcate}} </mat-option>
+    <mat-option>None</mat-option>
+  </mat-select></mat-form-field></div></div>
+ <hr >
+ <div class="row"  > <div class="col-4"><p>Level of skill</p></div><div class="col-3"><mat-form-field >
+    <mat-select [(value)]="level"  #skilllevel  >
+        <mat-option *ngFor="let skills of levels" [value]="skills" >{{skills}}</mat-option>
+  <mat-option>None</mat-option>
+</mat-select></mat-form-field></div> </div>
+  <hr >
+  <div class="row"  > <div class="col-4"><p>Teaching level</p></div><div class="col-3"><mat-form-field >
+      <mat-select [(value)]="tlevel"  #skilltlevel  >
+          <mat-option *ngFor="let skills of levels" [value]="skills" >{{skills}}</mat-option>
+    <mat-option>None</mat-option>
+  </mat-select></mat-form-field></div> </div>
+  <hr >
+  <div class="row"  > <div class="col-4"><p>Member wishes to</p></div><div class="col-3"><mat-form-field >
+      <mat-select [(value)]="tlist" multiple #skilltlist  >
+          <mat-option *ngFor="let wish of toppingList" [value]="wish" >{{wish}}</mat-option>
+    <mat-option>None</mat-option>
+  </mat-select></mat-form-field></div> </div>
+  <hr >
+  <button type="button" class="btn btn-primary mx-auto" (click)="updateskillh(skillsh.value, skilllevel.value, skilltlevel.value, skilltlist.value,details.Username)">Add</button>  </form>
    </div>
     
    <div class="tab-pane fade" id="v-pills-skillsyw" role="tabpanel" aria-labelledby="v-pills-skillsyw-tab">
-      <h5>Skills <a class="float-right" style="color:#407FE6; "><i class="fa fa-pencil" style="font-size:15px; "></i>&nbsp;Edit</a></h5> 
+      <h5>Skills <a class="float-right" style="color:#407FE6; " (click)="editskillw(details.Skill,details.Subcategory, details.toppingList  )"><i class="fas fa-pencil-alt" style="font-size:15px; "></i>&nbsp;Edit</a></h5> 
       <hr>
-        <div class="row"> <div class="col-4"><p>Skill name</p></div><div class="col-3"><p>{{ details.Skillw}}</p></div>  </div>
+        <div class="row" id="sw1"> <div class="col-4"><p>Skill name</p></div><div class="col-3"><p>{{ details.Skillw}}</p></div>  </div>
       
-    <hr>
-    <div class="row"> <div class="col-4"><p>Sub category</p></div> <div class="col-3"><p>{{ details.Subcategoryw}}</p></div></div>
-   <hr>
-    <div class="row"> <div class="col-4"><p>Member wishes to</p></div><div class="col-3"><p>{{ details.toppingListw}}</p></div> </div>
-    <hr>
+    <hr id="sf1">
+    <div class="row" id="sw2"> <div class="col-4"><p>Sub category</p></div> <div class="col-3"><p>{{ details.Subcategoryw}}</p></div></div>
+   <hr id="sf2">
+    <div class="row" id="sw3"> <div class="col-4"><p>Member wishes to</p></div><div class="col-3"><p>{{ details.toppingListw}}</p></div> </div>
+    <hr id="sf3">
+    <form id="sw4" style="display: none" >
+        <div class="row" > <div class="col-4"><p>Skill name</p></div><div class="col-3"><mat-form-field >
+          <mat-select [(value)]="skill1"  #skillsh1 (selectionChange)="skillsub1($event.value)"  >
+                <mat-option *ngFor="let skills of skills1 | async"    [value]="skills.cat_name" > {{ skills.cat_name }} </mat-option>
+            <mat-option>None</mat-option>
+           
+        
+          </mat-select></mat-form-field></div>  </div>
+        
+      <hr >
+      <div class="row"  > <div class="col-4"><p>Sub category</p></div> <div class="col-3"><mat-form-field *ngIf="issubcategoryw">
+          <mat-select [(value)]="skillsu1" (selectionChange)="skillcate($event.value)"  >
+       <mat-option  *ngFor="let subcategory of subcategory1 | async" [value]="subcategory" >{{subcategory}}</mat-option>
+          <mat-option>None</mat-option>
+      </mat-select></mat-form-field>
+      <mat-form-field *ngIf="issubcategoryw1" >
+          <mat-select   (selectionChange)="skillcate($event.value)" >
+         <mat-option *ngFor="let subcate of subcate1 | async" [value]="subcate"> {{ subcate}} </mat-option>
+        <mat-option>None</mat-option>
+      </mat-select></mat-form-field></div></div>
+     <hr >
+      <div class="row"  > <div class="col-4"><p>Member wishes to</p></div><div class="col-3"><mat-form-field >
+          <mat-select [(value)]="tlist1" multiple #skilltlist1  >
+              <mat-option *ngFor="let wish of toppingList" [value]="wish" >{{wish}}</mat-option>
+        <mat-option>None</mat-option>
+      </mat-select></mat-form-field></div> </div>
+      <hr >
+      <button type="button" class="btn btn-primary mx-auto" (click)="updateskillw(skillsh1.value,  skilltlist1.value,details.Username)">Add</button>  </form>
    </div>
      </div>
    </div>
@@ -225,7 +284,7 @@
 
 			<p>Add Photos</p>
 		</div>
-		<div class="col-4"><i class="fa fa-user-circle p-1"></i>
+		<div class="col-4" [routerLink]="['/editprofile']"routerLinkActive="active"><i class="fa fa-user-circle p-1"></i>
 			<p>Edit Profile</p>
 		</div>
 		<div class="col-4"><i class="fa fa-plus p-1"></i>
@@ -234,7 +293,7 @@
 	</div><hr>
 	<div class="row">
 	  <div class="col-12">
-	  	<p><i class="fa fa-briefcase p-1"></i>{{details.Work}}</p>
+	  	<p><i class="fa fa-briefcase p-1"></i>&nbsp;&nbsp;{{details.Work}}</p>
 	  </div></div>
 	  <div class="row">
 	  <div class="col-12 ">
@@ -247,14 +306,85 @@
 	  <div class="col-12">
 	  	<p><i class="fa fa-clock-o p-1"></i>Joined&nbsp;&nbsp;{{ details.Join.toDate()| date:'mediumDate'}}</p>
 	  </div></div><hr>
-	  <div class="row">
-	  	<div class="col-12 text-center">
-	  		<p>Edit Details</p>
-	  	</div>
-	  </div><hr>
+	  
 	  <div class="row">
 	  	<div class="col-12 text-center">
 	  		<p [routerLink]="['/about']"routerLinkActive="active">More About {{details.Username}} <i class="fa fa-angle-right p-1"></i></p>
 	  	</div>		
-	  </div>		
+    </div>	
+    <hr>	
   </div>
+
+<!--edit profile-->
+
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document" *ngFor="let details of details | async">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">Edit Profile
+            <button type="button" class="close" data-dismiss="modal">&times;</button> 
+                   </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body">
+    
+    <img src="https://i.ytimg.com/vi/EXp1oa782RQ/maxresdefault.jpg" class="fb-image-lg2">
+    <h5 class=" fb-text1 mb-2"></h5>
+    <img [src]="details.PhotoURL" class="fb-image-profile2 rounded-circle mx-auto mx-lg-0 mx-md-0">
+    <br>
+    <div class="row head">
+      <div class="col-12">
+        <h6 class="mt-3"><i class="far fa-file-alt mr-1"></i>Edit Bio</h6>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <p>You Can Do Anything But Not Everything</p>
+      </div>
+    </div>
+    <div class="row head">
+      <div class="col-12">
+        <h6 class="mt-3"><i class="fa fa-suitcase mr-1"></i>Work</h6>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <p class="mt-2">{{details.Work}}</p>
+      </div>
+    </div>
+    <div class="row head">
+      <div class="col-12">
+        <h6 class="mt-3"><i class="fas fa-graduation-cap mr-1"></i>Education</h6>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <p  class="mt-2">{{details.Schools}}</p>
+      </div>
+    </div>
+    <div class="row head">
+      <div class="col-12">
+        <h6 class="mt-3"><i class="fa fa-home mr-1"></i>Current City</h6>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <p  class="mt-2">Lives in {{details.City}}</p>
+      </div>
+    </div>
+    <div class="row head">
+      <div class="col-12">
+        <h6 class="mt-3"><i class="fa fa-user mr-1"></i>About Info</h6>
+      </div>
+    </div>
+    <div class="row">
+      <div class="offset-4 col-6 ">
+       <a href="" data-dismiss="modal"><i class="fa fa-plus mr-1 my-3"></i>Edit your about info</a>
+       
+      </div>
+    </div>
+    </div> 
+        </div>
+      </div>
+    </div>

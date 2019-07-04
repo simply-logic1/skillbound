@@ -1,37 +1,60 @@
 import { Component, OnInit } from '@angular/core';
 import {AngularFirestore,  AngularFirestoreDocument} from '@angular/fire/firestore';
 import {AngularFireAuth} from '@angular/fire/auth';
-import { NgForm,NgModel } from '@angular/forms';
-import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
-import { AngularFireDatabase } from '@angular/fire/database';
-import * as _moment from 'moment';
-import { default as _rollupMoment} from 'moment';
-import {FormControl} from '@angular/forms';
+import {ClientService} from '../../service/client.service';
 
-const moment = _rollupMoment || _moment;
+import { AngularFireDatabase } from '@angular/fire/database';
+
+
+
 @Component({
   selector: 'app-skills',
   templateUrl: './skills.component.html',
   styleUrls: ['./skills.component.css'],
-  providers: [
-    
-    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
-    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
-  ],
+  
 })
 export class SkillsComponent implements OnInit {
 userid:any;
 details:any;
 city:any;
 selected;
+gender;
+fb;
+skill;
+skillsu;
+level;
+tlevel;
+tlist;
 date;
-  constructor(private db:  AngularFireDatabase,  private afs:AngularFirestore,private afAuth:AngularFireAuth) { }
+date1;
+skills:any;
+subcategory;
+subcate;
+skills1:any;
+subcategory1;
+subcate1;
+skill1;
+skillsu1;
+tlist1;
+issubcategory:boolean;
+issubcategory1:boolean;
+issubcategoryw:boolean;
+issubcategoryw1:boolean;
+subcateg;
+
+toppingList :string[]=[
+  'Swap','Partner with','Start a group','Swap and train','Teach','Tutor','Be employed in','Consult','Offer a good service'
+];
+
+ levels:string[]=[
+   'Basic','Good','Expert'
+ ];
+  constructor(private cli: ClientService, private db:  AngularFireDatabase,  private afs:AngularFirestore,private afAuth:AngularFireAuth) { }
 
   ngOnInit() {
     this.userid = this.afAuth.auth.currentUser.uid;
     this.details= this.afs.collection('Details', ref=> ref.where('register','==',true).where('uid','==',this.userid)).valueChanges();
-   
+    this.cli.bssubcategory.subscribe(subcategory=>this.subcateg=subcategory )
   }
   
   edit(){
@@ -60,30 +83,9 @@ date;
     document.getElementById("email").style.display = "block";
     document.getElementById("sub").style.display = "block";
   }
-  sdate(a){
-    
-    document.getElementById("change").style.display = "none";
-    document.getElementById("change1").style.display = "block";
-    var c = new Date(a);
-    var d= c.getDate();
-    var e= c.getMonth();
-    var f = c.getFullYear();
-    this.date = new FormControl(moment([f, e, d]));
-      }
-      datechange(a,b){
-        const data= a.toDate();
-        console.log(data)
-        document.getElementById("change").style.display = "block";
-    document.getElementById("change1").style.display = "none";
-       
-        console.log(a);
-        const db = this.afs.doc(`Details/${b}`)
-const details = {
- Birthdate: data
-
-}
-return db.update(details);
-      }
+  
+ 
+      
   updatework(a,b){
     console.log(a,b);
     document.getElementById("name").style.display = "block";
@@ -133,21 +135,191 @@ return db.update(details);
     }
     return db.update(details);
   }
-  updatephone1(a,b,c){
-    console.log(a,b,c);
-//     document.getElementById("editch").style.display = "block";
-//     document.getElementById("editche").style.display = "block";
-//     document.getElementById("phone").style.display = "none";
-//     document.getElementById("email").style.display = "none";
-//     document.getElementById("sub").style.display = "none";
+ editpe(){
+  document.getElementById("p1").style.display = "none";
+  document.getElementById("p2").style.display = "block";
+  document.getElementById("e1").style.display = "none";
+  document.getElementById("e2").style.display = "block";
+ }
+ updatephone1(a,b){
+  console.log(a,b);
+  document.getElementById("p1").style.display = "block";
+  document.getElementById("p2").style.display = "none";
 
-// const db = this.afs.doc(`Details/${c}`)
-// const details = {
-//   Phonenumber: a,
-//   Email: b,
-// }
-// return db.update(details);
+const db = this.afs.doc(`Details/${b}`)
+const details = {
+Phonenumber: a
 
-  }
+}
+return db.update(details);
+
+}
+updateemail(a,b){
+  console.log(a,b);
+  document.getElementById("e1").style.display = "block";
+  document.getElementById("e2").style.display = "none";
+
+const db = this.afs.doc(`Details/${b}`)
+const details = {
+Email: a
+
+}
+return db.update(details);
+
+}
+editwc(){
+  document.getElementById("work").style.display = "none";
+  document.getElementById("company").style.display = "none";
+  document.getElementById("w").style.display = "none";
+  document.getElementById("w1").style.display = "none";
+  document.getElementById("work1").style.display = "block";
+  
+
+}
+updatework1(a,b,c){
+  document.getElementById("work").style.display = "block";
+  document.getElementById("company").style.display = "block";
+  document.getElementById("w").style.display = "block";
+  document.getElementById("w1").style.display = "block";
+  document.getElementById("work1").style.display = "none";
+  const db = this.afs.doc(`Details/${c}`)
+const details = {
+ Work: a,
+ Company:b
+
+}
+return db.update(details);
+}
+
+editnumber(){
+  document.getElementById("number1").style.display = "none";
+  document.getElementById("number2").style.display = "block";
+
+}
+
+updateschool1(a,b){
+  console.log(a,b);
+  document.getElementById("number1").style.display = "block";
+  document.getElementById("number2").style.display = "none";
+
+const db = this.afs.doc(`Details/${b}`)
+const details = {
+Schools: a
+
+}
+return db.update(details);
+
+}
+editskillh(a,b,c,d,e){
+  document.getElementById("s1").style.display = "none";
+  document.getElementById("s2").style.display = "none";
+  document.getElementById("s3").style.display = "none";
+  document.getElementById("s4").style.display = "none";
+  document.getElementById("s5").style.display = "none";
+  document.getElementById("sh1").style.display = "none";
+  document.getElementById("sh2").style.display = "none";
+  document.getElementById("sh3").style.display = "none";
+  document.getElementById("sh4").style.display = "none";
+  document.getElementById("sh5").style.display = "none";
+  document.getElementById("s6").style.display = "block";
+  this.issubcategory=true;
+  this.issubcategory1=false;
+  this.skill=a;
+  this.skillsu=b;
+  this.level=c;
+  this.tlevel=d;
+  this.tlist=e;
+  console.log(a,b,c,d,e)
+  this.skills=this.db.list('/Category').valueChanges();
+ this.subcategory=this.db.list(`/Sub_Category/${a}/${a}`).valueChanges();
+}
+updateskillh(a,b,c,d,e){
+  
+  console.log(a,b,c,d,e)
+  const g= this.subcateg;
+  console.log(g)
+  document.getElementById("sh1").style.display = "-webkit-box";
+  document.getElementById("s1").style.display = "block";
+  document.getElementById("sh2").style.display = "-webkit-box";
+  document.getElementById("s2").style.display = "block";
+  document.getElementById("sh3").style.display = "-webkit-box";
+  document.getElementById("s3").style.display = "block";
+  document.getElementById("sh4").style.display = "-webkit-box";
+  document.getElementById("s4").style.display = "block";
+  document.getElementById("sh5").style.display = "-webkit-box";
+  document.getElementById("s5").style.display = "block";
+
+  document.getElementById("s6").style.display = "none";
+  const db = this.afs.doc(`Details/${e}`)
+  const details = {
+   
+    Skill: a,
+    Subcategory: g,
+    level: b,
+    TeachingLevel: c,
+    toppingList: d
+
+}
+return db.update(details);
+
+}
+skillcate(a){
+  console.log(a);
+  this.subcateg=a;
+  this.cli.updatesubcategory(this.subcateg);
+}
+skillsub(a){
+  console.log(a)
+  this.issubcategory=false;
+  this.issubcategory1=true;
+  this.subcate= this.db.list(`/Sub_Category/${a}/${a}`).valueChanges();
+}
+
+editskillw(a,b,c){
+  document.getElementById("sw1").style.display = "none";
+  document.getElementById("sw2").style.display = "none";
+  document.getElementById("sw3").style.display = "none";
+  document.getElementById("sf1").style.display = "none";
+  document.getElementById("sf2").style.display = "none";
+  document.getElementById("sf3").style.display = "none";
+  document.getElementById("sw4").style.display = "block";
+  this.issubcategoryw=true;
+  this.issubcategoryw1=false;
+  this.skill1=a;
+  this.skillsu1=b;
+  this.tlist1=c;
+  console.log(a,b,c)
+  this.skills1=this.db.list('/Category').valueChanges();
+ this.subcategory1=this.db.list(`/Sub_Category/${a}/${a}`).valueChanges();
+}
+updateskillw(a,b,c){
+  console.log(a,b,c)
+  const d=this.subcateg;
+  console.log(d);
+  document.getElementById("sw1").style.display = "-webkit-box";
+  document.getElementById("sf1").style.display = "block";
+  document.getElementById("sw2").style.display = "-webkit-box";
+  document.getElementById("sf2").style.display = "block";
+  document.getElementById("sw3").style.display = "-webkit-box";
+  document.getElementById("sf3").style.display = "block";
+  document.getElementById("sw4").style.display = "none";
+
+  const db = this.afs.doc(`Details/${c}`)
+  const details = {
+   
+    Skillw: a,
+    Subcategoryw: d,
+    toppingListw: b
+
+}
+return db.update(details);
+
+}
+skillsub1(a){
+  console.log(a)
+  this.issubcategoryw=false;
+  this.issubcategoryw1=true;
+  this.subcate1= this.db.list(`/Sub_Category/${a}/${a}`).valueChanges();
+}
 
 }

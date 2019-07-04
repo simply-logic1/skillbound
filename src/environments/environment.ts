@@ -5,12 +5,13 @@
 export const environment = {
   production: false,
   firebase:{
-  apiKey: "AIzaSyBatQEh_gRgDs9PeCpcXnrAGCxA2GHuGFw",
+    apiKey: "AIzaSyBatQEh_gRgDs9PeCpcXnrAGCxA2GHuGFw",
     authDomain: "skilbound.firebaseapp.com",
     databaseURL: "https://skilbound.firebaseio.com",
     projectId: "skilbound",
-    storageBucket: "",
-    messagingSenderId: "888192637565"
+    storageBucket: "skilbound.appspot.com",
+    messagingSenderId: "888192637565",
+    appId: "1:888192637565:web:80d8e183a9c7f884"
   }
 };
 

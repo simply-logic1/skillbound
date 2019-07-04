@@ -21,7 +21,7 @@ export class DasboardComponent implements OnInit {
   city:any;
   Count;
 
-  subcategory:string[];
+  subcategory:any;
   firstFormGroup: FormGroup;
   secondFormGroup:FormGroup;
   thirdFormGroup:FormGroup;
@@ -31,13 +31,10 @@ export class DasboardComponent implements OnInit {
   isNameSelected: boolean; 
   isName:boolean;
   item:any;
+  skills:any;
   gender : string[]=[
-    'Male','Female','Other'
+    'Male','Female','Others'
   ];
-
-skills:string[]=[
-  'WebDesign','Construction','Chartism','Designing','Engineering Software'
-];
 
   select : string[]=[
     'Company','Individual'
@@ -120,6 +117,7 @@ console.log(this.userid);
 this.item = this.db.list('/Data').valueChanges();
 this.cli.bscountry.subscribe(country=> this.Count=country);
 this.name= this.afs.collection('push' , ref => ref.where('uid','==', this.userid)).valueChanges();
+this.skills=this.db.list('/Category').valueChanges();
 //
   }
  //<--validate--> 
@@ -172,21 +170,7 @@ this.name= this.afs.collection('push' , ref => ref.where('uid','==', this.userid
   public hasErrorpr =(controlName :string,errorName:string) => {
     return this.fourthFormGroup.controls[controlName].hasError(errorName);
   }
-  // public proinfo=(fourthFormGroupValue) => {
-  //   if(this.fourthFormGroup.valid){
-  //     this.infopr(fourthFormGroupValue)
-  //   }
-  // }
-  // private infopr = (fourthFormGroupValue) =>{
-  //   let std:professional ={
-  //     category:fourthFormGroupValue.category,
-  //     nbus:fourthFormGroupValue.nbus,
-  //     work:fourthFormGroupValue.work,
-  //     company:fourthFormGroupValue.company,
-  //     exp:fourthFormGroupValue.exp,
-  //     rates:fourthFormGroupValue.rates
-  //   }
-  // }
+ 
   public hasErrorsh =(controlName :string,errorName:string) => {
     return this.fivethFormGroup.controls[controlName].hasError(errorName);
   }
@@ -236,31 +220,7 @@ this.name= this.afs.collection('push' , ref => ref.where('uid','==', this.userid
  }
  skilladd(c){
    console.log(c);
-   if(c =='WebDesign'){
-     this.subcategory=[
-       'HTML','CSS','Javascript'
-     ]
-   }
-   else if(c =='Construction'){
-     this.subcategory=[
-       'Floor','DIY','Roofs','Construction Safety'
-     ]
-   }
-   else if(c =='Chartism'){ 
-     this.subcategory=[
-       'De Mark','Market Profile','Moving Averages'
-     ]
-   }
-   else if(c =='Designing'){
-  this.subcategory=[
-    'Clothing','costume Design','Textile Design'
-  ]
-   }
-   else if(c =='Engineering Software'){
-    this.subcategory=[
-      'Auto CAD','Home Design','STAAD Pro'
-    ]
-   }
+   this.subcategory=this.db.list(`/Sub_Category/${c}/${c}`).valueChanges();
  }
 
 

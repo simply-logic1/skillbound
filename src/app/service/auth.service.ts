@@ -169,7 +169,7 @@ private updateuserdata(user, uid) {
       register:false,
       email: user.email,
      phonenumber: user.phone,
-     photoURL:'https://firebasestorage.googleapis.com/v0/b/skilbound.appspot.com/o/image%2Fimages.png?alt=media&token=16804003-ae51-4b79-8319-0d31d9d4901a',
+     photoURL:'https://firebasestorage.googleapis.com/v0/b/skilbound.appspot.com/o/profile%2Fprofile.png?alt=media&token=69819afb-796f-466a-8b49-184935d4f981',
       // url:user.url,
       roles: {
           user: true

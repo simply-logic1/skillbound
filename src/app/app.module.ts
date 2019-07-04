@@ -57,7 +57,7 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {HttpClientModule} from '@angular/common/http';
 
-
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
@@ -75,6 +75,8 @@ import { AdminsidenavComponent } from './admin/adminsidenav/adminsidenav.compone
 import { MyprofileComponent } from './client/myprofile/myprofile.component';
 import { SkillsComponent } from './client/skills/skills.component';
 import { AboutMComponent } from './client/about-m/about-m.component';
+import { EditprofileMComponent } from './client/editprofile-m/editprofile-m.component';
+import { AudioVideoComponent } from './client/audio-video/audio-video.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +95,9 @@ import { AboutMComponent } from './client/about-m/about-m.component';
     AdminsidenavComponent,
     MyprofileComponent,
     SkillsComponent,
-    AboutMComponent
+    AboutMComponent,
+    EditprofileMComponent,
+    AudioVideoComponent
     
     
   
@@ -144,6 +148,7 @@ import { AboutMComponent } from './client/about-m/about-m.component';
     BrowserAnimationsModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireStorageModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase)
 
