@@ -92,7 +92,7 @@ console.log(this.userid);
 var urlarray=[];
 var namearray=[];
    const fulldate=date.getFullYear()+'/'+(date.getMonth()+1);
-  const filelist = event.target.files[0];
+  const filelist = event.target.files;
   for (const file of filelist) {
   const filePath = this.userid+'/'+'Single'+'/'+fulldate+'/'+file.name;
   this.uploadPercent = this.storage.upload(filePath, file).percentageChanges();

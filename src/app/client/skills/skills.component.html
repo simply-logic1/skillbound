@@ -9,8 +9,9 @@
 
 <nav class="navbar" > 
 
-<img [src]="details.PhotoURL"
+  <a (click)="image()" data-toggle="modal" data-target="#image"><img [src]="details.PhotoURL"
  class="fb-image-profile  rounded-circle mx-auto mx-lg-0 mx-md-0">
+</a>
 
 <ul class="nav mx-auto border-left">
 <li class="nav-item ">
@@ -388,3 +389,37 @@
         </div>
       </div>
     </div>
+
+
+    <!-- image-->
+
+    <div class="modal fade" id="image" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document" *ngFor="let details of details | async" >
+        <div class="modal-content" >
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Change Profile Image</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body" >
+            <input type="file"   class="btn btn-default mx-auto"  (change)=" singleimageupload($event,details.Username)" data-dismiss="modal">
+<div class="container">
+  <div class="row">
+    <div class="col-4 my-3" *ngFor="let images of images | async">
+      <div class="card"  >
+        <img class="card-img-top" [src]="images.url" alt="profile" data-dismiss="modal" style="width:100%;height:45vh;" (click)="profile(images.url,details.Username)">
+  
+    </div>
+    
+    
+    
+  </div>
+  </div>
+</div>
+           
+      </div>
+    </div>
+    

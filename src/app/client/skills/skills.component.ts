@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {AngularFirestore,  AngularFirestoreDocument} from '@angular/fire/firestore';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {ClientService} from '../../service/client.service';
-
+import { AngularFireStorage } from '@angular/fire/storage';
+import { Observable } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/database';
 
 
@@ -41,7 +42,14 @@ issubcategory1:boolean;
 issubcategoryw:boolean;
 issubcategoryw1:boolean;
 subcateg;
+images;
+downloadurl: Observable<string>;
+  uploadPercent:Observable<number>;
+  uploads: any[];
+  progressBarValue;
 
+  allPercentage: Observable<any>;
+  files: Observable<any>;
 toppingList :string[]=[
   'Swap','Partner with','Start a group','Swap and train','Teach','Tutor','Be employed in','Consult','Offer a good service'
 ];
@@ -49,7 +57,7 @@ toppingList :string[]=[
  levels:string[]=[
    'Basic','Good','Expert'
  ];
-  constructor(private cli: ClientService, private db:  AngularFireDatabase,  private afs:AngularFirestore,private afAuth:AngularFireAuth) { }
+  constructor(public storage: AngularFireStorage, private cli: ClientService, private db:  AngularFireDatabase,  private afs:AngularFirestore,private afAuth:AngularFireAuth) { }
 
   ngOnInit() {
     this.userid = this.afAuth.auth.currentUser.uid;
@@ -321,5 +329,71 @@ skillsub1(a){
   this.issubcategoryw1=true;
   this.subcate1= this.db.list(`/Sub_Category/${a}/${a}`).valueChanges();
 }
+image(){
+  this.images=this.afs.collection('SingleImage').valueChanges();
+
+}
+profile(a,b){
+  console.log(a,b); const db = this.afs.doc(`Details/${b}`)
+ const details = {
+  PhotoURL:a
+
+ }
+return db.update(details);
+
+
+}
+singleimageupload(event:any,b){
+  
+ 
+  console.log(this.userid);
+    const date=new Date();
+  var urlarray=[];
+  var namearray=[];
+     const fulldate=date.getFullYear()+'/'+(date.getMonth()+1);
+    const filelist = event.target.files;
+    for (const file of filelist) {
+    const filePath = this.userid+'/'+'Single'+'/'+fulldate+'/'+file.name;
+    this.uploadPercent = this.storage.upload(filePath, file).percentageChanges();
+    const task = this.storage.upload(filePath, file).then(()=>{
+      const fileRef = this.storage.ref(filePath);
+     
+    
+      const getDownloadURLl=fileRef.getDownloadURL().subscribe(url=>
+      {
+        const URL=url;
+       
+        urlarray.push(url);
+        namearray.push(file.name);
+        console.log(namearray)
+          console.log(urlarray);
+         console.log(file.name)
+        
+           this.afs.doc(`Details/${b}`).update({
+            PhotoURL:urlarray,
+           
+     })
+    
+  
+  
+   
+  
+  
+         
+       
+     })
+     
+  
+   }
+  
+  )
+  const uploadTask=this.storage.upload(filePath, file);
+  uploadTask.percentageChanges().subscribe((value) => {
+   this.progressBarValue = value.toFixed(2);
+  })
+  
+  }
+  
+  }
 
 }
